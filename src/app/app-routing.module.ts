@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ClientsComponent} from './clients/clients.component';
+import {CollaborateursComponent} from './collaborateurs/collaborateurs.component';
+import {RequettesComponent} from './requettes/requettes.component';
+import {TachesComponent} from './taches/taches.component';
+
 
 
 const routes: Routes = [
@@ -12,6 +17,10 @@ const routes: Routes = [
   { path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
   { path: 'user-pages', loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) },
   { path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
+  { path: 'clients', component:ClientsComponent},
+  { path: 'collaborateurs', component:CollaborateursComponent},
+  { path: 'requettes', component:RequettesComponent},
+  { path: 'taches', component:TachesComponent}
 ];
 
 @NgModule({

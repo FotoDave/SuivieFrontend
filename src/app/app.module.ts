@@ -17,6 +17,10 @@ import { SettingsPanelComponent } from './shared/settings-panel/settings-panel.c
 import { FooterComponent } from './shared/footer/footer.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
+import { ClientsComponent } from './clients/clients.component';
+import { CollaborateursComponent } from './collaborateurs/collaborateurs.component';
+import { RequettesComponent } from './requettes/requettes.component';
+import { TachesComponent } from './taches/taches.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,7 +35,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsPanelComponent,
     FooterComponent,
     SpinnerComponent,
-    ContentAnimateDirective
+    ContentAnimateDirective,
+    ClientsComponent,
+    CollaborateursComponent,
+    RequettesComponent,
+    TachesComponent,
   ],
   imports: [
     BrowserModule,

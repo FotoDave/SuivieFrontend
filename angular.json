@@ -30,13 +30,15 @@
             "styles": [
               "src/styles.scss",
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
-              "node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
-
+              "node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
+
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/raphael/raphael.min.js",
-              "node_modules/select2/dist/js/select2.full.min.js"
+              "node_modules/select2/dist/js/select2.full.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
           },
           "configurations": {
