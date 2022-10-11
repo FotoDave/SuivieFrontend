@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import './assets/scss/variables';
@@ -14,8 +15,9 @@
 @import "~font-awesome/scss/font-awesome";
 @import "~flag-icon-css/sass/flag-icon";
 @import "~simple-line-icons/scss/simple-line-icons";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~node_modules/ngx-toastr/toastr.css";
 
- 
 /* === Template mixins === */
 @import "./assets/scss/mixins/animation";
 @import "./assets/scss/mixins/badges";

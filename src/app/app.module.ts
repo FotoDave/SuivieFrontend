@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ToastrModule} from "ngx-toastr";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -21,6 +22,8 @@ import { ClientsComponent } from './clients/clients.component';
 import { CollaborateursComponent } from './collaborateurs/collaborateurs.component';
 import { RequettesComponent } from './requettes/requettes.component';
 import { TachesComponent } from './taches/taches.component';
+import { NewClientComponent } from './new-client/new-client.component';
+import {timeout} from "rxjs/operators";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollaborateursComponent,
     RequettesComponent,
     TachesComponent,
+    NewClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    ToastrModule.forRoot({
+      timeOut : 1500,
+      progressBar : true,
+      progressAnimation : "increasing"
+      }
+    ),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
