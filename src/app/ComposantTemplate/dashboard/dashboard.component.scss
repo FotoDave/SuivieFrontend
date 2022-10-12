@@ -1,4 +1,4 @@
-@import '../../styles.scss';
+@import 'src/styles';
 
 .performane-indicator-card {
     .data-time-range {
@@ -349,7 +349,7 @@
                       -webkit-text-fill-color: transparent;
                   }
               }
-              
+
           }
       }
   }
@@ -398,7 +398,7 @@
 
       @media screen and (max-width: 1199px) {
           padding-top: 12.5px;
-          padding-bottom: 12.5px; 
+          padding-bottom: 12.5px;
       }
 
       &:first-child {

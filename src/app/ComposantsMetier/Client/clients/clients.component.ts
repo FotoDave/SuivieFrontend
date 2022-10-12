@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ClientsService} from '../../../services/clients.service';
-import {Observable, pipe, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {Client} from '../../../model/client.model';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
+import {Client} from "../model/client.model";
+import {Observable, throwError} from "rxjs";
+import {ClientsService} from "../services/clients.service";
 //import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 //import {ToastrService} from "ngx-toastr";
 

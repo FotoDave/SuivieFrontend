@@ -9,21 +9,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ToastrModule} from "ngx-toastr";
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { SettingsPanelComponent } from './shared/settings-panel/settings-panel.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { ContentAnimateDirective } from './shared/directives/content-animate.directive';
-import { ClientsComponent } from './clients/clients.component';
-import { CollaborateursComponent } from './collaborateurs/collaborateurs.component';
-import { RequettesComponent } from './requettes/requettes.component';
-import { TachesComponent } from './taches/taches.component';
-import { NewClientComponent } from './new-client/new-client.component';
+import { NavbarComponent } from './ComposantTemplate/shared/navbar/navbar.component';
+import { SidebarComponent } from './ComposantTemplate/shared/sidebar/sidebar.component';
+import { SettingsPanelComponent } from './ComposantTemplate/shared/settings-panel/settings-panel.component';
+import { FooterComponent } from './ComposantTemplate/shared/footer/footer.component';
+import { SpinnerComponent } from './ComposantTemplate/shared/spinner/spinner.component';
+import { ContentAnimateDirective } from './ComposantTemplate/shared/directives/content-animate.directive';
+import { ClientsComponent } from './ComposantsMetier/Client/clients/clients.component';
+import { CollaborateursComponent } from './ComposantsMetier/Collaborateur/collaborateurs/collaborateurs.component';
+import { RequettesComponent } from './ComposantsMetier/Requette/requettes/requettes.component';
+import { TachesComponent } from './ComposantsMetier/Tache/taches/taches.component';
 import {timeout} from "rxjs/operators";
+import { SaveClientComponent } from './ComposantsMetier/Client/save-client/save-client.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,7 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollaborateursComponent,
     RequettesComponent,
     TachesComponent,
-    NewClientComponent,
+    SaveClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,12 +53,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
-    ToastrModule.forRoot({
+    /*ToastrModule.forRoot({
       timeOut : 1500,
       progressBar : true,
       progressAnimation : "increasing"
       }
-    ),
+    ),*/
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -1,6 +1,6 @@
 /* Sidebar */
 
-@import '../../../styles.scss';
+@import 'src/styles';
 .sidebar {
   min-height: calc(100vh - #{$navbar-height});
   background: $sidebar-dark-bg;
@@ -91,8 +91,8 @@
           border-top: none;
           .menu-title {
             color: $sidebar-dark-menu-active-color;
-            font-family: $type1;       
-            font-weight: $font-weight-medium;     
+            font-family: $type1;
+            font-weight: $font-weight-medium;
           }
           i {
             color: theme-color(success);
@@ -140,7 +140,7 @@
             :host-context(.rtl) & {
               left: 0;
               right: auto;
-              transform: translate(-50%,-50%); 
+              transform: translate(-50%,-50%);
             }
           }
 
@@ -393,7 +393,7 @@
           .nav-link {
             display: block;
             padding-left: .5rem;
-            padding-right: .5rem;            
+            padding-right: .5rem;
             text-align: center;
             position: static;
             .menu-title,
@@ -439,7 +439,7 @@
                 z-index: 1;
                 line-height: 1.8;
                 -webkit-box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
-                        box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);              
+                        box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
                 &:after {
                   display: none;
                 }

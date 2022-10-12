@@ -1,6 +1,6 @@
 /* Navbar */
 
-@import '../../../styles.scss';
+@import 'src/styles';
 
 /* Navbar */
 
@@ -229,7 +229,7 @@
         display: none;
       }
     }
-    
+
     .navbar-nav {
       flex-direction: row;
       align-items: center;
@@ -283,7 +283,7 @@
             -moz-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.2);
             &.navbar-dropdown {
-              position: absolute;            
+              position: absolute;
               font-size: 0.9rem;
               margin-top: 0;
               :host-context(.rtl) & {
@@ -419,7 +419,7 @@
           i {
             font-size: 14px;
           }
-          
+
         }
 
         & .message-dropdown.count-indicator {
@@ -497,11 +497,11 @@
       color: $white;
       .nav-profile-text {
         p {
-          @extend .text-white;         
+          @extend .text-white;
         }
       }
       .search-form {
-        
+
         input {
           color: $white;
         }
