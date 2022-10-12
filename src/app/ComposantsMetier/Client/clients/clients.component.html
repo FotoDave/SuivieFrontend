@@ -1,4 +1,4 @@
-<ng-container *ngIf="clients | async as listClients; else faillure">
+<ng-container *ngIf="clients | async as listClients">
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
@@ -13,10 +13,10 @@
                     <input type="text" formControlName="keyword" class="form-control">
                </div>
               </form>
-              <div class="dropdown-divider"></div>
+              <!--<div class="dropdown-divider"></div>-->
               <!--Mettre un boutton de creation des clients-->
-            <a routerLink="/new-client"
-               class="text-dark ml-auto mb-3 mb-sm-0"> Creer un client</a>
+                  <a class="text-dark ml-auto mb-3 mb-sm-0"
+                     routerLink="/new-client" routerLinkActive="active"> Creer un client</a>
         </div>
         <div class="table-responsive border rounded p-1">
 
@@ -38,7 +38,7 @@
               <td>{{c.tel}}</td>
               <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
               <td><button class="btn btn-sm btn-warning"><i class="bi bi-pen"></i></button>
-                <button class="btn btn-sm btn-danger" (click)="deleteClient(c.id)">
+                <button class="btn btn-sm btn-danger" (click)="deleteClient(c)">
                   <i class="bi bi-trash"></i></button></td>
             </tr>
             </tbody>
@@ -61,6 +61,8 @@
     </div>
   </div>
 </div>
+</ng-container>
+
 <!--
 </ng-container>
 <ng-template #faillure routerLink="error500">

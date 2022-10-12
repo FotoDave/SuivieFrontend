@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {ClientsService} from '../services/clients.service';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {Client} from '../model/client.model';
+import {ClientsService} from '../../../services/clients.service';
+import {Observable, pipe, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {Client} from '../../../model/client.model';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Router} from "@angular/router";
+//import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+//import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-clients',
@@ -20,8 +23,7 @@ export class ClientsComponent implements OnInit {
   constructor(
     private clientService : ClientsService,
     private searchFb : FormBuilder,
-    private modalService : NgbModal,
-    private saveFb : FormBuilder
+    private route : Router
   ) { }
 
   ngOnInit(): void {
@@ -48,13 +50,20 @@ export class ClientsComponent implements OnInit {
     );
   }
 
-  deleteClient(id: number) {
-    this.clientService.deleteClient(id).pipe(
-      catchError(err => {
-        this.errorMessage = "Client not found";
-        return throwError(err);
-      })
-    );
-
+  deleteClient(c:Client) {
+    this.clientService.deleteClient(c.id).subscribe({
+      next : (value) => {
+        this.clients = this.clients.pipe(
+          map(data => {
+            let index = data.indexOf(c);
+            data.slice(index,1);
+            return data;
+          })
+        );},
+      error : err => {
+        console.log(err);
+      }
+    })
   }
+
 }
