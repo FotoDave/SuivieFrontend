@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {Client} from "../model/client.model";
 import {Observable, throwError} from "rxjs";
 import {ClientsService} from "../services/clients.service";
+//import {ToastrService} from "ngx-toastr";
 //import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 //import {ToastrService} from "ngx-toastr";
 
@@ -17,12 +18,14 @@ export class ClientsComponent implements OnInit {
   clients! : Observable<Array<Client>>;
   errorMessage! : string;
   searchFormGroup! : FormGroup;
+  clientModel : Client;
   closeResult : string;
 
   constructor(
     private clientService : ClientsService,
     private searchFb : FormBuilder,
-    private route : Router
+    private route : Router,
+    //private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -58,11 +61,16 @@ export class ClientsComponent implements OnInit {
             data.slice(index,1);
             return data;
           })
-        );},
+        );
+        //this.toastr.success("Client supprimé avec succès", "Suppression Client");
+        },
       error : err => {
         console.log(err);
       }
-    })
+    });
   }
 
+  infoClient(c: number) {
+    this.route.navigateByUrl("clients/modifier/"+c);
+  }
 }

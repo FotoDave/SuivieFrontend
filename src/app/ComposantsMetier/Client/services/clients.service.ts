@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Client} from "../model/client.model";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {SaveModel} from "../model/save.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,15 @@ export class ClientsService {
     return this.http.get<Array<Client>>(environment.backendHost+'/clients')
   }
 
+  public getOneClient(idClient : number ){
+    return this.http.get<Array<Client>>(environment.backendHost+'/clients/'+idClient);
+  }
+
   public searchClient(keyword : string): Observable<Array<Client>>{
     return this.http.get<Array<Client>>(environment.backendHost+'/clients/search?keyword='+keyword)
   }
 
-  public creerClient(client : Client) : Observable<Client> {
+  public creerClient(client: Client) : Observable<Client> {
     return this.http.post<Client>(environment.backendHost+'/clients', client);
   }
 

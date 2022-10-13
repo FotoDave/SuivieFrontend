@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Observable} from "rxjs";
 import {ClientsService} from "../services/clients.service";
 import {Client} from "../model/client.model";
+import {SaveModel} from "../model/save.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,9 +15,11 @@ import {Client} from "../model/client.model";
 export class SaveClientComponent implements OnInit {
   clients! : Observable<Array<Client>>;
   saveFormGroup : FormGroup;
+  clientModel : SaveModel
   constructor(
     private clientService : ClientsService,
-    private saveFb : FormBuilder
+    private saveFb : FormBuilder,
+    private router :  Router
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +27,7 @@ export class SaveClientComponent implements OnInit {
       {
         nom : this.saveFb.control(""),
         email : this.saveFb.control(""),
-        telephone : this.saveFb.control("")
+        tel : this.saveFb.control("")
       });
   }
 
@@ -35,6 +39,7 @@ export class SaveClientComponent implements OnInit {
     this.clientService.creerClient(client).subscribe({
       next : data => {
         alert("Client creer");
+        this.router.navigateByUrl("/clients")
       },
       error : err => {
         console.log(err);

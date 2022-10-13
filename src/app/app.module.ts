@@ -21,8 +21,9 @@ import { ClientsComponent } from './ComposantsMetier/Client/clients/clients.comp
 import { CollaborateursComponent } from './ComposantsMetier/Collaborateur/collaborateurs/collaborateurs.component';
 import { RequettesComponent } from './ComposantsMetier/Requette/requettes/requettes.component';
 import { TachesComponent } from './ComposantsMetier/Tache/taches/taches.component';
-import {timeout} from "rxjs/operators";
+//import {timeout} from "rxjs/operators";
 import { SaveClientComponent } from './ComposantsMetier/Client/save-client/save-client.component';
+import { EditClientComponent } from './ComposantsMetier/Client/edit-client/edit-client.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RequettesComponent,
     TachesComponent,
     SaveClientComponent,
+    EditClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,12 +55,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
-    /*ToastrModule.forRoot({
-      timeOut : 1500,
-      progressBar : true,
-      progressAnimation : "increasing"
-      }
-    ),*/
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

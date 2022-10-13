@@ -5,6 +5,7 @@ import {CollaborateursComponent} from './ComposantsMetier/Collaborateur/collabor
 import {RequettesComponent} from './ComposantsMetier/Requette/requettes/requettes.component';
 import {TachesComponent} from './ComposantsMetier/Tache/taches/taches.component';
 import {SaveClientComponent} from "./ComposantsMetier/Client/save-client/save-client.component";
+import {EditClientComponent} from "./ComposantsMetier/Client/edit-client/edit-client.component";
 
 
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'collaborateurs', component:CollaborateursComponent},
   { path: 'requettes', component:RequettesComponent},
   { path: 'taches', component:TachesComponent},
-  { path: 'save-client', component:SaveClientComponent},
+  { path: 'clients/creer', component:SaveClientComponent},
+  {path: 'clients/modifier/:id', component:EditClientComponent},
 ];
 
 @NgModule({
