@@ -8,9 +8,12 @@
                   <!-- Recherche des clients -->
               <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
                 [formGroup]="searchFormGroup" (ngSubmit)="searchClients()">
-                <div class="input-group ml-auto mb-3 mb-sm-0">
-                    <i class="bi bi-search"></i>
-                    <input type="text" formControlName="keyword" class="form-control">
+                <div class="input-group">
+                    <input type="text" formControlName="keyword" class="form-control"
+                    value="Rechercher des clients...">
+                    <button type="button" class="btn btn-inverse-dark btn-icon">
+                        <i class="bi bi-search"></i>
+                    </button>
                </div>
               </form>
               <!--<div class="dropdown-divider"></div>-->

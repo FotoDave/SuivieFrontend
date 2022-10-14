@@ -17,7 +17,7 @@ export class ClientsService {
   }
 
   public getOneClient(idClient : number ){
-    return this.http.get<Array<Client>>(environment.backendHost+'/clients/'+idClient);
+    return this.http.get<Client>(environment.backendHost+'/clients/'+idClient);
   }
 
   public searchClient(keyword : string): Observable<Array<Client>>{

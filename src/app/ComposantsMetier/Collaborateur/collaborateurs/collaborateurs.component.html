@@ -1,1 +1,76 @@
-<p>collaborateurs works!</p>
+<ng-container *ngIf="collaborateur | async">
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-sm-flex align-items-center mb-4">
+            <h4 class="card-title mb-sm-0">Liste des collaborateurs</h4>
+            <!-- Recherche des clients -->
+            <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
+                  [formGroup]="searchFormGroup" (ngSubmit)="searchCollab()">
+              <div class="input-group">
+                <input type="text" formControlName="keyword" class="form-control"
+                       value="Rechercher des collaborateurs...">
+                <button type="button" class="btn btn-inverse-dark btn-icon">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+            <!--<div class="dropdown-divider"></div>-->
+            <!--Mettre un boutton de creation des clients-->
+            <a class="text-dark ml-auto mb-3 mb-sm-0"
+               routerLink="collaborateurs/creer" routerLinkActive="active">Creer un collaborateur</a>
+          </div>
+          <div class="table-responsive border rounded p-1">
+
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="font-weight-bold">ID client</th>
+                <th class="font-weight-bold">Nom</th>
+                <th class="font-weight-bold"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let c of collaborateur | async">
+                <td>{{c.id}}</td>
+                <td>{{c.nom}}</td>
+                <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
+                <td><button class="btn btn-sm btn-warning"
+                            (click)="infoCollab(c.id)">
+                  <i class="bi bi-pen"></i></button>
+                  <button class="btn btn-sm btn-danger" (click)="deleteCollab(c)">
+                    <i class="bi bi-trash"></i></button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex mt-4 flex-wrap align-items-center">
+            <p class="text-muted mb-sm-0">Showing 1 to 10 of 57 entries</p>
+            <nav class="ml-auto">
+              <ul class="pagination separated pagination-info mb-sm-0">
+                <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
+                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!--
+</ng-container>
+<ng-template #faillure routerLink="error500">
+  {{errorMessage}}
+</ng-template>
+<ng-template #faillure routerLink="error500">
+  {{errorMessage}}
+</ng-template>
+-->
+

@@ -24,6 +24,8 @@ import { TachesComponent } from './ComposantsMetier/Tache/taches/taches.componen
 //import {timeout} from "rxjs/operators";
 import { SaveClientComponent } from './ComposantsMetier/Client/save-client/save-client.component';
 import { EditClientComponent } from './ComposantsMetier/Client/edit-client/edit-client.component';
+import { CreateCollaborateurComponent } from './ComposantsMetier/Collaborateur/collaborateurs/create-collaborateur/create-collaborateur.component';
+import { EditCollaborateurComponent } from './ComposantsMetier/Collaborateur/collaborateurs/edit-collaborateur/edit-collaborateur.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,6 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TachesComponent,
     SaveClientComponent,
     EditClientComponent,
+    CreateCollaborateurComponent,
+    EditCollaborateurComponent,
   ],
   imports: [
     BrowserModule,

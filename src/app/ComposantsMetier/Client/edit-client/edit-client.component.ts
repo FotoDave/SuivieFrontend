@@ -31,28 +31,17 @@ export class EditClientComponent implements OnInit {
     this.idClient = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("///////////////////////");
     console.log(this.idClient);
-    this.clientModel = this.clientService.getOneClient(Number(this.idClient)).subscribe({
-        next : value => {
-          this.clients = this.clients.pipe(
-            map( data => {
-              this.model.nom = data.nom;
-              this.model.tel = data.tel;
-              this.model.email = data.email;
-              return data;
-            })
-          )
+
+    this.clientService.getOneClient(Number(this.idClient)).subscribe({
+      next : value => {
+        this.editFormGroup = this.editFB.group(
+          {
+            nom : this.editFB.control(value.nom),
+            email : this.editFB.control(value.email),
+            tel : this.editFB.control(value.tel)
+          });
       }
     });
-    console.log("///////////////////////");
-    console.log(this.model.nom);
-    console.log(this.model.email);
-    console.log(this.model.tel);
-    this.editFormGroup = this.editFB.group(
-      {
-        nom : this.editFB.control(this.model.nom),
-        email : this.editFB.control(this.model.email),
-        tel : this.editFB.control(this.model.tel)
-      });
   }
 
   saveClients() {
