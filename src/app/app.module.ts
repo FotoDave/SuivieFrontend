@@ -24,8 +24,11 @@ import { TachesComponent } from './ComposantsMetier/Tache/taches/taches.componen
 //import {timeout} from "rxjs/operators";
 import { SaveClientComponent } from './ComposantsMetier/Client/save-client/save-client.component';
 import { EditClientComponent } from './ComposantsMetier/Client/edit-client/edit-client.component';
-import { CreateCollaborateurComponent } from './ComposantsMetier/Collaborateur/collaborateurs/create-collaborateur/create-collaborateur.component';
-import { EditCollaborateurComponent } from './ComposantsMetier/Collaborateur/collaborateurs/edit-collaborateur/edit-collaborateur.component';
+import {CreateCollaborateurComponent} from "./ComposantsMetier/Collaborateur/create-collaborateur/create-collaborateur.component";
+import {EditCollaborateurComponent} from "./ComposantsMetier/Collaborateur/edit-collaborateur/edit-collaborateur.component";
+import { ViewRequetteComponent } from './ComposantsMetier/Requette/view-requette/view-requette.component';
+import { CreateRequetteComponent } from './ComposantsMetier/Requette/create-requette/create-requette.component';
+import { UpdateRequetteComponent } from './ComposantsMetier/Requette/update-requette/update-requette.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -49,6 +52,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditClientComponent,
     CreateCollaborateurComponent,
     EditCollaborateurComponent,
+    ViewRequetteComponent,
+    CreateRequetteComponent,
+    UpdateRequetteComponent,
   ],
   imports: [
     BrowserModule,

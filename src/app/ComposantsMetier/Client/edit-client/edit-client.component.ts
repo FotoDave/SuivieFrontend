@@ -40,6 +40,9 @@ export class EditClientComponent implements OnInit {
             email : this.editFB.control(value.email),
             tel : this.editFB.control(value.tel)
           });
+      },
+      error : err => {
+        throwError(err);
       }
     });
   }

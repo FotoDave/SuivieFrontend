@@ -12,6 +12,9 @@ import {
 import {
   EditCollaborateurComponent
 } from "./ComposantsMetier/Collaborateur/edit-collaborateur/edit-collaborateur.component";
+import {ViewRequetteComponent} from "./ComposantsMetier/Requette/view-requette/view-requette.component";
+import {CreateRequetteComponent} from "./ComposantsMetier/Requette/create-requette/create-requette.component";
+import {UpdateRequetteComponent} from "./ComposantsMetier/Requette/update-requette/update-requette.component";
 
 
 
@@ -26,13 +29,17 @@ const routes: Routes = [
   //{ path: 'user-pages', loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) },
   //{ path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
   { path: 'clients', component:ClientsComponent},
-  { path: 'collaborateurs', component:CollaborateursComponent},
-  { path: 'requettes', component:RequettesComponent},
-  { path: 'taches', component:TachesComponent},
   { path: 'clients/creer', component:SaveClientComponent},
   { path: 'clients/modifier/:id', component:EditClientComponent},
+  { path: 'collaborateurs', component:CollaborateursComponent},
   { path: 'collaborateurs/creer', component:CreateCollaborateurComponent},
   { path: 'collaborateurs/modifier/:id', component:EditCollaborateurComponent},
+  { path: 'requettes', component:RequettesComponent},
+  { path: 'requettes/creer', component:CreateRequetteComponent},
+  { path: 'requettes/consulter/:id', component:ViewRequetteComponent},
+  { path: 'requettes/modifier/:id', component:UpdateRequetteComponent},
+  { path: 'taches', component:TachesComponent},
+
 ];
 
 @NgModule({

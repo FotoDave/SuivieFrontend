@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex align-items-center mb-4">
+          <h2 class="card-title mb-sm-0">Affichage de la requette</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/requettes">Liste Requettes</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Éléments Requette</li>
+            </ol>
+          </nav>
+          <form class="forms-sample" [formGroup]="formFormGroup">
+            <div class="form-group">
+              <label>ID : </label>
+              <label class="form-control" formControlName="id"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Intitulé</label>
+              <label class="form-control" formControlName="intitule"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <label class="form-control" formControlName="date"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Module</label>
+              <label class="form-control" formControlName="module"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Fontionalité</label>
+              <label class="form-control" formControlName="fonctionalite"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Urgence</label>
+              <label class="form-control" formControlName="urgence"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Observation</label>
+              <label class="form-control" formControlName="observation"><b></b></label>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <label class="form-control" formControlName="type"><b></b></label>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

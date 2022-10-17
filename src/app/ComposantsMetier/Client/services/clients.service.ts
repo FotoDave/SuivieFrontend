@@ -4,6 +4,7 @@ import {Client} from "../model/client.model";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {SaveModel} from "../model/save.model";
+import {Collaborateur} from "../../Collaborateur/model/collaborateur.model";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class ClientsService {
 
   public deleteClient(idClient : number ){
     return this.http.delete(environment.backendHost+'/clients/'+idClient);
+  }
+
+  public updateClient(client : Client, id : number) : Observable<Client>{
+    return this.http.put<Client>(environment.backendHost+'/clients/'+id, client)
   }
 }
