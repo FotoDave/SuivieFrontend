@@ -5,19 +5,6 @@
         <div class="card-body">
           <div class="d-sm-flex align-items-center mb-4">
             <h4 class="card-title mb-sm-0">Liste des requettes clients</h4>
-            <!-- Recherche des clients -->
-            <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
-                  [formGroup]="searchFormGroup" (ngSubmit)="searchRequettes()">
-              <div class="input-group">
-                <input type="text" formControlName="keyword" class="form-control"
-                       value="Rechercher des clients...">
-                <button type="button" class="btn btn-inverse-dark btn-icon">
-                  <i class="bi bi-search"></i>
-                </button>
-              </div>
-            </form>
-            <!--<div class="dropdown-divider"></div>-->
-            <!--Mettre un boutton de creation des clients-->
             <a class="text-dark ml-auto mb-3 mb-sm-0"
                routerLink="/requettes/creer" routerLinkActive="active"> Creer une requette</a>
           </div>
@@ -36,16 +23,14 @@
               <tr *ngFor="let r of requette | async ">
                 <td>{{r.id}}</td>
                 <td>{{r.intitule}}</td>
-                <td>{{r.type}}</td>
+                <td>{{r.typeRequette}}</td>
                 <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
                 <td><button class="btn btn-sm btn-primary"
                             (click)="viewRequette(r.id)">
-                  <i class="bi bi-view-list"></i></button>
-                  <button class="btn btn-sm btn-warning"
-                            (click)="infoRequette(r.id)">
-                  <i class="bi bi-pen"></i></button>
-                  <button class="btn btn-sm btn-danger" (click)="deleteRequette(r)">
-                    <i class="bi bi-trash"></i></button></td>
+                  <i class="bi bi-view-list"></i> Détails</button>
+                  <!--<button class="btn btn-sm btn-danger" (click)="deleteRequette(r)">
+                    <i class="bi bi-trash"></i> Supprimer</button>-->
+                </td>
               </tr>
               </tbody>
             </table>

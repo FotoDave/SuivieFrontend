@@ -22,11 +22,10 @@
                routerLink="/collaborateurs/creer" routerLinkActive="active">Creer un collaborateur</a>
           </div>
           <div class="table-responsive border rounded p-1">
-
             <table class="table table-hover">
               <thead>
               <tr>
-                <th class="font-weight-bold">ID client</th>
+                <th class="font-weight-bold">ID Collaborateurs</th>
                 <th class="font-weight-bold">Nom</th>
                 <th class="font-weight-bold"></th>
               </tr>
@@ -36,11 +35,11 @@
                 <td>{{c.id}}</td>
                 <td>{{c.nom}}</td>
                 <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
-                <td><button class="btn btn-sm btn-warning"
+                <td><button class="btn btn-sm btn-primary"
                             (click)="infoCollab(c.id)">
-                  <i class="bi bi-pen"></i></button>
+                  <i class="bi bi-pen"></i> Modifier</button>
                   <button class="btn btn-sm btn-danger" (click)="deleteCollab(c)">
-                    <i class="bi bi-trash"></i></button></td>
+                    <i class="bi bi-trash"></i> Supprimer</button></td>
               </tr>
               </tbody>
             </table>

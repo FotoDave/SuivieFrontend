@@ -1,10 +1,12 @@
 export interface Requette{
   id : number;
+  date_creation : Date;
   intitule : string;
   module : string;
-  fonctionalite : string;
+  fonctionnalite : string;
   urgence : string;
   observation : string;
-  type : string;
-  date : Date;
+  typeRequette : string;
+  clientId : number;
+  nomClient : string;
 }

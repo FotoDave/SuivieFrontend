@@ -22,4 +22,12 @@ export class RequetteService {
   public deleteRequtte(id: number){
     return this.http.delete(environment.backendHost+"/requettes/"+id);
   }
+
+  public modifierRequette(requette : Requette, id : number): Observable<Requette>{
+    return this.http.put<Requette>(environment.backendHost+"/requettes/"+id, requette);
+  }
+
+  public createRequette(requette : Requette): Observable<Requette>{
+    return this.http.post<Requette>(environment.backendHost+"/requettes", requette);
+  }
 }

@@ -1,51 +1,149 @@
-<div class="row">
-  <div class="col-md-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-sm-flex align-items-center mb-4">
-          <h2 class="card-title mb-sm-0">Affichage de la requette</h2>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a routerLink="/requettes">Liste Requettes</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Éléments Requette</li>
-            </ol>
-          </nav>
-          <form class="forms-sample" [formGroup]="formFormGroup">
-            <div class="form-group">
-              <label>ID : </label>
-              <label class="form-control" formControlName="id"><b></b></label>
-            </div>
-            <div class="form-group">
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="text-right">
+        <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
+                (click)="openXl(content)">
+          <i class="bi bi-list"></i> Créer une Tache</button>
+      </div>
+      <h4 class="card-title">Détails de la requette</h4>
+      <p class="card-description">
+        Requettes /<a class="text-info" routerLink="/requettes" routerLinkActive="active">
+        Liste des requettes</a> / Détails requette #{{requette.id}}
+      </p>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <label>Client</label>
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="nomClient"></label>-->
+              <b>{{requette.nomClient}}</b>
+            </td>
+            <td >
+              <label>Date de creation</label>
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="date_creation"></label>-->
+              <b>{{requette.date_creation | date:"MM/dd/yyyy 'À' h:mma"}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
               <label>Intitulé</label>
-              <label class="form-control" formControlName="intitule"><b></b></label>
-            </div>
-            <div class="form-group">
-              <label>Date</label>
-              <label class="form-control" formControlName="date"><b></b></label>
-            </div>
-            <div class="form-group">
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="intitule"></label>-->
+              <b>{{requette.intitule}}</b>
+            </td>
+            <td>
               <label>Module</label>
-              <label class="form-control" formControlName="module"><b></b></label>
-            </div>
-            <div class="form-group">
-              <label>Fontionalité</label>
-              <label class="form-control" formControlName="fonctionalite"><b></b></label>
-            </div>
-            <div class="form-group">
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="module"></label>-->
+              <b>{{requette.module}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Fonctionnalité</label>
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="fonctionnalite"></label>-->
+              <b>{{requette.fonctionnalite}}</b>
+            </td>
+            <td>
               <label>Urgence</label>
-              <label class="form-control" formControlName="urgence"><b></b></label>
-            </div>
-            <div class="form-group">
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="urgence"></label>-->
+              <b>{{requette.urgence}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
               <label>Observation</label>
-              <label class="form-control" formControlName="observation"><b></b></label>
-            </div>
-            <div class="form-group">
-              <label>Type</label>
-              <label class="form-control" formControlName="type"><b></b></label>
-            </div>
-          </form>
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="observation"></label>-->
+              <b>{{requette.observation}}</b>
+            </td>
+            <td>
+              <label>Type requette</label>
+            </td>
+            <td>
+              <!--<label class="form-control" formControlName="typeRequette"></label>-->
+              <b>{{requette.typeRequette}}</b>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0"
+                (click)="modifier(requette.id)">
+              <i class="bi bi-pen"></i> Modifier</button>
+
+        <!--<button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes"
+                (click)="delete(requette)">
+          <i class="bi bi-trash"></i> Supprimer</button>-->
+          </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Création de la tâche</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <form [formGroup]="formFormGroup">
+        <div class="form-group">
+          <label for="requette"><b>Requette</b></label>
+          <input type="requette" class="form-control" id="requette"
+                 placeholder="Selectionnez la requette...">
+        </div>
+        <div class="form-group">
+          <label for="intitule"><b>Intitulé</b></label>
+          <input type="text" class="form-control" id="intitule"
+                 placeholder="Intitulé">
+        </div>
+        <div class="form-group">
+          <label for="observation"><b>Observations</b></label>
+          <textarea class="form-control" id="observation" rows="4"
+                    placeholder="Vos observations"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="creerTache()">
+      <i class="bi bi-save"></i>
+      Créer</button>
+    <button type="button" class="btn btn-danger"
+            (click)="modal.close('Close click')">
+      <i class="bi bi-x-circle"></i>
+      Annuler</button>
+  </div>
+</ng-template>
