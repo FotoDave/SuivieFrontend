@@ -35,12 +35,7 @@ export class ViewRequetteComponent implements OnInit {
     this.idRequette = Number(this.activedRoute.snapshot.paramMap.get('id'));
     this.requetteService.getOneRequette(this.idRequette).subscribe({
       next: value => {
-        this.requette = value;/*
-          this.formFormGroup = this.formFB.group({
-          nomClient: this.formFB.control(value.nomClient),
-          date_creation: this.formFB.control(value.date_creation),
-          nomClient: this.formFB.control(value.nomClient),
-        })*/
+        this.requette = value;
       },
       error: err => {
         throwError(err);
@@ -56,16 +51,12 @@ export class ViewRequetteComponent implements OnInit {
     this.router.navigateByUrl("requettes/modifier/"+id);
   }
 
-  delete(requette: Requette) {
+  /*delete(requette: Requette) {
     this.requetteService.deleteRequtte(this.idRequette).subscribe({
       next: value => {
         this.router.navigateByUrl("requettes")
       },
       error: err => throwError(err)
     });
-  }
-
-  creerTache() {
-
-  }
+  }*/
 }

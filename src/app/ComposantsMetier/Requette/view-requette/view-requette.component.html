@@ -38,7 +38,7 @@
               <label>Date de creation</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="date_creation"></label>-->
+              <!--<label class="form-control" formControlName="date_creation"></label>  | date:"MM/dd/yyyy 'À' h:mma"-->
               <b>{{requette.date_creation | date:"MM/dd/yyyy 'À' h:mma"}}</b>
             </td>
           </tr>
@@ -98,7 +98,7 @@
       </div>
       <div>
           <div class="text-right">
-            <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0"
+            <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
                 (click)="modifier(requette.id)">
               <i class="bi bi-pen"></i> Modifier</button>
 
@@ -112,13 +112,17 @@
 </div>
 
 <ng-template #content let-modal>
+  <app-content [modal]="modal"></app-content>
+</ng-template>
+<!--
+<ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Création de la tâche</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
     <div class="card-body">
-      <form [formGroup]="formFormGroup">
+      <form>
         <div class="form-group">
           <label for="requette"><b>Requette</b></label>
           <input type="requette" class="form-control" id="requette"
@@ -147,3 +151,4 @@
       Annuler</button>
   </div>
 </ng-template>
+-->
