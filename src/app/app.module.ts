@@ -4,9 +4,11 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {ToastrModule} from "ngx-toastr";
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -64,7 +66,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
+    /*ToastrModule,*/
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule,
     ChartsModule,
     TranslateModule.forRoot({

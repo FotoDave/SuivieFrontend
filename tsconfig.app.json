@@ -8,7 +8,8 @@
     "preserveWhitespaces": true //Not working in angular 8.1.1
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "node_modules/ng-multiselect-dropdown/index.ts"
   ],
   "exclude": [
     "src/test.ts",
