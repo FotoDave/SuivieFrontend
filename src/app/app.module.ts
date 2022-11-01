@@ -32,6 +32,9 @@ import { ViewRequetteComponent } from './ComposantsMetier/Requette/view-requette
 import { CreateRequetteComponent } from './ComposantsMetier/Requette/create-requette/create-requette.component';
 import { UpdateRequetteComponent } from './ComposantsMetier/Requette/update-requette/update-requette.component';
 import { ContentComponent } from './ComposantsMetier/Requette/content/content.component';
+import { CreateTacheComponent } from './ComposantsMetier/Tache/create-tache/create-tache.component';
+import { ViewTacheComponent } from './ComposantsMetier/Tache/view-tache/view-tache.component';
+import { CommentaireComponent } from './ComposantsMetier/Commentaire/commentaire/commentaire.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,6 +62,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateRequetteComponent,
     UpdateRequetteComponent,
     ContentComponent,
+    CreateTacheComponent,
+    ViewTacheComponent,
+    CommentaireComponent,
   ],
   imports: [
     BrowserModule,

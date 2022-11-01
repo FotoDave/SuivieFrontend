@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup" (ngSubmit)="creerTache()">
+  <div class="modal-header">
+    <h4 class="modal-title">Création de la tâche</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+
+      <div class="form-group">
+        <label><b>Requette</b></label>
+        <ng-select formControlName="requetteId"
+                   [items]="requettes"
+                   bindLabel="intitule"
+                   bindValue="id">
+        </ng-select>
+      </div>
+      <div class="form-group">
+        <label for="intitule"><b>Intitulé</b></label>
+        <input type="text" class="form-control" id="intitule"
+               placeholder="Intitulé" formControlName="intitule">
+      </div>
+      <div class="form-group">
+        <label for="observation"><b>Observations</b></label>
+        <textarea class="form-control" id="observation" rows="4"
+                  placeholder="Vos observations" formControlName="observation"></textarea>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="creerTache()">
+      <i class="bi bi-save"></i>
+      Créer</button>
+    <button type="button" class="btn btn-danger"
+            (click)="modal.close('Close click')">
+      <i class="bi bi-x-circle"></i>
+      Annuler</button>
+  </div>
+</form>

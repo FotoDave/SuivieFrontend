@@ -1,1 +1,64 @@
-<p>taches works!</p>
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex align-items-center mb-4">
+          <h4 class="card-title mb-sm-0">Liste des Taches</h4>
+          <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
+                [formGroup]="formGroup" (ngSubmit)="searchTache()">
+            <div class="row-cols-1">
+              <label><b>Requette</b></label>
+              <ng-select [items]="requette"
+                         bindLabel="intitule"
+                         bindValue="id"
+                         formControlName="requetteId" required>
+              </ng-select>
+              <label><b>Status tache</b></label>
+              <ng-select [items]="itemsStatus"
+                         bindLabel="labelS"
+                         bindValue="valueS"
+                         formControlName="statusTache" required>
+              </ng-select>
+              <button [disabled]="!formGroup.valid" type="submit" class="btn btn-success mt-3">
+                <i class="bi bi-search"></i> Chercher
+              </button>
+            </div>
+          </form>
+          <a class="text-dark ml-auto mb-3 mb-sm-0"
+             routerLinkActive="active" (click)="openXl(content)">Creer une tâche</a>
+        </div>
+        <div class="table-responsive border rounded p-1">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th class="font-weight-bold">ID Tache</th>
+              <th class="font-weight-bold">Intitulé</th>
+              <th class="font-weight-bold">Status</th>
+              <th class="font-weight-bold"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let t of taches">
+              <td>{{t.id}}</td>
+              <td>{{t.intitule}}</td>
+              <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
+              <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
+              <td><button class="btn btn-sm btn-primary"
+                          (click)="detailsTache(t.id)">
+                <i class="bi bi-view-list"></i> Détails</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive border rounded p-1" *ngIf="!taches || taches.length < 1">
+          <p class="card-title text-center">Aucun éléments...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <app-create-tache [modal] = modal></app-create-tache>
+</ng-template>

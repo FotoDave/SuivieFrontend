@@ -21,7 +21,7 @@ export class ContentComponent implements OnInit {
   @Output()
   even : EventEmitter<undefined>;
   @Input()
-  modal: undefined;
+  modal: any;
   constructor(
     private modalService : NgbModal,
     private formBuilder : FormBuilder,
@@ -43,9 +43,10 @@ export class ContentComponent implements OnInit {
 
     creerTache() {
     let tache: Tache = this.formGroup.value;
+    console.log(tache);
     this.tacheService.creerTache(tache).subscribe({
       next : value => {
-        this.router.navigateByUrl("/requttes")
+        this.modal.close();
       },
       error : err => {
         throwError(err);

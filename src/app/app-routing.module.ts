@@ -15,6 +15,7 @@ import {
 import {ViewRequetteComponent} from "./ComposantsMetier/Requette/view-requette/view-requette.component";
 import {CreateRequetteComponent} from "./ComposantsMetier/Requette/create-requette/create-requette.component";
 import {UpdateRequetteComponent} from "./ComposantsMetier/Requette/update-requette/update-requette.component";
+import {ViewTacheComponent} from "./ComposantsMetier/Tache/view-tache/view-tache.component";
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'requettes/consulter/:id', component:ViewRequetteComponent},
   { path: 'requettes/modifier/:id', component:UpdateRequetteComponent},
   { path: 'taches', component:TachesComponent},
+  { path: 'taches/consulter/:id', component:ViewTacheComponent}
 
 ];
 
