@@ -1,1 +1,26 @@
-<p>commentaire works!</p>
+<form [formGroup]="formGroup">
+  <div class="modal-header">
+    <h4 class="modal-title">Création du commentaire</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <div class="form-group">
+      <div class="form-group">
+        <label for="libelle"><b>Libellé</b></label>
+        <textarea class="form-control" id="libelle" rows="4"
+                  placeholder="Commentaire" formControlName="libelle"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success" (click)="creerCommentaire()">
+      <i class="bi bi-save"></i>
+      Créer</button>
+    <button type="button" class="btn btn-danger"
+            (click)="modal.close('Close click')">
+      <i class="bi bi-x-circle"></i>
+      Annuler</button>
+  </div>
+  </div>
+</form>

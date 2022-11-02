@@ -1,9 +1,9 @@
-<!--<form [formGroup]="formGroup">-->
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body" *ngIf="taches">
       <div class="text-right" *ngIf="taches.statusTache=='NON_PLANIFIE'">
-        <button type="submit" class="btn btn-warning ml-auto mb-3 mb-sm-0">
+        <button type="submit" class="btn btn-warning ml-auto mb-3 mb-sm-0"
+                (click)="openXlPlanifier(contentPlanifier)">
           <i class="bi bi-list"></i> Planifier</button>
       </div>
       <h4 class="card-title">Détails de la Tâche</h4>
@@ -110,14 +110,18 @@
             <tr>
               <th><b>Commentaires</b></th>
               <th><button type="submit" class="btn btn-info mt-5 ml-auto mb-3 mb-sm-0 text-right"
-                          (click)="creerCommentaire()">
+                          (click)="openXlCommentaire(content)">
                 <i class="bi bi-pen"></i>Ajouter</button></th>
             </tr>
           </thead>
           <tbody *ngIf="commentaire">
             <tr *ngFor="let c of commentaire">
               <td>{{c.libelle}}</td>
-              <td class="{{badgeStatusComm(c.statusCommenttaire)}}">{{c.statusCommenttaire}}</td>
+              <td>
+                <p class="{{badgeStatusComm(c.statusCommenttaire)}}">
+                  {{c.statusCommenttaire}}
+                </p>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -128,11 +132,21 @@
       <div>
         <div class="text-right">
           <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
-                  (click)="modifier(taches.id)">
+                  (click)="openXlModifier(contentModifier)">
             <i class="bi bi-pen"></i> Modifier</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--</form>-->
+<ng-template #content let-modal>
+  <app-commentaire [modal]="modal" [tacheId]="idTache"></app-commentaire>
+</ng-template>
+
+<ng-template #contentModifier let-modal>
+  <app-modifier-tache [modal]="modal" [idTache]="idTache"></app-modifier-tache>
+</ng-template>
+
+<ng-template #contentPlanifier let-modal>
+  <app-planifier-tache [modal]="modal" [idTache]="idTache"></app-planifier-tache>
+</ng-template>

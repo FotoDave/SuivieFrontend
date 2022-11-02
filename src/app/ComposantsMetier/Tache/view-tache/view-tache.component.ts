@@ -11,6 +11,7 @@ import {Requette} from "../../Requette/model/requette.model";
 import {Commentaire} from "../../Commentaire/model/commentaire.model";
 import {CommentaireService} from "../../Commentaire/service/commentaire.service";
 import {formatDate} from "@angular/common";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-view-tache',
@@ -32,13 +33,12 @@ export class ViewTacheComponent implements OnInit {
     private commentaireService : CommentaireService,
     private requetteService : RequetteService,
     private collaborateurService : CollaborateurService,
+    private modalService : NgbModal,
     private formBuilder : FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getTache();
-    /*this.getRequette();
-    this.getCollaborateur();*/
     this.getCommentaire();
   }
 
@@ -80,6 +80,8 @@ export class ViewTacheComponent implements OnInit {
     this.tacheService.getOneTache(this.idTache).subscribe({
       next:value => {
         this.taches = value;
+        console.log("----Taches-----");
+        console.log(this.taches);
         this.requetteService.getOneRequette(value.requetteId).subscribe({
           next: value1 => {
             console.log(value1);
@@ -87,7 +89,7 @@ export class ViewTacheComponent implements OnInit {
           },
           error: err => {
             console.log("Erreur lié à la recupération de la requette");
-            throwError(err);
+            /*throwError(err);*/
           }
         });
         this.collaborateurService.getOneCollaborateur(value.collaborateurId).subscribe({
@@ -97,43 +99,13 @@ export class ViewTacheComponent implements OnInit {
           },
           error: err => {
             console.log("Erreur lié à la recupération du collaborateur");
-            throwError(err);
+            /*throwError(err);*/
           }
         });
       },
       error:err => {
         console.log("Erreur lié à la recupération des taches");
-        throwError(err);
-      }
-    });
-  }
-  getRequette(){
-    this.requetteService.getOneRequette(this.taches.requetteId).subscribe({
-      next: value => {
-        console.log(value);
-        this.requette = value;
-        /*this.formGroup = this.formBuilder.group({
-          requette : this.formBuilder.control(value.intitule)
-        });*/
-      },
-      error: err => {
-        console.log("Erreur lié à la recupération de la requette");
-        throwError(err);
-      }
-    });
-  }
-  getCollaborateur(){
-    this.collaborateurService.getOneCollaborateur(this.taches.collaborateurId).subscribe({
-      next: value => {
-        console.log(value);
-        this.collaborateur = value;
-        /*this.formGroup = this.formBuilder.group({
-          collaborateur : this.formBuilder.control(value.nom)
-        });*/
-      },
-      error: err => {
-        console.log("Erreur lié à la recupération du collaborateur");
-        throwError(err);
+        /*throwError(err);*/
       }
     });
   }
@@ -150,7 +122,16 @@ export class ViewTacheComponent implements OnInit {
     });
   }
 
-  public modifier(id : number){
+  openXlCommentaire(content){
+    this.modalService.open(content, { size: 'xl' });
+  }
+
+  openXlModifier(contentModifier){
+    this.modalService.open(contentModifier, { size: 'xl' });
+  }
+
+  openXlPlanifier(contentPlanifier){
+    this.modalService.open(contentPlanifier, { size: 'xl' });
   }
 }
 

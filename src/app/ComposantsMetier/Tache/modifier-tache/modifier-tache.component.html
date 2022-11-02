@@ -1,0 +1,29 @@
+<form [formGroup]="formGroup">
+  <div class="modal-header">
+    <h4 class="modal-title">Modifier la tache</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+        <div class="form-group">
+          <label for="intitule"><b>Intitule</b></label>
+          <input type="text" id="intitule"
+                 class="form-control" formControlName="intitule">
+          </div>
+        <div class="form-group">
+          <label for="observation"><b>Observation</b></label>
+          <textarea class="form-control" id="observation" rows="4"
+                    formControlName="observation"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success" (click)="modifier()">
+        <i class="bi bi-save"></i>
+        Créer</button>
+      <button type="button" class="btn btn-danger"
+              (click)="modal.close('Close click')">
+        <i class="bi bi-x-circle"></i>
+        Annuler</button>
+    </div>
+  </div>
+</form>

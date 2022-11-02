@@ -1,0 +1,40 @@
+<form [formGroup]="formGroup">
+  <div class="modal-header">
+    <h4 class="modal-title">Planification de la tâche</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <div class="form-group">
+        <div class="form-group">
+          <label for="collaborateur"><b>Collaborateur</b></label>
+          <ng-select formControlName="collaborateurId"
+                     id="collaborateur"
+                     [items]="collaborateurs"
+                     bindLabel="nom"
+                     bindValue="id">
+          </ng-select>
+        </div>
+        <div class="form-group">
+          <label for="debut_previsionel"><b>Date de début prévisionnelle</b></label>
+          <input type="date" id="debut_previsionel"
+                 class="form-control" formControlName="debut_previsionel">
+        </div>
+        <div class="form-group">
+          <label for="fin_previsionel"><b>Date de fin prévisionnelle</b></label>
+          <input type="date" id="fin_previsionel"
+                 class="form-control" formControlName="fin_previsionel">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success" (click)="planifier()">
+        <i class="bi bi-save"></i>
+        Créer</button>
+      <button type="button" class="btn btn-danger"
+              (click)="modal.close('Close click')">
+        <i class="bi bi-x-circle"></i>
+        Annuler</button>
+    </div>
+  </div>
+</form>

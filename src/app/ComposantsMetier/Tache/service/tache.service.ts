@@ -29,4 +29,10 @@ export class TacheService {
     let params = new HttpParams().set('requetteId', search.requetteId.toString()).set('statusTache', search.statusTache);
     return this.http.get<Array<Tache>>(environment.backendHost+"/taches/searchTache", {params: params});
   }
+  public planifierTache(tache : Tache) : Observable<Tache>{
+    return this.http.put<Tache>(environment.backendHost+"/taches/planifier", tache);
+  }
+  public modifierTache(tache : Tache) : Observable<Tache>{
+    return this.http.put<Tache>(environment.backendHost+"/taches/modifier", tache);
+  }
 }
