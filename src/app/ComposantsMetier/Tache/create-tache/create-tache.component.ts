@@ -5,6 +5,7 @@ import {RequetteService} from "../../Requette/service/requette.service";
 import {Requette} from "../../Requette/model/requette.model";
 import {throwError} from "rxjs";
 import {Tache} from "../model/tache.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-tache',
@@ -21,7 +22,8 @@ export class CreateTacheComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private tacheService : TacheService,
-    private requetteService : RequetteService
+    private requetteService : RequetteService,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +48,11 @@ export class CreateTacheComponent implements OnInit {
     let tache: Tache = this.formGroup.value;
     this.tacheService.creerTache(tache).subscribe({
       next : value => {
+        this.toastr.success("Création Tâche", "Succès");
         this.modal.close();
       },
       error : err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err);
       }
     })

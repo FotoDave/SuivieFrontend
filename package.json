@@ -55,7 +55,7 @@
     "ngx-color-picker": "^10.1.0",
     "ngx-mapbox-gl": "^4.8.1",
     "ngx-summernote": "^0.8.0",
-    "ngx-toastr": "^15.2.0",
+    "ngx-toastr": "^13.2.1",
     "raphael": "^2.3.0",
     "rxjs": "~6.6.3",
     "select2": "^4.0.13",

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Observable, throwError} from "rxjs";
 import {Requette} from "../model/requette.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-update-requette',
@@ -23,7 +24,8 @@ export class UpdateRequetteComponent implements OnInit {
     private requetteService : RequetteService,
     private activatedRoute : ActivatedRoute,
     private route : Router,
-    private updateFB : FormBuilder
+    private updateFB : FormBuilder,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class UpdateRequetteComponent implements OnInit {
          fonctionnalite : this.updateFB.control(value.fonctionnalite),
          urgence : this.updateFB.control(value.urgence),
          observation : this.updateFB.control(value.observation)
-       })
+       });
      },
      error: err => {
        throwError(err);
@@ -51,8 +53,14 @@ export class UpdateRequetteComponent implements OnInit {
     envoie.clientId = this.requette.clientId;
     envoie.date_creation = this.requette.date_creation;
     this.requetteService.modifierRequette(envoie, this.idRequette).subscribe({
-      next: value => {this.route.navigateByUrl("/requettes")},
-      error: err => {throwError(err)}
+      next: value => {
+        this.toastr.success("Modification Requette", "Succès");
+        this.route.navigateByUrl("/requettes");
+      },
+      error: err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
+        throwError(err);
+      }
     });
   }
 }

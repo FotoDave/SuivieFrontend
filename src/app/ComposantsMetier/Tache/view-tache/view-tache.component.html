@@ -48,14 +48,14 @@
               <label>Date de début prévisionnel</label>
             </td>
             <td>
-              <b>{{taches.debut_previsionel | date:"MM/dd/yyyy 'à' h:mma"}}</b>
+              <b>{{taches.debutPrevisionel | date:"dd/MM/yyyy"}}</b>
               <!--<label class="form-control" formControlName="debutPrev"></label>-->
             </td>
             <td>
               <label>Date de fin prévisionnel</label>
             </td>
             <td>
-              <b>{{taches.fin_previsionel | date:"MM/dd/yyyy 'à' h:mma"}}</b>
+              <b>{{taches.finPrevisionel | date:"dd/MM/yyyy"}}</b>
               <!--<label class="form-control" formControlName="finPrev"></label>-->
             </td>
           </tr>
@@ -65,14 +65,14 @@
               <label>Date de début</label>
             </td>
             <td>
-              <b>{{taches.date_debut | date:"MM/dd/yyyy 'à' h:mma"}}</b>
+              <b>{{taches.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}</b>
               <!--<label class="form-control" formControlName="debut"></label>-->
             </td>
             <td>
               <label>Date de fin</label>
             </td>
             <td>
-              <b>{{taches.date_fin | date:"MM/dd/yyyy 'à' h:mma"}}</b>
+              <b>{{taches.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}</b>
               <!--<label class="form-control" formControlName="fin"></label>-->
             </td>
           </tr>
@@ -99,8 +99,8 @@
             <td>
               <label>Collaborateur</label>
             </td>
-            <td colspan="3" *ngIf="collaborateur">
-              <b>{{collaborateur.nom}}</b>
+            <td colspan="3">
+              <b>{{taches.nomCollaborateur}}</b>
             </td>
           </tr>
           </tbody>
@@ -140,13 +140,13 @@
   </div>
 </div>
 <ng-template #content let-modal>
-  <app-commentaire [modal]="modal" [tacheId]="idTache"></app-commentaire>
+  <app-commentaire [modal]="modal" [tacheId]="idTache" (actualisation)="actualiser()"></app-commentaire>
 </ng-template>
 
 <ng-template #contentModifier let-modal>
-  <app-modifier-tache [modal]="modal" [idTache]="idTache"></app-modifier-tache>
+  <app-modifier-tache [modal]="modal" [idTache]="idTache" (actualisation)="actualiser()"></app-modifier-tache>
 </ng-template>
 
 <ng-template #contentPlanifier let-modal>
-  <app-planifier-tache [modal]="modal" [idTache]="idTache"></app-planifier-tache>
+  <app-planifier-tache [modal]="modal" [idTache]="idTache" (actualisation)="actualiser()"></app-planifier-tache>
 </ng-template>

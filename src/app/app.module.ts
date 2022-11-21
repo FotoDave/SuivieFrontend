@@ -8,7 +8,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import {ToastrModule} from "ngx-toastr";
+import {ToastrModule} from "ngx-toastr";
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -76,7 +76,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    /*ToastrModule,*/
+    ToastrModule.forRoot({
+      timeOut : 2000,
+      progressBar : true,
+      progressAnimation : 'increasing'
+    }),
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,

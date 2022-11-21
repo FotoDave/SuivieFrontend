@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientsService} from "../services/clients.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-//import {ClientsComponent} from "../clients/clients.component";
 import {Observable, Subscription, throwError} from "rxjs";
 import {Client} from "../model/client.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {catchError, map} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-client',
@@ -23,15 +23,12 @@ export class EditClientComponent implements OnInit {
     private clientService : ClientsService,
     private editFB : FormBuilder,
     private activatedRoute : ActivatedRoute,
-    private router : Router
-    //private clientsComponent : ClientsComponent
+    private router : Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
     this.idClient = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log("///////////////////////");
-    console.log(this.idClient);
-
     this.clientService.getOneClient(Number(this.idClient)).subscribe({
       next : value => {
         this.editFormGroup = this.editFB.group(
@@ -49,12 +46,14 @@ export class EditClientComponent implements OnInit {
 
   saveClients() {
     let client:Client = this.editFormGroup.value;
+    client.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.clientService.creerClient(client).subscribe({
       next : data => {
-        alert("Client creer");
-        this.router.navigateByUrl("/clients")
+        this.toastr.success("Modification Client", "Succès");
+        this.router.navigateByUrl("/clients");
       },
       error : err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         console.log(err);
       }
     })

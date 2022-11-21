@@ -6,6 +6,7 @@ import {Tache} from "../../Tache/model/tache.model";
 import {TacheService} from "../../Tache/service/tache.service";
 import {throwError} from "rxjs";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-content',
@@ -26,7 +27,8 @@ export class ContentComponent implements OnInit {
     private modalService : NgbModal,
     private formBuilder : FormBuilder,
     private tacheService : TacheService,
-    private router : Router
+    private router : Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -43,12 +45,13 @@ export class ContentComponent implements OnInit {
 
     creerTache() {
     let tache: Tache = this.formGroup.value;
-    console.log(tache);
     this.tacheService.creerTache(tache).subscribe({
       next : value => {
+        this.toastr.success("Création Tâche", "Succès");
         this.modal.close();
       },
       error : err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err);
       }
     })

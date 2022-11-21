@@ -12,6 +12,7 @@ import {Commentaire} from "../../Commentaire/model/commentaire.model";
 import {CommentaireService} from "../../Commentaire/service/commentaire.service";
 import {formatDate} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-view-tache',
@@ -34,6 +35,7 @@ export class ViewTacheComponent implements OnInit {
     private requetteService : RequetteService,
     private collaborateurService : CollaborateurService,
     private modalService : NgbModal,
+    private toastr : ToastrService,
     private formBuilder : FormBuilder
   ) { }
 
@@ -132,6 +134,12 @@ export class ViewTacheComponent implements OnInit {
 
   openXlPlanifier(contentPlanifier){
     this.modalService.open(contentPlanifier, { size: 'xl' });
+  }
+
+  actualiser(){
+    //this.getTache();
+    window.location.reload();
+    this.toastr.success("", "Succès");
   }
 }
 

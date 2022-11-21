@@ -6,7 +6,8 @@
           <h4 class="card-title mb-sm-0">Liste des Taches</h4>
           <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
                 [formGroup]="formGroup" (ngSubmit)="searchTache()">
-            <div class="row-cols-1">
+            <div class="input-group">
+              <div class="form-inline">
               <label><b>Requette</b></label>
               <ng-select [items]="requette"
                          bindLabel="intitule"
@@ -19,6 +20,7 @@
                          bindValue="valueS"
                          formControlName="statusTache" required>
               </ng-select>
+              </div>
               <button [disabled]="!formGroup.valid" type="submit" class="btn btn-success mt-3">
                 <i class="bi bi-search"></i> Chercher
               </button>

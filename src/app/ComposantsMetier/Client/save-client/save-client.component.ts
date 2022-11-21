@@ -5,6 +5,7 @@ import {ClientsService} from "../services/clients.service";
 import {Client} from "../model/client.model";
 import {SaveModel} from "../model/save.model";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class SaveClientComponent implements OnInit {
   constructor(
     private clientService : ClientsService,
     private saveFb : FormBuilder,
-    private router :  Router
+    private router :  Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -32,16 +34,14 @@ export class SaveClientComponent implements OnInit {
   }
 
   saveClients() {
-    //this.clientModel.nom = this.saveFormGroup.value.nom;
-    //this.clientModel.email = this.saveFormGroup.value.email;
-    //this.clientModel.tel = this.saveFormGroup.value.telephone;
     let client:Client = this.saveFormGroup.value;
     this.clientService.creerClient(client).subscribe({
       next : data => {
-        alert("Client creer");
-        this.router.navigateByUrl("/clients")
+        this.router.navigateByUrl("/clients");
+        this.toastr.success('Client crée','Succès');
       },
       error : err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         console.log(err);
       }
     })

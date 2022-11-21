@@ -9,5 +9,6 @@ export interface Tache{
   statusTache : string;
   requetteId : number;
   collaborateurId : number;
+  nomCollaborateur : string;
 }
 

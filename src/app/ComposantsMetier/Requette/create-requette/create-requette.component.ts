@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Observable, throwError} from "rxjs";
 import {Requette} from "../model/requette.model";
 import {valueOf} from "moment";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-requette',
@@ -22,6 +23,7 @@ export class CreateRequetteComponent implements OnInit {
     private requetteService: RequetteService,
     private router : Router,
     private createFB : FormBuilder,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -40,9 +42,11 @@ export class CreateRequetteComponent implements OnInit {
     requette.date_creation = new Date();
     this.requetteService.createRequette(requette).subscribe({
       next: value => {
-        this.router.navigateByUrl("/requettes")
+        this.toastr.success("Création Requette", "Succès");
+        this.router.navigateByUrl("/requettes");
       },
       error: err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err)
       }
     });

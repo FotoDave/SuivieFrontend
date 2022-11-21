@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TacheService} from "../service/tache.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Tache} from "../model/tache.model";
 import {throwError} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-modifier-tache',
@@ -15,10 +16,13 @@ export class ModifierTacheComponent implements OnInit {
   formGroup : FormGroup;
   @Input()
   idTache : number;
+  @Output()
+  actualisation : EventEmitter<any> = new EventEmitter<any>();
   tache : Tache;
   constructor(
     private tacheService : TacheService,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -40,9 +44,11 @@ export class ModifierTacheComponent implements OnInit {
     this.tache.id = this.idTache;
     this.tacheService.modifierTache(this.tache).subscribe({
       next: value => {
+        this.actualisation.emit();
         this.modal.close();
       },
       error: err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err);
       }
     })

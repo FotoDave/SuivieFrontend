@@ -3,7 +3,6 @@ import {Requette} from "../model/requette.model";
 import {Observable, throwError} from "rxjs";
 import {RequetteService} from "../service/requette.service";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
 import {catchError, map} from "rxjs/operators";
 
 @Component({
@@ -13,11 +12,9 @@ import {catchError, map} from "rxjs/operators";
 })
 export class RequettesComponent implements OnInit {
   requette : Observable<Array<Requette>>;
-  searchFormGroup : FormGroup;
   constructor(
     private requetteService : RequetteService,
-    private router : Router,
-    private searchFB : FormBuilder
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -28,15 +25,15 @@ export class RequettesComponent implements OnInit {
     );
   }
 
-  searchRequettes() {
-
+  viewRequette(id : number) {
+    this.router.navigateByUrl("requettes/consulter/"+id);
   }
 
   infoRequette(id: number) {
     this.router.navigateByUrl("requettes/modifier/"+id);
   }
 
-  deleteRequette(r: Requette) {
+  /*deleteRequette(r: Requette) {
     this.requetteService.deleteRequtte(r.id).subscribe({
       next: value => {
         this.requette = this.requette.pipe(
@@ -51,9 +48,5 @@ export class RequettesComponent implements OnInit {
         return throwError(err);
       }
     })
-  }
-
-  viewRequette(id : number) {
-    this.router.navigateByUrl("requettes/consulter/"+id);
-  }
+  }*/
 }

@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommentaireService} from "../service/commentaire.service";
 import {Commentaire} from "../model/commentaire.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {throwError} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-commentaire',
@@ -15,11 +16,14 @@ export class CommentaireComponent implements OnInit {
   modal : any;
   @Input()
   tacheId : number;
+  @Output()
+  actualisation : EventEmitter<any> = new EventEmitter<any>();
   commentaire : Commentaire;
 
   constructor(
     private commentaireService : CommentaireService,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -33,9 +37,11 @@ export class CommentaireComponent implements OnInit {
     this.commentaire.tacheId = this.tacheId;
     this.commentaireService.creerCommentaire(this.commentaire).subscribe({
       next:value => {
+        this.actualisation.emit();
         this.modal.close();
       },
       error:err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err);
       }
     })

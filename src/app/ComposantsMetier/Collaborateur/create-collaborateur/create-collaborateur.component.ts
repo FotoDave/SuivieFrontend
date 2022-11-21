@@ -4,6 +4,7 @@ import {Collaborateur} from "../model/collaborateur.model";
 import {CollaborateurService} from "../service/collaborateur.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-collaborateur',
@@ -13,10 +14,11 @@ import {Router} from "@angular/router";
 export class CreateCollaborateurComponent implements OnInit {
   collaborateur : Observable<Array<Collaborateur>>;
   saveFormGroup : FormGroup;
-  route : Router;
   constructor(
     private collabService : CollaborateurService,
-    private saveFB : FormBuilder
+    private saveFB : FormBuilder,
+    private route : Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -29,10 +31,11 @@ export class CreateCollaborateurComponent implements OnInit {
     let collab : Collaborateur = this.saveFormGroup.value;
     this.collabService.createCollab(collab).subscribe({
       next: value => {
-        alert("Collaborateur crée");
         this.route.navigateByUrl("/collaborateurs");
+        this.toastr.success("Création Collaborateur", "Succès");
       },
       error: err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         throwError(err);
       }
     })

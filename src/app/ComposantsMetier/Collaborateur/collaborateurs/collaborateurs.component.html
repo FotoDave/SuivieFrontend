@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="d-sm-flex align-items-center mb-4">
             <h4 class="card-title mb-sm-0">Liste des collaborateurs</h4>
-            <!-- Recherche des clients -->
+            <!-- Recherche des collaborateurs -->
             <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
                   [formGroup]="searchFormGroup" (ngSubmit)="searchCollab()">
               <div class="input-group">
@@ -16,8 +16,6 @@
                 </button>
               </div>
             </form>
-            <!--<div class="dropdown-divider"></div>-->
-            <!--Mettre un boutton de creation des clients-->
             <a class="text-dark ml-auto mb-3 mb-sm-0"
                routerLink="/collaborateurs/creer" routerLinkActive="active">Creer un collaborateur</a>
           </div>
@@ -34,7 +32,6 @@
               <tr *ngFor="let c of collaborateur | async">
                 <td>{{c.id}}</td>
                 <td>{{c.nom}}</td>
-                <!--<td><div class="badge badge-success p-2">Paid</div></td>-->
                 <td><button class="btn btn-sm btn-primary"
                             (click)="infoCollab(c.id)">
                   <i class="bi bi-pen"></i> Modifier</button>
@@ -62,14 +59,3 @@
     </div>
   </div>
 </ng-container>
-
-<!--
-</ng-container>
-<ng-template #faillure routerLink="error500">
-  {{errorMessage}}
-</ng-template>
-<ng-template #faillure routerLink="error500">
-  {{errorMessage}}
-</ng-template>
--->
-

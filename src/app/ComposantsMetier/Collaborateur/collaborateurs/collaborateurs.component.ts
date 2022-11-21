@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {CollaborateurService} from "../service/collaborateur.service";
 import {Router} from "@angular/router";
 import {catchError, map} from "rxjs/operators";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-collaborateurs',
@@ -18,7 +19,8 @@ export class CollaborateursComponent implements OnInit {
   constructor(
     private collabService : CollaborateurService,
     private searchFb : FormBuilder,
-    private route : Router
+    private route : Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -56,8 +58,10 @@ export class CollaborateursComponent implements OnInit {
             return data;
           })
         );
+        this.toastr.success("Suppression Collaborateur", "Succès");
       },
       error : err => {
+        this.toastr.error("Problème d'accès au serveur","Erreur" );
         console.log(err);
       }
     });

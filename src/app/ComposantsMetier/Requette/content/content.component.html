@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" (ngSubmit)="creerTache()">
+<form [formGroup]="formGroup">
 <div class="modal-header">
         <h4 class="modal-title">Création de la tâche</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
@@ -7,9 +7,7 @@
         <div class="card-body">
 
                 <div class="form-group">
-                    <label><b>Requette</b></label>
-                    <!--<input type="requette" class="form-control" id="requette"
-                           placeholder="Selectionnez la requette..." >-->
+                  <label><b>Requette</b></label>
                   <ng-select [items]="items"
                               bindLabel="name"
                               bindValue="id1"
