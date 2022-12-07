@@ -37,6 +37,7 @@ import { ViewTacheComponent } from './ComposantsMetier/Tache/view-tache/view-tac
 import { CommentaireComponent } from './ComposantsMetier/Commentaire/commentaire/commentaire.component';
 import { ModifierTacheComponent } from './ComposantsMetier/Tache/modifier-tache/modifier-tache.component';
 import { PlanifierTacheComponent } from './ComposantsMetier/Tache/planifier-tache/planifier-tache.component';
+import { ConnexionComponent } from './ComposantsMetier/Security/connexion/connexion.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentaireComponent,
     ModifierTacheComponent,
     PlanifierTacheComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,

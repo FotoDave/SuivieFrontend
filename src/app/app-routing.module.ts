@@ -16,11 +16,13 @@ import {ViewRequetteComponent} from "./ComposantsMetier/Requette/view-requette/v
 import {CreateRequetteComponent} from "./ComposantsMetier/Requette/create-requette/create-requette.component";
 import {UpdateRequetteComponent} from "./ComposantsMetier/Requette/update-requette/update-requette.component";
 import {ViewTacheComponent} from "./ComposantsMetier/Tache/view-tache/view-tache.component";
+import {LoginComponent} from "./ComposantsMetier/Security/login/login.component";
+import {ConnexionComponent} from "./ComposantsMetier/Security/connexion/connexion.component";
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', loadChildren: () => import('./ComposantTemplate/dashboard/dashboard.module').then(m => m.DashboardModule) },
   //{ path: 'basic-ui', loadChildren: () => import('./basic-ui/basic-ui.module').then(m => m.BasicUiModule) },
   //{ path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
@@ -29,6 +31,8 @@ const routes: Routes = [
   //{ path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
   //{ path: 'user-pages', loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) },
   //{ path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
+  { path: 'login', component:ConnexionComponent},
+  { path: '', component:ConnexionComponent},
   { path: 'clients', component:ClientsComponent},
   { path: 'clients/creer', component:SaveClientComponent},
   { path: 'clients/modifier/:id', component:EditClientComponent},
