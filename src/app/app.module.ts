@@ -13,31 +13,13 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './ComposantTemplate/shared/navbar/navbar.component';
-import { SidebarComponent } from './ComposantTemplate/shared/sidebar/sidebar.component';
-import { SettingsPanelComponent } from './ComposantTemplate/shared/settings-panel/settings-panel.component';
-import { FooterComponent } from './ComposantTemplate/shared/footer/footer.component';
-import { SpinnerComponent } from './ComposantTemplate/shared/spinner/spinner.component';
-import { ContentAnimateDirective } from './ComposantTemplate/shared/directives/content-animate.directive';
-import { ClientsComponent } from './ComposantsMetier/Client/clients/clients.component';
-import { CollaborateursComponent } from './ComposantsMetier/Collaborateur/collaborateurs/collaborateurs.component';
-import { RequettesComponent } from './ComposantsMetier/Requette/requettes/requettes.component';
-import { TachesComponent } from './ComposantsMetier/Tache/taches/taches.component';
-//import {timeout} from "rxjs/operators";
-import { SaveClientComponent } from './ComposantsMetier/Client/save-client/save-client.component';
-import { EditClientComponent } from './ComposantsMetier/Client/edit-client/edit-client.component';
-import {CreateCollaborateurComponent} from "./ComposantsMetier/Collaborateur/create-collaborateur/create-collaborateur.component";
-import {EditCollaborateurComponent} from "./ComposantsMetier/Collaborateur/edit-collaborateur/edit-collaborateur.component";
-import { ViewRequetteComponent } from './ComposantsMetier/Requette/view-requette/view-requette.component';
-import { CreateRequetteComponent } from './ComposantsMetier/Requette/create-requette/create-requette.component';
-import { UpdateRequetteComponent } from './ComposantsMetier/Requette/update-requette/update-requette.component';
-import { ContentComponent } from './ComposantsMetier/Requette/content/content.component';
-import { CreateTacheComponent } from './ComposantsMetier/Tache/create-tache/create-tache.component';
-import { ViewTacheComponent } from './ComposantsMetier/Tache/view-tache/view-tache.component';
-import { CommentaireComponent } from './ComposantsMetier/Commentaire/commentaire/commentaire.component';
-import { ModifierTacheComponent } from './ComposantsMetier/Tache/modifier-tache/modifier-tache.component';
-import { PlanifierTacheComponent } from './ComposantsMetier/Tache/planifier-tache/planifier-tache.component';
-import { ConnexionComponent } from './ComposantsMetier/Security/connexion/connexion.component';
+import { ContentAnimateDirective } from './Template/shared/directives/content-animate.directive';
+import {CoreModule} from "./Core/core.module";
+import {AuthenticationModule} from "./Authentication/authentication.module";
+import {CollaborateurModule} from "./Features/Collaborateur/collaborateur.module";
+import {RequetteModule} from "./Features/Requette/requette.module";
+import {TacheModule} from "./Features/Tache/tache.module";
+import {RouterModule} from "@angular/router";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -47,55 +29,31 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    SettingsPanelComponent,
-    FooterComponent,
-    SpinnerComponent,
     ContentAnimateDirective,
-    ClientsComponent,
-    CollaborateursComponent,
-    RequettesComponent,
-    TachesComponent,
-    SaveClientComponent,
-    EditClientComponent,
-    CreateCollaborateurComponent,
-    EditCollaborateurComponent,
-    ViewRequetteComponent,
-    CreateRequetteComponent,
-    UpdateRequetteComponent,
-    ContentComponent,
-    CreateTacheComponent,
-    ViewTacheComponent,
-    CommentaireComponent,
-    ModifierTacheComponent,
-    PlanifierTacheComponent,
-    ConnexionComponent,
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut : 2000,
-      progressBar : true,
-      progressAnimation : 'increasing'
-    }),
+    BrowserModule,
     FormsModule,
-    NgSelectModule,
     ReactiveFormsModule,
-    ChartsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-    }
-    })
+    BrowserAnimationsModule,
+    HttpClientModule,
+    NgbModule,
+
+    CoreModule,/*
+    CollaborateurModule,
+    RequetteModule,
+    TacheModule,
+    AuthenticationModule,*/
   ],
   providers: [],
+  exports: [
+    /*SettingsPanelComponent,
+    NavbarComponent,
+    SidebarComponent,
+    SpinnerComponent,
+    FooterComponent*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

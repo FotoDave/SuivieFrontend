@@ -1,28 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, NavigationStart, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import {NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-core',
+  templateUrl: './core.component.html',
+  styleUrls: ['./core.component.scss']
 })
-export class AppComponent implements OnInit{
- /* title = 'demo1';
+export class CoreComponent implements OnInit {
+  title = 'demo1';
 
   showSidebar: boolean = true;
   showNavbar: boolean = true;
   showFooter: boolean = true;
   showSettings: boolean = true;
-  isLoading: boolean;*/
+  isLoading: boolean;
 
-  constructor(
-    /*private router: Router,
-    translate: TranslateService*/
-  ) {
+  constructor(private router: Router, translate: TranslateService) {
 
     // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
-    /*router.events.forEach((event) => {
+    router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
         if(event.url === '/dashboard/rtl') {
           translate.use('ar');
@@ -61,25 +58,26 @@ export class AppComponent implements OnInit{
         }
       }
     });
-*/
+
     // Spinner for lazyload modules
-    /*router.events.forEach((event) => {
+    router.events.forEach((event) => {
       if (event instanceof RouteConfigLoadStart) {
-          this.isLoading = true;
+        this.isLoading = true;
       } else if (event instanceof RouteConfigLoadEnd) {
-          this.isLoading = false;
+        this.isLoading = false;
       }
-    });*/
+    });
   }
+
 
 
   ngOnInit() {
     // Scroll to top after route change
-    /*this.router.events.subscribe((evt) => {
+    this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
-          return;
+        return;
       }
       window.scrollTo(0, 0);
-    });*/
+    });
   }
 }

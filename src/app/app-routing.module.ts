@@ -1,29 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ClientsComponent} from './ComposantsMetier/Client/clients/clients.component';
-import {CollaborateursComponent} from './ComposantsMetier/Collaborateur/collaborateurs/collaborateurs.component';
-import {RequettesComponent} from './ComposantsMetier/Requette/requettes/requettes.component';
-import {TachesComponent} from './ComposantsMetier/Tache/taches/taches.component';
-import {SaveClientComponent} from "./ComposantsMetier/Client/save-client/save-client.component";
-import {EditClientComponent} from "./ComposantsMetier/Client/edit-client/edit-client.component";
-import {
-  CreateCollaborateurComponent
-} from "./ComposantsMetier/Collaborateur/create-collaborateur/create-collaborateur.component";
-import {
-  EditCollaborateurComponent
-} from "./ComposantsMetier/Collaborateur/edit-collaborateur/edit-collaborateur.component";
-import {ViewRequetteComponent} from "./ComposantsMetier/Requette/view-requette/view-requette.component";
-import {CreateRequetteComponent} from "./ComposantsMetier/Requette/create-requette/create-requette.component";
-import {UpdateRequetteComponent} from "./ComposantsMetier/Requette/update-requette/update-requette.component";
-import {ViewTacheComponent} from "./ComposantsMetier/Tache/view-tache/view-tache.component";
-import {LoginComponent} from "./ComposantsMetier/Security/login/login.component";
-import {ConnexionComponent} from "./ComposantsMetier/Security/connexion/connexion.component";
+import {CoreComponent} from "./Core/core/core.component";
+import {ConnexionComponent} from "./Authentication/connexion/connexion.component";
 
 
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: () => import('./ComposantTemplate/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  //{ path: 'dashboard', loadChildren: () => import('./Template/dashboard/dashboard.module').then(m => m.DashboardModule) },
   //{ path: 'basic-ui', loadChildren: () => import('./basic-ui/basic-ui.module').then(m => m.BasicUiModule) },
   //{ path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   //{ path: 'forms', loadChildren: () => import('./forms/form.module').then(m => m.FormModule) },
@@ -31,20 +15,26 @@ const routes: Routes = [
   //{ path: 'icons', loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule) },
   //{ path: 'user-pages', loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) },
   //{ path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
-  { path: 'login', component:ConnexionComponent},
-  { path: '', component:ConnexionComponent},
-  { path: 'clients', component:ClientsComponent},
-  { path: 'clients/creer', component:SaveClientComponent},
-  { path: 'clients/modifier/:id', component:EditClientComponent},
-  { path: 'collaborateurs', component:CollaborateursComponent},
-  { path: 'collaborateurs/creer', component:CreateCollaborateurComponent},
-  { path: 'collaborateurs/modifier/:id', component:EditCollaborateurComponent},
-  { path: 'requettes', component:RequettesComponent},
-  { path: 'requettes/creer', component:CreateRequetteComponent},
-  { path: 'requettes/consulter/:id', component:ViewRequetteComponent},
-  { path: 'requettes/modifier/:id', component:UpdateRequetteComponent},
-  { path: 'taches', component:TachesComponent},
-  { path: 'taches/consulter/:id', component:ViewTacheComponent}
+
+  { path: '',
+    component : ConnexionComponent,
+    loadChildren: () => import('./Authentication/authentication.module').then(m => m.AuthenticationModule)},
+
+  { path: 'clients',
+    component : CoreComponent,
+    loadChildren: () => import('./Features/Client/client.module').then(m => m.ClientModule)},
+
+  { path: 'collaborateurs',
+    component : CoreComponent,
+    loadChildren: () => import('./Features/Collaborateur/collaborateur.module').then(m => m.CollaborateurModule)},
+
+  { path: 'requettes',
+    component : CoreComponent,
+    loadChildren: () => import('./Features/Requette/requette.module').then(m => m.RequetteModule)},
+
+  { path: 'taches',
+    component : CoreComponent,
+    loadChildren: () => import('./Features/Tache/tache.module').then(m => m.TacheModule)}
 
 ];
 
