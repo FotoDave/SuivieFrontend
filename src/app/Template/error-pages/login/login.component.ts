@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {SecurityService} from "../service/security.service";
-import {AppUser} from "../model/appUser.model";
-import {TokenModel} from "../model/token.model";
+import {SecurityService} from "../../../Authentication/service/security.service";
+import {AppUser} from "../../../Authentication/model/appUser.model";
+import {TokenModel} from "../../../Authentication/model/token.model";
 import {throwError} from "rxjs";
 import {Router} from "@angular/router";
 

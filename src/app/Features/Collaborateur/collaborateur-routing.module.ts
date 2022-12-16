@@ -11,17 +11,17 @@ import {EditCollaborateurComponent} from "./edit-collaborateur/edit-collaborateu
   imports: [
     RouterModule.forChild([
       {
-        path: 'collaborateurs',
+        path: '',
         component:CollaborateursComponent
       },
 
       {
-        path: 'collaborateurs/creer',
+        path: 'creer',
         component:CreateCollaborateurComponent
       },
 
       {
-        path: 'collaborateurs/modifier/:id',
+        path: 'modifier/:id',
         component:EditCollaborateurComponent
       },
     ])

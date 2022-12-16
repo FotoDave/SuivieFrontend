@@ -20,6 +20,8 @@ import {CollaborateurModule} from "./Features/Collaborateur/collaborateur.module
 import {RequetteModule} from "./Features/Requette/requette.module";
 import {TacheModule} from "./Features/Tache/tache.module";
 import {RouterModule} from "@angular/router";
+import {TokenInterceptorProvider} from "./Authentication/inteceptors/token.interceptor";
+import {ErrorInterceptorProvider} from "./Authentication/inteceptors/error.interceptor";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,19 +42,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     NgbModule,
 
-    CoreModule,/*
-    CollaborateurModule,
-    RequetteModule,
-    TacheModule,
-    AuthenticationModule,*/
+    CoreModule
   ],
-  providers: [],
+
+  providers: [
+    TokenInterceptorProvider,
+    ErrorInterceptorProvider
+  ],
+
   exports: [
-    /*SettingsPanelComponent,
-    NavbarComponent,
-    SidebarComponent,
-    SpinnerComponent,
-    FooterComponent*/
+
   ],
   bootstrap: [AppComponent]
 })

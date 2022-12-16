@@ -10,17 +10,17 @@ import {EditClientComponent} from "./edit-client/edit-client.component";
   imports: [
     RouterModule.forChild([
       {
-        path: 'clients',
+        path: '',
         component:ClientsComponent
       },
 
       {
-        path: 'clients/creer',
+        path: 'creer',
         component:SaveClientComponent
       },
 
       {
-        path: 'clients/modifier/:id',
+        path: 'modifier/:id',
         component:EditClientComponent
       },
     ])

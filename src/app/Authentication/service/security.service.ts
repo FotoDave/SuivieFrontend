@@ -5,6 +5,7 @@ import {AppUser} from "../model/appUser.model";
 import {Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {TokenModel} from "../model/token.model";
+import {JwtConfig, JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {TokenModel} from "../model/token.model";
 export class SecurityService {
   appUser:AppUser;
   token : string;
+  jwtHelperService = new JwtHelperService();
 
   constructor(
     private router : Router,
@@ -27,25 +29,26 @@ export class SecurityService {
         });
   }
 
-  public refreshToken(){
-    this.http.get<any>(environment.backendHost+"/refreshToken",{
-      headers : new HttpHeaders().set('Authorization','Bearer '+localStorage.getItem("refresh"))
-    }).subscribe({
-      next:value => {
-        console.log("Refresh token in process...!");
-        this.storeTokens(value);
-        console.log("Token raffraichit avec succèss");
-      },
-      error:err => {
-        console.log("Refresh token expiré")
-        this.logOut();
-        throwError(err)
-      }
-    })
+  public getUser(): AppUser{
+    let token = localStorage.getItem('access');
+    let user: Array<string>
+    const decodeToken = this.jwtHelperService.decodeToken(token);
+    //this.appUser.username = decodeToken.sub;
+    //this.appUser.roles = decodeToken.roles;
+    console.log(decodeToken.sub);
+    console.log(decodeToken.roles);
+    return this.appUser;
   }
 
-  public isAuthenticated() : boolean{
-    return localStorage.getItem('access') != null;
+  public refreshToken(){
+    return this.http.get<any>(environment.backendHost+"/refreshToken"/*,{
+      headers: new HttpHeaders()
+        .set('Content-Type','application/json')
+        .set('Authorization','Bearer '+localStorage.getItem('refresh'))
+    }*/);
+  }
+
+  public isAuthenticated(){
   }
 
   public storeTokens(token :TokenModel){
@@ -56,14 +59,6 @@ export class SecurityService {
   public logOut(){
     localStorage.clear();
     this.router.navigateByUrl("/login")
-  }
-
-  public getUser(token:string) : Observable<AppUser>{
-    return this.http.get<AppUser>(environment.backendHost+"/profile"/*,{
-      headers: new HttpHeaders()
-        .set('Content-Type','application/json')
-        .set('Authorization','Bearer '+token)
-    }*/);
   }
 
   }

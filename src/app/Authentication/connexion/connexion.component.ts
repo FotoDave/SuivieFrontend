@@ -5,6 +5,7 @@ import {AppUser} from "../model/appUser.model";
 import {TokenModel} from "../model/token.model";
 import {Router} from "@angular/router";
 import { throwError } from 'rxjs';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-connexion',
@@ -18,7 +19,8 @@ export class ConnexionComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private securityService : SecurityService,
-    private router : Router
+    private router : Router,
+    private toast : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -34,20 +36,17 @@ export class ConnexionComponent implements OnInit {
     console.log(user);
     this.securityService.authenticateUser(user.username, user.password).subscribe({
       next:value => {
-        console.log("Token récupéré");
-        this.jwt = value;
-        console.log(this.jwt)
-        if(this.jwt != null){
+        if(value){
+          console.log("Token récupéré");
+          this.jwt = value;
+          console.log(this.jwt)
           this.securityService.storeTokens(this.jwt);
           this.router.navigateByUrl("/taches");
         }
       },
       error:err => {
-        if (err.status == 403){
-          this.securityService.refreshToken();
-        }else {
-          throwError("Mot de passe incorrect");
-        }
+        this.toast.error('Mot de passe incorrect','Erreur');
+        throwError(err);
       }
     });
   }

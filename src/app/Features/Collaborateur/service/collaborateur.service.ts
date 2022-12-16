@@ -13,6 +13,7 @@ export class CollaborateurService {
   constructor(private http : HttpClient) { }
 
   public getCollaborateur(): Observable<Array<Collaborateur>>{
+    console.log("recupération des collaaborateurs")
     return this.http.get<Array<Collaborateur>>(environment.backendHost+'/collaborateurs');
   }
   public deleteCollaborateur(id : number){
