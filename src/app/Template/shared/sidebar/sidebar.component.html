@@ -103,20 +103,20 @@
           -->
     </li>
 
-       <!-- Mise en commentaire du icons
+        <!-- Utilisateurs -->
 
-    <li class="nav-item" [ngClass]=" { 'active' : mdi.isActive}">
-      <a class="nav-link" (click)="iconsCollapsed = !iconsCollapsed"  [attr.aria-expanded]="iconsCollapsed" aria-controls="icons">
-        <span class="menu-title" translate>Icons</span>
+    <li class="nav-item" [ngClass]=" { 'active' : utilisateurs.isActive}">
+      <a class="nav-link" routerLink="/utilisateurs"
+         (click)="iconsCollapsed = !iconsCollapsed"  [attr.aria-expanded]="iconsCollapsed" aria-controls="icons">
+        <span class="menu-title" routerLinkActive="active" #utilisateurs="routerLinkActive" translate>Utilisateurs</span>
         <i class="icon-globe menu-icon"></i>
       </a>
-      <div class="collapse" id="icons" [ngbCollapse]="!iconsCollapsed">
+      <!--<div class="collapse" id="icons" [ngbCollapse]="!iconsCollapsed">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" routerLink="icons/mdi" routerLinkActive="active" #mdi="routerLinkActive">Material</a></li>
         </ul>
-      </div>
+      </div>-->
     </li>
-           -->
 
 
            <!--Mise en commentaires des extra-pages (Page de connexion et Pages d'erreurs
