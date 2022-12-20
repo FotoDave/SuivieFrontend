@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {UtilisateurService} from "../services/utilisateur.service";
 import {User} from "../model/user.model";
 import {throwError} from "rxjs";
+import {AppUser} from "../../../Authentication/model/appUser.model";
 
 @Component({
   selector: 'app-create-users',
@@ -20,6 +21,8 @@ export class CreateUsersComponent implements OnInit {
     { value: "Client", label: "Client" },
     { value: "Collaborateur", label: "Collaborateur" },
   ];
+  @Output()
+  actualisation : EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private modalService : NgbModal,
@@ -37,9 +40,12 @@ export class CreateUsersComponent implements OnInit {
   }
 
   createUser(){
-    let user : User = this.formGroup.value;
+    let user : AppUser = this.formGroup.value;
+    user.roles = new Array<string>();
+    user.roles.push(user.roleName);
     this.utilisateurService.createUser(user).subscribe({
-      next:value => {
+      next:() => {
+        this.actualisation.emit();
         this.toastr.success("Utilisateur crée", "Succès");
         this.modal.close();
       },

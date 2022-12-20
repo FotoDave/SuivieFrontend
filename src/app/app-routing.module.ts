@@ -18,23 +18,34 @@ const routes: Routes = [
 
   { path: '',
     component : ConnexionComponent,
-    loadChildren: () => import('./Authentication/authentication.module').then(m => m.AuthenticationModule)},
+    loadChildren: () => import('./Authentication/authentication.module').then(m => m.AuthenticationModule)
+  },
 
   { path: 'clients',
     component : CoreComponent,
-    loadChildren: () => import('./Features/Client/client.module').then(m => m.ClientModule)},
+    loadChildren: () => import('./Features/Client/client.module').then(m => m.ClientModule)
+  },
 
   { path: 'collaborateurs',
     component : CoreComponent,
-    loadChildren: () => import('./Features/Collaborateur/collaborateur.module').then(m => m.CollaborateurModule)},
+    loadChildren: () => import('./Features/Collaborateur/collaborateur.module').then(m => m.CollaborateurModule)
+  },
 
   { path: 'requettes',
     component : CoreComponent,
-    loadChildren: () => import('./Features/Requette/requette.module').then(m => m.RequetteModule)},
+    loadChildren: () => import('./Features/Requette/requette.module').then(m => m.RequetteModule)
+  },
 
   { path: 'taches',
     component : CoreComponent,
-    loadChildren: () => import('./Features/Tache/tache.module').then(m => m.TacheModule)}
+    loadChildren: () => import('./Features/Tache/tache.module').then(m => m.TacheModule)
+  },
+
+  {
+    path: 'utilisateurs',
+    component : CoreComponent,
+    loadChildren : () => import('./Features/Utilisateur/utilisateur.module').then(m => m.UtilisateurModule)
+  }
 
 ];
 

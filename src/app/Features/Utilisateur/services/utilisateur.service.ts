@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user.model";
 import {environment} from "../../../../environments/environment";
+import {AppUser} from "../../../Authentication/model/appUser.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +13,20 @@ export class UtilisateurService {
     private http : HttpClient
   ) { }
 
-  public listUsers() : Observable<Array<User>>{
-    return this.http.get<Array<User>>(environment.backendHost+"/users");
+  public listUsers() : Observable<Array<AppUser>>{
+    return this.http.get<Array<AppUser>>(environment.backendHost+"/users");
   }
 
-  public createUser(user:User) : Observable<User>{
-    return this.http.post<User>(environment.backendHost+"/users", user);
+  public createUser(appUser:AppUser) : Observable<AppUser>{
+    return this.http.post<AppUser>(environment.backendHost+"/users", appUser);
   }
 
-  public removeRoleToUser(user : User){
-    return this.http.put<User>(environment.backendHost+"/removeRole", user)
+  public removeRoleToUser(appUser : AppUser){
+    return this.http.put<AppUser>(environment.backendHost+"/removeRole", appUser)
+  }
+
+  public editUser(appUser : AppUser){
+    return this.http.put<AppUser>(environment.backendHost+"/editUser", appUser)
   }
 
 }

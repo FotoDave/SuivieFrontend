@@ -10,8 +10,8 @@
           <div class="dot-indicator bg-success"></div>
         </div>
         <div class="text-wrapper">
-          <p class="profile-name">Nom Utilisateur</p>
-          <p class="designation" translate>Status Utilisateur</p>
+          <p class="profile-name">{{decodedToken.sub}}</p>
+          <p class="designation" translate>{{decodedToken.roles}}</p>
         </div>
         <div class="icon-container">
           <i class="icon-bubbles"></i>

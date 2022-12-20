@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {UtilisateurService} from "../services/utilisateur.service";
 import {User} from "../model/user.model";
 import {throwError} from "rxjs";
+import {AppUser} from "../../../Authentication/model/appUser.model";
 
 @Component({
   selector: 'app-remove-role',
@@ -22,7 +23,7 @@ export class RemoveRoleComponent implements OnInit {
   ];
   selectedId : number;
   @Input()
-  user : User;
+  user : AppUser;
 
   constructor(
     private modalService : NgbModal,
@@ -40,7 +41,7 @@ export class RemoveRoleComponent implements OnInit {
   }
 
   removeRole(){
-    let appUser : User = this.formGroup.value;
+    let appUser : AppUser = this.formGroup.value;
     this.utilisateurService.removeRoleToUser(appUser).subscribe({
       next:() => {
         this.toastr.success("Utilisateur modifié", "Succès");

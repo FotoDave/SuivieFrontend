@@ -35,12 +35,11 @@
               <tr *ngFor="let user of users | async">
                 <td>{{user.id}}</td>
                 <td>{{user.username}}</td>
-                <td>{{user.roleName}}</td>
+                <td>{{user.roles}}</td>
                 <td><button class="btn btn-sm btn-primary"
                             (click)="openUpdate(update, user)">
                   <i class="bi bi-pen"></i> Modifier</button>
-                  <button class="btn btn-sm btn-danger" (click)="openRemove(remove, user)">
-                    <i class="bi bi-trash"></i> Supprimer role</button></td>
+                  </td>
               </tr>
               </tbody>
             </table>
@@ -64,13 +63,10 @@
   </div>
 </ng-container>
 <ng-template #create let-modal>
-  <app-create-users [modal]="modal"></app-create-users>
+  <app-create-users [modal]="modal" (actualisation)="actualiser()"></app-create-users>
 </ng-template>
 
 <ng-template #update let-modal>
-  <app-edit-users [modal]="modal" [user]="user"></app-edit-users>
+  <app-edit-users [modal]="modal" [user]="user" (actualisation)="actualiser()"></app-edit-users>
 </ng-template>
 
-<ng-template #remove let-modal>
-  <app-remove-role [modal]="modal" [user]="user"></app-remove-role>
-</ng-template>

@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {UtilisateurService} from "../services/utilisateur.service";
 import {User} from "../model/user.model";
 import {throwError} from "rxjs";
+import {AppUser} from "../../../Authentication/model/appUser.model";
 
 @Component({
   selector: 'app-edit-users',
@@ -20,9 +21,10 @@ export class EditUsersComponent implements OnInit {
     { value: "Client", label: "Client" },
     { value: "Collaborateur", label: "Collaborateur" },
   ];
-  selectedId : number;
   @Input()
-  user : User;
+  user : AppUser;
+  @Output()
+  actualisation : EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private modalService : NgbModal,
@@ -32,18 +34,23 @@ export class EditUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.user.roleName = this.user.roles.shift();
+    console.log(this.user);
     this.formGroup = this.fb.group({
       username:this.fb.control(this.user.username),
-      password:this.fb.control(this.user.password),
       roleName:this.fb.control(this.user.roleName),
     });
   }
 
   editUser(){
-    let appUser : User = this.formGroup.value;
+    let appUser : AppUser = this.formGroup.value;
     appUser.id = this.user.id;
-    this.utilisateurService.createUser(appUser).subscribe({
+    appUser.roles = new Array<string>();
+    appUser.roles.push(appUser.roleName);
+    console.log(appUser);
+    this.utilisateurService.editUser(appUser).subscribe({
       next:value => {
+        this.actualisation.emit()
         this.toastr.success("Utilisateur modifié", "Succès");
         this.modal.close();
       },

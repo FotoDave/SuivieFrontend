@@ -14,7 +14,6 @@ import {ToastrModule} from "ngx-toastr";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../../app.module";
 import {CoreModule} from "../../Core/core.module";
-import { RemoveUserComponent } from './remove-user/remove-user.component';
 import { RemoveRoleComponent } from './remove-role/remove-role.component';
 
 
@@ -25,7 +24,6 @@ import { RemoveRoleComponent } from './remove-role/remove-role.component';
     UtilisateursComponent,
     CreateUsersComponent,
     EditUsersComponent,
-    RemoveUserComponent,
     RemoveRoleComponent
   ],
 

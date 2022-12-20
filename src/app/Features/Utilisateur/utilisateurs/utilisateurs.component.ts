@@ -6,6 +6,7 @@ import {UtilisateurService} from "../services/utilisateur.service";
 import {ToastrService} from "ngx-toastr";
 import {catchError} from "rxjs/operators";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {AppUser} from "../../../Authentication/model/appUser.model";
 
 @Component({
   selector: 'app-utilisateur',
@@ -13,8 +14,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./utilisateurs.component.scss']
 })
 export class UtilisateursComponent implements OnInit {
-  users : Observable<Array<User>>;
-  user : User;
+  users : Observable<Array<AppUser>>;
+  user : AppUser;
   searchFormGroup : FormGroup
   constructor(
     private fb : FormBuilder,
@@ -43,13 +44,22 @@ export class UtilisateursComponent implements OnInit {
     this.modalService.open(create, { size: 'xl' });
   }
 
-  openUpdate(update, appUser:User) {
+  openUpdate(update, appUser:AppUser) {
+    console.log(appUser)
     this.user = appUser;
     this.modalService.open(update, { size: 'xl' });
   }
 
-  openRemove(remove, appUser:User) {
+  openRemove(remove, appUser:AppUser) {
     this.user = appUser;
     this.modalService.open(remove, { size: 'xl' });
+  }
+
+  actualiser(){
+    this.users = this.utilisateurService.listUsers().pipe(
+      catchError(err => {
+        console.log("Problème lié à la recupération des utilisateurs");
+        return throwError(err);
+      }));
   }
 }
