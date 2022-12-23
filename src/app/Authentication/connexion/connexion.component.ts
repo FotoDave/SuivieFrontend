@@ -14,6 +14,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ConnexionComponent implements OnInit {
   appUser : AppUser;
+  errorMessage : string;
   jwt : TokenModel;
   formGroup : FormGroup;
   constructor(
@@ -45,7 +46,8 @@ export class ConnexionComponent implements OnInit {
         }
       },
       error:err => {
-        this.toast.error('Mot de passe incorrect','Erreur');
+        this.errorMessage = "Utilisateur inexistant ou mot de passe incorrect !"
+        //this.toast.error('Mot de passe incorrect','Erreur');
         throwError(err);
       }
     });

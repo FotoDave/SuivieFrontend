@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import {TranslateService} from '@ngx-translate/core';
+import {JwtHelperService} from "@auth0/angular-jwt";
+import {SecurityService} from "../../../Authentication/service/security.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,16 +11,23 @@ import {TranslateService} from '@ngx-translate/core';
   providers: [NgbDropdownConfig]
 })
 export class NavbarComponent implements OnInit {
+  jwtHelperService = new JwtHelperService();
+  decodedToken : any;
   public iconOnlyToggled = false;
   public sidebarToggled = false;
 
-  constructor(config: NgbDropdownConfig, translate: TranslateService) {
+  constructor(
+    config: NgbDropdownConfig,
+    translate: TranslateService,
+    private securityService: SecurityService) {
     config.placement = 'bottom-right';
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
   }
 
   ngOnInit() {
+    let token : string = localStorage.getItem('access');
+    this.decodedToken = this.jwtHelperService.decodeToken(token);
   }
 
   // toggle sidebar in small devices
@@ -44,6 +53,10 @@ export class NavbarComponent implements OnInit {
         body.classList.remove('sidebar-hidden');
       }
     }
+  }
+
+  logOut(){
+    this.securityService.logOut();
   }
 
   // toggle right sidebar

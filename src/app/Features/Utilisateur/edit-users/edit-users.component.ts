@@ -49,7 +49,7 @@ export class EditUsersComponent implements OnInit {
     appUser.roles.push(appUser.roleName);
     console.log(appUser);
     this.utilisateurService.editUser(appUser).subscribe({
-      next:value => {
+      next:() => {
         this.actualisation.emit()
         this.toastr.success("Utilisateur modifié", "Succès");
         this.modal.close();

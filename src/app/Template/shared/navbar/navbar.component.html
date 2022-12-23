@@ -10,7 +10,7 @@
     </button>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center">
-    <h5 class="mb-0 font-weight-medium d-none d-lg-flex" translate >Welcome stellar dashboard!</h5>
+    <h5 class="mb-0 font-weight-medium d-none d-lg-flex" translate >Suivie Requettes Clients</h5>
     <ul class="navbar-nav navbar-nav-right">
       <form class="search-form d-none d-md-block" action="#">
         <i class="icon-magnifier"></i>
@@ -18,8 +18,8 @@
                placeholder="{{'Search Here' | translate }}"
                title="{{'Search Here' | translate }}">
       </form>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
+      <!--<li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>-->
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link count-indicator message-dropdown" id="messageDropdown" aria-expanded="false" ngbDropdownToggle>
           <i class="icon-speech"></i>
@@ -57,7 +57,7 @@
           </a>
         </div>
       </li>
-      <li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center" ngbDropdown>
+      <!--<li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center" ngbDropdown>
         <a class="nav-link d-flex align-items-center dropdown-toggle" id="LanguageDropdown" ngbDropdownToggle aria-expanded="false">
           <div class="d-inline-flex">
             <i class="flag-icon flag-icon-us"></i>
@@ -74,21 +74,24 @@
           <a class="dropdown-item">
             <i class="flag-icon flag-icon-ru"></i> <span translate >Russian</span> </a>
         </div>
-      </li>
+      </li>-->
       <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" id="UserDropdown" ngbDropdownToggle aria-expanded="false">
-          <img class="img-xs rounded-circle ml-2" src="../../../../assets/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> Henry Klein </span></a>
+          <img class="img-xs rounded-circle ml-2" src="../../../../assets/images/faces/face8.jpg" alt="Profile image">
+          <span class="font-weight-normal">{{decodedToken.sub}}</span></a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" ngbDropdownMenu aria-labelledby="UserDropdown">
           <div class="dropdown-header text-center">
             <img class="img-md rounded-circle" src="../../../../assets/images/faces/face8.jpg" alt="Profile image">
-            <p class="mb-1 mt-3">Henry Klein</p>
-            <p class="font-weight-light text-muted mb-0">kleinhenry@gmail.com</p>
+            <p class="mb-1 mt-3">{{decodedToken.sub}}</p>
+            <!--<p class="font-weight-light text-muted mb-0">kleinhenry@gmail.com</p>-->
           </div>
-          <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> <span translate>My Profile</span> <span class="badge badge-pill badge-danger">1</span></a>
+          <!--<a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> <span translate>My Profile</span> <span class="badge badge-pill badge-danger">1</span></a>
           <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> <span translate>Messages</span></a>
           <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i> <span translate>Activity</span></a>
-          <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> <span translate>FAQ</span></a>
-          <a class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i><span translate>Sign Out</span></a>
+          <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> <span translate>FAQ</span></a>-->
+          <a class="dropdown-item" (click)="logOut()">
+            <i class="dropdown-item-icon icon-power text-primary"></i><span translate>Déconnexion</span>
+          </a>
         </div>
       </li>
     </ul>

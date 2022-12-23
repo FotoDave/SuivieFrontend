@@ -7,7 +7,7 @@ import {ConnexionComponent} from "./Authentication/connexion/connexion.component
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  //{ path: 'dashboard', loadChildren: () => import('./Template/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'dashboard', loadChildren: () => import('./Template/dashboard/dashboard.module').then(m => m.DashboardModule) },
   //{ path: 'basic-ui', loadChildren: () => import('./basic-ui/basic-ui.module').then(m => m.BasicUiModule) },
   //{ path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   //{ path: 'forms', loadChildren: () => import('./forms/form.module').then(m => m.FormModule) },
