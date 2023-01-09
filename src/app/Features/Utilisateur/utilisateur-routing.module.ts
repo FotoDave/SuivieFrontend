@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {UtilisateursComponent} from "./utilisateurs/utilisateurs.component";
+import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
 
 
 
@@ -14,6 +15,7 @@ import {UtilisateursComponent} from "./utilisateurs/utilisateurs.component";
     RouterModule.forChild([
       {
         path: '',
+        canActivate: [AuthenticationGuard],
         component: UtilisateursComponent
       }
     ])

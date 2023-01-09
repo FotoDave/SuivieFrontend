@@ -12,16 +12,19 @@ import {EditCollaborateurComponent} from "./edit-collaborateur/edit-collaborateu
     RouterModule.forChild([
       {
         path: '',
+        canActivate: [AuthenticationGuard],
         component:CollaborateursComponent
       },
 
       {
         path: 'creer',
+        canActivate: [AuthenticationGuard],
         component:CreateCollaborateurComponent
       },
 
       {
         path: 'modifier/:id',
+        canActivate: [AuthenticationGuard],
         component:EditCollaborateurComponent
       },
     ])

@@ -13,21 +13,25 @@ import {UpdateRequetteComponent} from "./update-requette/update-requette.compone
     RouterModule.forChild([
       {
         path: '',
+        canActivate: [AuthenticationGuard],
         component:RequettesComponent
       },
 
       {
         path: 'creer',
+        canActivate: [AuthenticationGuard],
         component:CreateRequetteComponent
       },
 
       {
         path: 'consulter/:id',
+        canActivate: [AuthenticationGuard],
         component:ViewRequetteComponent
       },
 
       {
         path: 'modifier/:id',
+        canActivate: [AuthenticationGuard],
         component:UpdateRequetteComponent
       },
     ])

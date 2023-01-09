@@ -48,7 +48,12 @@ export class SecurityService {
     }*/);
   }
 
-  public isAuthenticated(){
+  public isAuthenticated() : boolean{
+    if (localStorage.key(0) !== null){
+      return true;
+    } else{
+      return false;
+    }
   }
 
   public storeTokens(token :TokenModel){

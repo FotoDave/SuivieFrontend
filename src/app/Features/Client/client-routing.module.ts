@@ -3,6 +3,7 @@ import {RouterModule} from "@angular/router";
 import {ClientsComponent} from "./clients/clients.component";
 import {SaveClientComponent} from "./save-client/save-client.component";
 import {EditClientComponent} from "./edit-client/edit-client.component";
+import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
 
 
 
@@ -11,16 +12,19 @@ import {EditClientComponent} from "./edit-client/edit-client.component";
     RouterModule.forChild([
       {
         path: '',
+        canActivate: [AuthenticationGuard],
         component:ClientsComponent
       },
 
       {
         path: 'creer',
+        canActivate: [AuthenticationGuard],
         component:SaveClientComponent
       },
 
       {
         path: 'modifier/:id',
+        canActivate: [AuthenticationGuard],
         component:EditClientComponent
       },
     ])

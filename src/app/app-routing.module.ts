@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CoreComponent} from "./Core/core/core.component";
 import {ConnexionComponent} from "./Authentication/connexion/connexion.component";
+import {AuthenticationGuard} from "./Authentication/guards/authentication.guard";
+import {AdminGuard} from "./Guards/Admin/admin.guard";
+import {CollaborateurGuard} from "./Guards/Collaborateur/collaborateur.guard";
 
 
 
@@ -16,34 +19,44 @@ const routes: Routes = [
   //{ path: 'user-pages', loadChildren: () => import('./user-pages/user-pages.module').then(m => m.UserPagesModule) },
   //{ path: 'error-pages', loadChildren: () => import('./error-pages/error-pages.module').then(m => m.ErrorPagesModule) },
 
-  { path: '',
+  {
+    path: '',
     component : ConnexionComponent,
     loadChildren: () => import('./Authentication/authentication.module').then(m => m.AuthenticationModule)
   },
 
-  { path: 'clients',
+  {
+    path: 'clients',
     component : CoreComponent,
+    canActivate: [AuthenticationGuard],
     loadChildren: () => import('./Features/Client/client.module').then(m => m.ClientModule)
   },
 
-  { path: 'collaborateurs',
+  {
+    path: 'collaborateurs',
     component : CoreComponent,
+    canActivate: [AuthenticationGuard],
     loadChildren: () => import('./Features/Collaborateur/collaborateur.module').then(m => m.CollaborateurModule)
   },
 
-  { path: 'requettes',
+  {
+    path: 'requettes',
     component : CoreComponent,
+    canActivate: [AuthenticationGuard],
     loadChildren: () => import('./Features/Requette/requette.module').then(m => m.RequetteModule)
   },
 
-  { path: 'taches',
+  {
+    path: 'taches',
     component : CoreComponent,
+    canActivate: [AuthenticationGuard],
     loadChildren: () => import('./Features/Tache/tache.module').then(m => m.TacheModule)
   },
 
   {
     path: 'utilisateurs',
     component : CoreComponent,
+    canActivate: [AuthenticationGuard],
     loadChildren : () => import('./Features/Utilisateur/utilisateur.module').then(m => m.UtilisateurModule)
   }
 

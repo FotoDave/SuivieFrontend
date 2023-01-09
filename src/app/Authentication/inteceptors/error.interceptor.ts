@@ -11,10 +11,13 @@ import {SecurityService} from "../service/security.service";
 import {catchError, filter, finalize, switchMap, take} from "rxjs/operators";
 import {ToastrService} from "ngx-toastr";
 import {any} from "codelyzer/util/function";
+import {environment} from "../../../environments/environment";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   refreshingToken : boolean = false;
+  jwtHelperService : JwtHelperService = new JwtHelperService();
   tokenSubject : BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   constructor(
@@ -46,8 +49,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }
                   }),
                   catchError(err1 => {
-                    this.toastr.info(`Veuillez vous reconnecter !`, `Session expirée`);
-                    this.securityService.logOut();
+                    if (this.jwtHelperService.isTokenExpired(localStorage.getItem('refresh'))) {
+                      this.toastr.info(`Veuillez vous reconnecter !`, `Session expirée`);
+                      this.securityService.logOut();
+                    } else {
+                      this.toastr.error("Vous n'avez pas accès à cette ressource","Erreur");
+                    }
                     return throwError(err1);
                   }),
                   finalize(() => {
@@ -59,6 +66,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     next.handle(req);
                   })
                 );
+
             }
           }
         return throwError(err);

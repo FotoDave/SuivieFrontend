@@ -11,6 +11,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 export class SidebarComponent implements OnInit {
   jwtHelperService = new JwtHelperService();
   decodedToken : any;
+  roles : Array<string>;
+  role : string;
   public uiBasicCollapsed = false;
   public uiAdvancedCollapsed = false;
   public formsCollapsed = false;
@@ -32,6 +34,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     let token : string = localStorage.getItem('access');
     this.decodedToken = this.jwtHelperService.decodeToken(token);
+    this.roles = this.decodedToken.roles;
+    this.role = (this.roles)[0];
+    console.log("Roles : -------");
+    console.log(this.role);
 
     const body = document.querySelector('body');
 

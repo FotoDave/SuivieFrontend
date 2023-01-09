@@ -36,7 +36,8 @@
       -->
 
         <!-- Clients -->
-    <li class="nav-item" [ngClass]="{'active' : clients.isActive}" >
+    <li class="nav-item"
+        [ngClass]="{ 'active': clients.isActive}" >
       <a routerLink="/clients" class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
         <span class="menu-title" routerLinkActive="active" #clients="routerLinkActive" translate>Clients</span>
         <i class="icon-layers menu-icon"></i>
@@ -54,7 +55,8 @@
     </li>
 
         <!-- Collaborateurs -->
-    <li class="nav-item" [ngClass]="{ 'active': collaborateurs.isActive }">
+    <li class="nav-item"
+        [ngClass]="{ 'active': collaborateurs.isActive }">
       <a routerLink="/collaborateurs" class="nav-link" (click)="formsCollapsed = !formsCollapsed" [attr.aria-expanded]="formsCollapsed" aria-controls="form-elements">
         <span class="menu-title" routerLinkActive="active" #collaborateurs="routerLinkActive" translate>Collaborateurs</span>
         <i class="icon-book-open menu-icon"></i>
@@ -71,7 +73,8 @@
     </li>
 
         <!-- Requettes -->
-    <li class="nav-item" [ngClass]="{ 'active': requettes.isActive}">
+    <li class="nav-item"
+        [ngClass]="{ 'active': requettes.isActive}">
       <a routerLink="/requettes" class="nav-link" (click)="chartsCollapsed = !chartsCollapsed" [attr.aria-expanded]="chartsCollapsed" aria-controls="charts">
         <span class="menu-title" routerLinkActive="active" #requettes="routerLinkActive" translate>Requettes</span>
         <i class="icon-chart menu-icon"></i>
@@ -87,7 +90,8 @@
     </li>
 
         <!-- Taches -->
-    <li class="nav-item" [ngClass]="{ 'active': taches.isActive}">
+    <li class="nav-item"
+        [ngClass]="{ 'active': taches.isActive}">
       <a routerLink="/taches" class="nav-link" (click)="tablesCollapsed = !tablesCollapsed" [attr.aria-expanded]="tablesCollapsed" aria-controls="tables">
         <span class="menu-title" routerLinkActive="active" #taches="routerLinkActive" translate>Taches</span>
         <i class="icon-grid menu-icon"></i>
@@ -105,7 +109,8 @@
 
         <!-- Utilisateurs -->
 
-    <li class="nav-item" [ngClass]=" { 'active' : utilisateurs.isActive}">
+    <li class="nav-item"
+        [ngClass]=" { 'active' : utilisateurs.isActive}">
       <a class="nav-link" routerLink="/utilisateurs"
          (click)="iconsCollapsed = !iconsCollapsed"  [attr.aria-expanded]="iconsCollapsed" aria-controls="icons">
         <span class="menu-title" routerLinkActive="active" #utilisateurs="routerLinkActive" translate>Utilisateurs</span>
