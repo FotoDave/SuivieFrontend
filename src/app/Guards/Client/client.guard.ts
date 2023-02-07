@@ -19,7 +19,7 @@ export class ClientGuard implements CanActivate {
     let token : string = localStorage.getItem('access');
     this.decodedToken = this.jwtHelperService.decodeToken(token);
 
-    if(this.decodedToken.roles == "Client"){
+    if(this.decodedToken.roles.toString() == "Client"){
       return true;
     } else {
       return false;

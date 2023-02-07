@@ -19,7 +19,7 @@ export class CollaborateurGuard implements CanActivate {
     let token : string = localStorage.getItem('access');
     this.decodedToken = this.jwtHelperService.decodeToken(token);
 
-    if(this.decodedToken.roles == "Collaborateur"){
+    if(this.decodedToken.roles.toString() == "Collaborateur"){
       return true;
     } else {
       return false;

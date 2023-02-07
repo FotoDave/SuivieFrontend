@@ -28,7 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(err => {
-          if (err.status === 403) {
+          if (err.status === 403 && this.jwtHelperService.isTokenExpired(localStorage.getItem('access'))) {
             localStorage.removeItem('access');
             if (!this.refreshingToken){
               this.refreshingToken = true;

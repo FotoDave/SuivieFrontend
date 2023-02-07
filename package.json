@@ -43,6 +43,7 @@
     "chart.js": "^2.9.4",
     "chartist": "^0.11.4",
     "compass-mixins": "^0.12.10",
+    "file-saver": "^2.0.5",
     "flag-icon-css": "^3.5.0",
     "jquery": "^3.5.1",
     "mapbox-gl": "^1.12.0",

@@ -4,6 +4,8 @@ import {RouterModule} from "@angular/router";
 import {CollaborateursComponent} from "./collaborateurs/collaborateurs.component";
 import {CreateCollaborateurComponent} from "./create-collaborateur/create-collaborateur.component";
 import {EditCollaborateurComponent} from "./edit-collaborateur/edit-collaborateur.component";
+import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
+import {AdminGuard} from "../../Guards/Admin/admin.guard";
 
 
 

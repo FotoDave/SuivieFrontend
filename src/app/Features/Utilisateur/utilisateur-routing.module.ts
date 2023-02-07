@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {UtilisateursComponent} from "./utilisateurs/utilisateurs.component";
 import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
+import {AdminGuard} from "../../Guards/Admin/admin.guard";
 
 
 

@@ -5,6 +5,8 @@ import {RequettesComponent} from "./requettes/requettes.component";
 import {CreateRequetteComponent} from "./create-requette/create-requette.component";
 import {ViewRequetteComponent} from "./view-requette/view-requette.component";
 import {UpdateRequetteComponent} from "./update-requette/update-requette.component";
+import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
+import {AdminGuard} from "../../Guards/Admin/admin.guard";
 
 
 

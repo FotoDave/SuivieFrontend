@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
     let token : string = localStorage.getItem('access');
     this.decodedToken = this.jwtHelperService.decodeToken(token);
 
-    if(this.decodedToken.roles == "Admin"){
+    if(this.decodedToken.roles.toString() == "Admin"){
       return true;
     } else {
       return false;

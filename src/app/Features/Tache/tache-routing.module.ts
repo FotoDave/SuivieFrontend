@@ -4,6 +4,8 @@ import {RouterModule} from "@angular/router";
 import {TachesComponent} from "./taches/taches.component";
 import {ViewTacheComponent} from "./view-tache/view-tache.component";
 import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
+import {AdminGuard} from "../../Guards/Admin/admin.guard";
+import {CollaborateurGuard} from "../../Guards/Collaborateur/collaborateur.guard";
 
 
 
