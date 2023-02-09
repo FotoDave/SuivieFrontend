@@ -3,7 +3,7 @@
     <div class="card-body">
       <h4 class="card-title">Requette Client</h4>
       <form class="forms-sample" [formGroup]="createFormGroup"
-            (ngSubmit)="uploadFile()">
+            (ngSubmit)="createRequtte()">
         <div class="form-group">
           <label for="intitule"><b>Intitulé</b></label>
           <input type="text" class="form-control" id="intitule"
@@ -46,7 +46,7 @@
               <div class="form-group">
                 <div>
                   <input type="file" name="file"
-                         multiple class="form-control" formControlName="file" (change)="onFileChange($event)">
+                         class="form-control" formControlName="file" (change)="onFileChange($event)">
                 </div>
               </div>
             </fieldset>

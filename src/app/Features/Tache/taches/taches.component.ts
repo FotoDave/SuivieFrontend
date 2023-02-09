@@ -8,6 +8,7 @@ import {SearchTache} from "../model/searchTache.model";
 import {Tache} from "../model/tache.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-taches',
@@ -33,7 +34,8 @@ export class TachesComponent implements OnInit {
     private formBuilder : FormBuilder,
     private requetteService : RequetteService,
     private modalService : NgbModal,
-    private route : Router
+    private route : Router,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -99,6 +101,15 @@ export class TachesComponent implements OnInit {
 
   detailsTache(id : number){
     this.route.navigateByUrl("taches/consulter/"+id);
+  }
+
+  actualiser(){
+    this.tacheService.listeTaches().subscribe({
+      next: value => {
+        this.taches = value;
+      },
+      error: err => { throwError(err)}
+    });
   }
 
 }

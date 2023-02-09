@@ -12,6 +12,15 @@
                   placeholder="Commentaire" formControlName="libelle"></textarea>
       </div>
     </div>
+      <form [formGroup]="fileFG" enctype="multipart/form-data">
+        <fieldset>
+          <div class="form-group">
+            <label for="fichier"><b>Fichier</b></label>
+            <input type="file" name="file" id="fichier"
+                   class="form-control" formControlName="file" (change)="onFileChange($event)">
+          </div>
+        </fieldset>
+      </form>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-success" (click)="creerCommentaire()">

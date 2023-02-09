@@ -24,7 +24,15 @@
         <textarea class="form-control" id="observation" rows="4"
                   placeholder="Vos observations" formControlName="observation"></textarea>
       </div>
-
+        <form [formGroup]="fileFG" enctype="multipart/form-data">
+          <fieldset>
+            <div class="form-group">
+              <label for="fichier"><b>Fichier</b></label>
+              <input type="file" name="file" id="fichier"
+                       class="form-control" formControlName="file" (change)="onFileChange($event)">
+            </div>
+          </fieldset>
+        </form>
     </div>
   </div>
   <div class="modal-footer">

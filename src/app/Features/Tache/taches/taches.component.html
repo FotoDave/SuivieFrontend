@@ -62,5 +62,5 @@
 </div>
 
 <ng-template #content let-modal>
-  <app-create-tache [modal] = modal></app-create-tache>
+  <app-create-tache [modal] = modal (actualisation)="actualiser()"></app-create-tache>
 </ng-template>

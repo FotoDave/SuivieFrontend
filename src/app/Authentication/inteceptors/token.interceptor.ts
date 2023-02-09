@@ -35,16 +35,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
     if (request.url !== environment.backendHost+"/login" && request.url !== environment.backendHost+"/refreshToken"){
       if (localStorage.key(0) !== null){
-        //console.log(this.securityService.getUser())
         console.log("Utilisateur connecté !");
         if (request.url == environment.backendHost+"/file"){
-          const boundary = `----WebKitFormBoundary${Math.random().toString(36).substr(2)}`;
-          console.log("Boundary : "+boundary);
           let clone = request.clone({
             headers: request.headers.set('Authorization','Bearer '+localStorage.getItem('access'))
-              //.set('Content-Type', 'multipart/form-data; boundary='+boundary+'')
           });
-          console.log("URL files");
           return next.handle(clone);
         }else {
           let clone = request.clone({

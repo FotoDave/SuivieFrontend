@@ -56,6 +56,8 @@ export class CreateRequetteComponent implements OnInit {
     requette.date_creation = new Date();
     this.requetteService.createRequette(requette).subscribe({
       next: value => {
+        let id: string = String(value.id);
+        this.uploadFile(id);
         this.toastr.success("Création Requette", "Succès");
         this.router.navigateByUrl("/requettes");
       },
@@ -69,10 +71,13 @@ export class CreateRequetteComponent implements OnInit {
   onFileChange(event) {
     const file = event.target.files[0];
     this.upFile = file
-    console.log("File : "+this.upFile);
+  }
+
+  uploadFile(id : string){
     let formData = new FormData();
-    //let blob = new Blob([this.upFile], { type: 'application/octet-stream' });
     formData.append('file', this.upFile);
+    formData.append('element', "R");
+    formData.append('id', id);
     this.fileService.uploadFiles(formData).subscribe({
       next: value => {
         console.log(value);
@@ -83,33 +88,11 @@ export class CreateRequetteComponent implements OnInit {
     });
   }
 
-  uploadFile(){
-    //let file:File = this.fileFG.get('file').value;
-    //console.log(this.upFile);
-    /*let blob:Blob;
-    const fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(this.upFile);
-    fileReader.onload = () => {
-      const arrayBuffer = fileReader.result as ArrayBuffer;
-      blob = new Blob([arrayBuffer], {type: this.upFile.type});
-    }*/
-
-
-  }
-
-  /*
-const formData = new FormData();
-formData.append('file', this.form.get('file').value);       this.http.post('yourEndpoint', formData, {
-  headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
-}).subscribe(response => {
-  // handle the response
-}); */
-
-  /*downloadFile(fileCode: string) {
+  downloadFile(fileCode: string) {
     this.fileService.downloadFile(fileCode).subscribe({
       next: event => {
         console.log(event);
-        this.resportProgress(event);
+        //this.resportProgress(event);
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
@@ -146,5 +129,5 @@ formData.append('file', this.form.get('file').value);       this.http.post('your
     this.fileStatus.status = 'progress';
     this.fileStatus.requestType = requestType;
     this.fileStatus.percent = Math.round(100 * loaded / total)
-  }*/
+  }
 }

@@ -13,10 +13,6 @@ export class FilesService {
   ) { }
 
   public uploadFiles(formData : FormData): Observable<Fichier>{
-    /*const boundary = `----WebKitFormBoundary${Math.random().toString(36).substr(2)}`;
-    const headers = new HttpHeaders({
-      'Content-Type': `multipart/form-data; boundary=${boundary}`
-    });*/
     return this.http.post<Fichier>(environment.backendHost+'/file', formData);
   }
 
