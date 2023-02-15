@@ -9,6 +9,7 @@ import {Tache} from "../model/tache.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-taches',
@@ -28,7 +29,7 @@ export class TachesComponent implements OnInit {
     { valueS: "TERMINE", labelS: "TERMINE" }
   ];
   requette : Array<Requette>;
-  taches : Array<Tache>;
+  taches : Observable<Array<Tache>>;
   constructor(
     private tacheService : TacheService,
     private formBuilder : FormBuilder,
@@ -48,12 +49,10 @@ export class TachesComponent implements OnInit {
       }
     });
 
-    this.tacheService.listeTaches().subscribe({
-      next: value => {
-        this.taches = value;
-      },
-      error: err => { throwError(err)}
-    });
+    this.taches = this.tacheService.listeTaches().pipe(catchError(err => {
+      console.log("Erreur lors de la recupération des taches");
+      return throwError(err);
+    }));
 
     this.formGroup = this.formBuilder.group({
       requetteId:this.formBuilder.control(""),
@@ -63,14 +62,10 @@ export class TachesComponent implements OnInit {
 
   searchTache(){
     let search : SearchTache = this.formGroup.value;
-    this.tacheService.searchTacheByRequetteIdOrStatusTache(search).subscribe({
-      next:value => {
-        this.taches = value;
-      },
-      error:err => {
-        throwError(err);
-      }
-    });
+    this.taches = this.tacheService.searchTacheByRequetteIdOrStatusTache(search).pipe(catchError(err => {
+      console.log("Erreur lors de la récupération de la liste des taches");
+      return throwError(err);
+    }));
   }
 
   badgeStatus(statusTache : string){
@@ -104,12 +99,10 @@ export class TachesComponent implements OnInit {
   }
 
   actualiser(){
-    this.tacheService.listeTaches().subscribe({
-      next: value => {
-        this.taches = value;
-      },
-      error: err => { throwError(err)}
-    });
+    this.taches = this.tacheService.listeTaches().pipe(catchError(err => {
+      console.log("Erreur lors de la recupération des taches");
+      return throwError(err);
+    }));
   }
 
 }

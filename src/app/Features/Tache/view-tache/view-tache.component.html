@@ -1,7 +1,8 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
+    <ng-container *ngIf="taches | async">
     <div class="card-body" *ngIf="taches">
-      <div class="text-right" *ngIf="taches.statusTache=='NON_PLANIFIE'">
+      <div class="text-right" *ngIf="tache.statusTache=='NON_PLANIFIE'">
         <button type="submit" class="btn btn-warning ml-auto mb-3 mb-sm-0"
                 (click)="openXlPlanifier(contentPlanifier)">
           <i class="bi bi-list"></i> Planifier</button>
@@ -9,7 +10,7 @@
       <h4 class="card-title">Détails de la Tâche</h4>
       <p class="card-description">
         Taches /<a class="text-info" routerLink="/taches" routerLinkActive="active">
-        Liste des taches</a> / Détails tache #{{taches.id}}
+        Liste des taches</a> / Détails tache #{{tache.id}}
       </p>
       <div class="table-responsive">
         <table class="table table-striped">
@@ -31,14 +32,14 @@
               <label>Intitule</label>
             </td>
             <td>
-              <b>{{taches.intitule}}</b>
+              <b>{{tache.intitule}}</b>
               <!--<label class="form-control" formControlName="intitule"></label>-->
             </td>
             <td >
               <label>Status</label>
             </td>
             <td>
-              <p class="{{badgeStatusTache(taches.statusTache)}}">{{taches.statusTache}}</p>
+              <p class="{{badgeStatusTache(tache.statusTache)}}">{{tache.statusTache}}</p>
               <!--<label class="form-control" formControlName="statusTache"></label>-->
             </td>
           </tr>
@@ -48,14 +49,14 @@
               <label>Date de début prévisionnel</label>
             </td>
             <td>
-              <b>{{taches.debutPrevisionel | date:"dd/MM/yyyy"}}</b>
+              <b>{{tache.debutPrevisionel | date:"dd/MM/yyyy"}}</b>
               <!--<label class="form-control" formControlName="debutPrev"></label>-->
             </td>
             <td>
               <label>Date de fin prévisionnel</label>
             </td>
             <td>
-              <b>{{taches.finPrevisionel | date:"dd/MM/yyyy"}}</b>
+              <b>{{tache.finPrevisionel | date:"dd/MM/yyyy"}}</b>
               <!--<label class="form-control" formControlName="finPrev"></label>-->
             </td>
           </tr>
@@ -65,14 +66,14 @@
               <label>Date de début</label>
             </td>
             <td>
-              <b>{{taches.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}</b>
+              <b>{{tache.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}</b>
               <!--<label class="form-control" formControlName="debut"></label>-->
             </td>
             <td>
               <label>Date de fin</label>
             </td>
             <td>
-              <b>{{taches.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}</b>
+              <b>{{tache.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}</b>
               <!--<label class="form-control" formControlName="fin"></label>-->
             </td>
           </tr>
@@ -82,7 +83,7 @@
               <label>Observation</label>
             </td>
             <td colspan="3">
-              <b>{{taches.observation}}</b>
+              <b>{{tache.observation}}</b>
             </td>
           </tr>
 
@@ -100,33 +101,52 @@
               <label>Collaborateur</label>
             </td>
             <td colspan="3">
-              <b>{{taches.nomCollaborateur}}</b>
+              <b>{{tache.nomCollaborateur}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label>Fichier</label>
+            </td>
+            <td colspan="3">
+              <a class="text-info" (click)="downloadFile(fileCode)">
+                {{fileName}}
+              </a>
             </td>
           </tr>
           </tbody>
         </table>
+        <ng-container *ngIf="commentaire | async">
         <table class="table table-striped">
           <thead>
             <tr>
               <th><b>Commentaires</b></th>
-              <th><button type="submit" class="btn btn-info mt-5 ml-auto mb-3 mb-sm-0 text-right"
+              <th colspan="2"><button type="submit" class="btn btn-info mt-5 ml-auto mb-3 mb-sm-0 text-right"
                           (click)="openXlCommentaire(content)">
                 <i class="bi bi-pen"></i>Ajouter</button></th>
             </tr>
           </thead>
           <tbody *ngIf="commentaire">
-            <tr *ngFor="let c of commentaire">
+            <tr *ngFor="let c of commentaire | async">
               <td>{{c.libelle}}</td>
               <td>
                 <p class="{{badgeStatusComm(c.statusCommenttaire)}}">
                   {{c.statusCommenttaire}}
+                  <!--{{file(c.id)}}-->
                 </p>
+              </td>
+              <td>
+                <!--<a (click)="downloadFile(fileCodeCom)">
+                  {{fileNameCom}}
+                </a>-->
               </td>
             </tr>
           </tbody>
         </table>
+        </ng-container>
       </div>
-      <div class="table-responsive border rounded p-1" *ngIf="!commentaire || commentaire.length < 1">
+      <div class="table-responsive border rounded p-1" *ngIf="!commentaire">
         <p class="card-title text-center">Aucun commentaire...</p>
       </div>
       <div>
@@ -137,10 +157,11 @@
         </div>
       </div>
     </div>
+    </ng-container>
   </div>
 </div>
 <ng-template #content let-modal>
-  <app-commentaire [modal]="modal" [tacheId]="idTache" (actualisation)="actualiser()"></app-commentaire>
+  <app-commentaire [modal]="modal" [tacheId]="idTache" (actualisation)="actualiserCommentaire()"></app-commentaire>
 </ng-template>
 
 <ng-template #contentModifier let-modal>

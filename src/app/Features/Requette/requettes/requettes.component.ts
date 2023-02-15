@@ -12,6 +12,7 @@ import {catchError, map} from "rxjs/operators";
 })
 export class RequettesComponent implements OnInit {
   requette : Observable<Array<Requette>>;
+  requetteId : number;
   constructor(
     private requetteService : RequetteService,
     private router : Router

@@ -31,14 +31,12 @@
               <label>Client</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="nomClient"></label>-->
               <b>{{requette.nomClient}}</b>
             </td>
-            <td >
+            <td>
               <label>Date de creation</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="date_creation"></label>  | date:"MM/dd/yyyy 'À' h:mma"-->
               <b>{{requette.date_creation | date:"MM/dd/yyyy 'À' h:mma"}}</b>
             </td>
           </tr>
@@ -48,14 +46,12 @@
               <label>Intitulé</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="intitule"></label>-->
               <b>{{requette.intitule}}</b>
             </td>
             <td>
               <label>Module</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="module"></label>-->
               <b>{{requette.module}}</b>
             </td>
           </tr>
@@ -65,14 +61,12 @@
               <label>Fonctionnalité</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="fonctionnalite"></label>-->
               <b>{{requette.fonctionnalite}}</b>
             </td>
             <td>
               <label>Urgence</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="urgence"></label>-->
               <b>{{requette.urgence}}</b>
             </td>
           </tr>
@@ -82,15 +76,24 @@
               <label>Observation</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="observation"></label>-->
               <b>{{requette.observation}}</b>
             </td>
             <td>
               <label>Type requette</label>
             </td>
             <td>
-              <!--<label class="form-control" formControlName="typeRequette"></label>-->
               <b>{{requette.typeRequette}}</b>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <label>Fichier</label>
+            </td>
+            <td colspan="2">
+              <a class="text-info" (click)="downloadFile(fileCode)">
+                {{fileName}}
+              </a>
             </td>
           </tr>
           </tbody>
@@ -101,8 +104,7 @@
             <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
                 (click)="modifier(requette.id)">
               <i class="bi bi-pen"></i> Modifier</button>
-
-        <!--<button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes"
+            <!--<button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes"
                 (click)="delete(requette)">
           <i class="bi bi-trash"></i> Supprimer</button>-->
           </div>
