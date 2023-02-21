@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="text-right">
         <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
-                (click)="openXl(content)">
+               *ngIf="requette.statusRequette != 'TRAITE'" (click)="openXl(content)">
           <i class="bi bi-list"></i> Créer une Tache</button>
       </div>
       <h4 class="card-title">Détails de la requette</h4>
@@ -26,6 +26,22 @@
           </tr>
           </thead>
           <tbody>
+          <tr>
+            <td>
+              <label>Utilisateur</label>
+            </td>
+            <td>
+              <b>{{requette.username}}</b>
+            </td>
+            <td>
+              <label>Statut</label>
+            </td>
+            <td>
+              <p class="{{badgeStatusRequette(requette.statusRequette)}}">
+                {{requette.statusRequette}}</p>
+            </td>
+          </tr>
+
           <tr>
             <td>
               <label>Client</label>

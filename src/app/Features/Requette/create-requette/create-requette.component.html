@@ -11,14 +11,20 @@
         </div>
         <div class="form-group">
           <label for="typeRequette"><b>Type</b></label>
-          <select class="form-control" formControlName="typeRequette" id="typeRequette">
+          <ng-select [items]="statusList"
+                     bindLabel="label"
+                     bindValue="value"
+                     id="typeRequette"
+                     formControlName="typeRequette" required>
+          </ng-select>
+          <!--<select class="form-control" formControlName="typeRequette" id="typeRequette">
             <option value="NOUVELLE_FONCTIONNALITE">
               NOUVELLE_FONCTIONNALITE
             </option>
             <option value="CORRECTION_BUGS">
               CORRECTION_BUGS
             </option>
-          </select>
+          </select>-->
         </div>
         <div class="form-group">
           <label for="module"><b>Module</b></label>

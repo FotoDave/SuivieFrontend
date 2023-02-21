@@ -72,12 +72,15 @@ export class ViewTacheComponent implements OnInit {
       case "TERMINE": {
         return "badge badge-success p-2";
       }
+      case "DEPLOYE": {
+        return "badge badge-success p-2";
+      }
     }
   }
   public badgeStatusComm(status : string): string{
     switch (status) {
       case "NON_TRAITE":{
-        return "badge badge-warning p-2";
+        return "badge badge-danger p-2";
       }
       case "TRAITE":{
         return "badge badge-success p-2";
@@ -93,6 +96,7 @@ export class ViewTacheComponent implements OnInit {
     }));
     this.taches.subscribe({
       next:value => {
+        console.log(value);
         this.tache = value;
         this.requetteService.getOneRequette(value.requetteId).subscribe({
           next: value1 => {
@@ -150,6 +154,10 @@ export class ViewTacheComponent implements OnInit {
     this.modalService.open(contentPlanifier, { size: 'xl' });
   }
 
+  openSmModal(contentStatus){
+    this.modalService.open(contentStatus, { size : "xl"});
+  }
+
   actualiser(){
     this.taches = this.tacheService.getOneTache(this.idTache).pipe(catchError(err => {
       console.log("Erreur lors de la récupération des taches.")
@@ -197,6 +205,47 @@ export class ViewTacheComponent implements OnInit {
         console.log("Erreur lors de la récupération des informations du fichier");
       }
     });
+  }
+
+  changeStatusTache(modal : any, statusTache : string){
+    let statutTache2 : string;
+    switch (statusTache) {
+      case "PLANIFIE": {
+        statutTache2 = "EN_COURS";
+        break;
+      }
+      case "EN_COURS": {
+        statutTache2 = "A_VALIDER_ALPHA";
+        break;
+      }
+      case "A_VALIDER_ALPHA": {
+        statutTache2 = "A_VALIDER_BETA";
+        break;
+      }
+      case "A_VALIDER_BETA": {
+        statutTache2 = "TERMINE";
+        break;
+      }
+      case "TERMINE": {
+        statutTache2 = "DEPLOYE";
+        break;
+      }
+    }
+    this.tache.statusTache = statutTache2;
+    console.log(this.tache);
+    this.tacheService.changeStatusTache(this.tache).subscribe({
+      next: () => {
+        console.log("Status de la tache changé avec succès");
+      }, error: err => {
+        console.log("Erreur lors du changement du status de la tache...");
+        throwError(err);
+      }
+    });
+    this.taches = this.tacheService.getOneTache(this.idTache).pipe(catchError(err => {
+      console.log("Erreur lors de la récupération des taches.")
+      return throwError(err);
+    }));
+    modal.close();
   }
 }
 

@@ -7,6 +7,8 @@ export interface Requette{
   urgence : string;
   observation : string;
   typeRequette : string;
+  statusRequette : string;
+  username : string;
   clientId : number;
   nomClient : string;
 }

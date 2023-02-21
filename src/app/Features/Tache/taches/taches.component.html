@@ -37,6 +37,7 @@
               <tr>
                 <th class="font-weight-bold">ID Tache</th>
                 <th class="font-weight-bold">Intitulé</th>
+                <th class="font-weight-bold">Collaborateur</th>
                 <th class="font-weight-bold">Status</th>
                 <th class="font-weight-bold"></th>
               </tr>
@@ -45,6 +46,7 @@
               <tr *ngFor="let t of taches | async">
                 <td>{{t.id}}</td>
                 <td>{{t.intitule}}</td>
+                <td>{{t.nomCollaborateur}}</td>
                 <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
                 <td><button class="btn btn-sm btn-primary"
                             (click)="detailsTache(t.id)">

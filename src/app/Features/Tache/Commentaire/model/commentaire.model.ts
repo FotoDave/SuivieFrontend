@@ -1,17 +1,11 @@
+import {Fichier} from "../../../../Files/model/file.model";
+
 export interface Commentaire {
   id : number;
   libelle : string;
   statusCommenttaire : string;
+  fileName : string;
+  fileCode : string;
   tacheId: number;
 
-  /*public badgeStatus(): string{
-    switch (this.statusCommenttaire) {
-      case "NON_TRAITE":{
-        return "badge badge-warning p-2";
-      }
-      case "TRAITE":{
-        return "badge badge-success p-2";
-      }
-    }
-  }*/
 }

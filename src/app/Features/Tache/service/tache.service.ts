@@ -45,6 +45,9 @@ export class TacheService {
   public planifierTache(tache : Tache) : Observable<Tache>{
     return this.http.put<Tache>(environment.backendHost+"/taches/planifier", tache);
   }
+  public changeStatusTache(tache : Tache) : Observable<Tache>{
+    return this.http.put<Tache>(environment.backendHost+"/taches/changeStatus", tache);
+  }
   public modifierTache(tache : Tache) : Observable<Tache>{
     return this.http.put<Tache>(environment.backendHost+"/taches/modifier", tache);
   }

@@ -2,11 +2,38 @@
   <div class="card">
     <ng-container *ngIf="taches | async">
     <div class="card-body" *ngIf="taches">
+
       <div class="text-right" *ngIf="tache.statusTache=='NON_PLANIFIE'">
         <button type="submit" class="btn btn-warning ml-auto mb-3 mb-sm-0"
                 (click)="openXlPlanifier(contentPlanifier)">
           <i class="bi bi-list"></i> Planifier</button>
       </div>
+      <div class="text-right" *ngIf="tache.statusTache=='PLANIFIE'">
+        <button type="submit" class="btn btn-info ml-auto mb-3 mb-sm-0"
+                (click)="openSmModal(contentStatus)">
+          <i class="bi bi-list"></i> Débuter la tache</button>
+      </div>
+      <div class="text-right" *ngIf="tache.statusTache=='EN_COURS'">
+        <button type="submit" class="btn btn-info ml-auto mb-3 mb-sm-0"
+                (click)="openSmModal(contentStatus)">
+          <i class="bi bi-list"></i> A_VALIDER_ALPHA</button>
+      </div>
+      <div class="text-right" *ngIf="tache.statusTache=='A_VALIDER_ALPHA'">
+        <button type="submit" class="btn btn-info ml-auto mb-3 mb-sm-0"
+                (click)="openSmModal(contentStatus)">
+          <i class="bi bi-list"></i> A_VALIDER_BETA</button>
+      </div>
+      <div class="text-right" *ngIf="tache.statusTache=='A_VALIDER_BETA'">
+        <button type="submit" class="btn btn-info ml-auto mb-3 mb-sm-0"
+                (click)="openSmModal(contentStatus)">
+          <i class="bi bi-list"></i> TERMINE</button>
+      </div>
+      <div class="text-right" *ngIf="tache.statusTache=='TERMINE'">
+        <button type="submit" class="btn btn-info ml-auto mb-3 mb-sm-0"
+                (click)="openSmModal(contentStatus)">
+          <i class="bi bi-list"></i> DEPLOYE</button>
+      </div>
+
       <h4 class="card-title">Détails de la Tâche</h4>
       <p class="card-description">
         Taches /<a class="text-info" routerLink="/taches" routerLinkActive="active">
@@ -33,14 +60,12 @@
             </td>
             <td>
               <b>{{tache.intitule}}</b>
-              <!--<label class="form-control" formControlName="intitule"></label>-->
             </td>
-            <td >
+            <td>
               <label>Status</label>
             </td>
             <td>
               <p class="{{badgeStatusTache(tache.statusTache)}}">{{tache.statusTache}}</p>
-              <!--<label class="form-control" formControlName="statusTache"></label>-->
             </td>
           </tr>
 
@@ -50,14 +75,12 @@
             </td>
             <td>
               <b>{{tache.debutPrevisionel | date:"dd/MM/yyyy"}}</b>
-              <!--<label class="form-control" formControlName="debutPrev"></label>-->
             </td>
             <td>
               <label>Date de fin prévisionnel</label>
             </td>
             <td>
               <b>{{tache.finPrevisionel | date:"dd/MM/yyyy"}}</b>
-              <!--<label class="form-control" formControlName="finPrev"></label>-->
             </td>
           </tr>
 
@@ -67,14 +90,12 @@
             </td>
             <td>
               <b>{{tache.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}</b>
-              <!--<label class="form-control" formControlName="debut"></label>-->
             </td>
             <td>
               <label>Date de fin</label>
             </td>
             <td>
               <b>{{tache.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}</b>
-              <!--<label class="form-control" formControlName="fin"></label>-->
             </td>
           </tr>
 
@@ -96,7 +117,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr *ngIf="tache.nomCollaborateur != null">
             <td>
               <label>Collaborateur</label>
             </td>
@@ -117,44 +138,48 @@
           </tr>
           </tbody>
         </table>
+        <div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
+                    (click)="openXlModifier(contentModifier)">
+              <i class="bi bi-pen"></i> Modifier</button>
+          </div>
+        </div>
         <ng-container *ngIf="commentaire | async">
         <table class="table table-striped">
           <thead>
             <tr>
               <th><b>Commentaires</b></th>
-              <th colspan="2"><button type="submit" class="btn btn-info mt-5 ml-auto mb-3 mb-sm-0 text-right"
-                          (click)="openXlCommentaire(content)">
-                <i class="bi bi-pen"></i>Ajouter</button></th>
+              <th colspan="3"></th>
             </tr>
           </thead>
           <tbody *ngIf="commentaire">
             <tr *ngFor="let c of commentaire | async">
               <td>{{c.libelle}}</td>
               <td>
-                <p class="{{badgeStatusComm(c.statusCommenttaire)}}">
-                  {{c.statusCommenttaire}}
-                  <!--{{file(c.id)}}-->
-                </p>
+                <a (click)="downloadFile(c.fileCode)">
+                  {{c.fileName.substring(11, c.fileName.length)}}
+                </a>
               </td>
               <td>
-                <!--<a (click)="downloadFile(fileCodeCom)">
-                  {{fileNameCom}}
-                </a>-->
+                <p class="{{badgeStatusComm(c.statusCommenttaire)}}">
+                  {{c.statusCommenttaire}}
+                </p>
               </td>
             </tr>
           </tbody>
         </table>
-        </ng-container>
+          <div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-info mt-5 ml-auto mb-3 mb-sm-0 text-right"
+                      (click)="openXlCommentaire(content)">
+                <i class="bi bi-pen"></i>Ajouter</button>
+            </div>
+          </div>
+      </ng-container>
       </div>
       <div class="table-responsive border rounded p-1" *ngIf="!commentaire">
         <p class="card-title text-center">Aucun commentaire...</p>
-      </div>
-      <div>
-        <div class="text-right">
-          <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
-                  (click)="openXlModifier(contentModifier)">
-            <i class="bi bi-pen"></i> Modifier</button>
-        </div>
       </div>
     </div>
     </ng-container>
@@ -170,4 +195,23 @@
 
 <ng-template #contentPlanifier let-modal>
   <app-planifier-tache [modal]="modal" [idTache]="idTache" (actualisation)="actualiser()"></app-planifier-tache>
+</ng-template>
+
+<ng-template #contentStatus let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Changement du status de la tache</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>Êtes vous sûr ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success text-left" (click)="changeStatusTache(modal, tache.statusTache)">
+      <i class="bi bi-save"></i>
+      OUI</button>
+    <button type="button" class="btn btn-danger text-right"
+            (click)="modal.close('Close click')">
+      <i class="bi bi-x-circle"></i>
+      Annuler</button>
+  </div>
 </ng-template>

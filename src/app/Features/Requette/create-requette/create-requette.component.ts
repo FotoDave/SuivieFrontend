@@ -21,8 +21,11 @@ export class CreateRequetteComponent implements OnInit {
   upFile : File;
   fileFG: FormGroup;
   statusList = [
-    {label: "NOUVELLE_FONCTIONNALITE", value: "NOUVELLE_FONCTIONNALITE"},
-    {label: "CORRECTION_BUGS", value: "CORRECTION_BUGS"},
+    {label: "NOUVELLE FONCTIONNALITE", value: "NOUVELLE_FONCTIONNALITE"},
+    {label: "CORRECTION DES BUGS", value: "CORRECTION_BUGS"},
+    {label: "MODIFICATION FONCTIONNALITÉ", value: "MODIFICATION_FONCT"},
+    {label: "TRAITEMENT DES DONNÉES", value: "TRAITEMENT_DONNEES"},
+    {label: "AUTRES", value: "AUTRES"},
   ];
   private fileStatus = { status:'', requestType:'', percent:0}
 
@@ -100,7 +103,7 @@ export class CreateRequetteComponent implements OnInit {
     });
   }
 
-  private resportProgress(httpEvent: HttpEvent<Fichier | Blob>){
+  /*private resportProgress(httpEvent: HttpEvent<Fichier | Blob>){
     switch (httpEvent.type) {
       case HttpEventType.UploadProgress:
         this.updateStatus(httpEvent.loaded, httpEvent.total, 'Uploading');
@@ -129,5 +132,5 @@ export class CreateRequetteComponent implements OnInit {
     this.fileStatus.status = 'progress';
     this.fileStatus.requestType = requestType;
     this.fileStatus.percent = Math.round(100 * loaded / total)
-  }
+  }*/
 }

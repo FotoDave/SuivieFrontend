@@ -23,6 +23,14 @@
                  formControlName="roleName" required>
       </ng-select>
     </div>
+    <div class="form-group">
+        <label><b>Clients</b></label>
+        <ng-select [items]="client"
+                   bindLabel="nom"
+                   bindValue="id"
+                   formControlName="clientId">
+        </ng-select>
+    </div>
     </div>
   </div>
   <div class="modal-footer">

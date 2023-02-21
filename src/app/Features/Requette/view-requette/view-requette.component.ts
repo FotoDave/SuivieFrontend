@@ -49,8 +49,6 @@ export class ViewRequetteComponent implements OnInit {
       next: value => {
         this.fileCode = value.fileCode;
         this.fileName = value.fileName.substring(11,value.fileName.length);
-        /*console.log("Le nom du fichier enregistré est : ")
-        console.log(this.fileName);*/
       },
       error:err => {
         console.log("Erreur lors de la récupération des informations du fichier");
@@ -78,13 +76,17 @@ export class ViewRequetteComponent implements OnInit {
       URL.revokeObjectURL(URL.createObjectURL(blob));
     });
   }
-
-  /*delete(requette: Requette) {
-    this.requetteService.deleteRequtte(this.idRequette).subscribe({
-      next: value => {
-        this.router.navigateByUrl("requettes")
-      },
-      error: err => throwError(err)
-    });
-  }*/
+  badgeStatusRequette(statusRequette : string) {
+    switch (statusRequette) {
+      case "NON_TRAITE": {
+        return "badge badge-danger p-2";
+      }
+      case "EN_COURS": {
+        return "badge badge-primary p-2";
+      }
+      case "TRAITE": {
+        return "badge badge-success p-2";
+      }
+    }
+  }
 }

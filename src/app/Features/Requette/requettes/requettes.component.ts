@@ -34,20 +34,4 @@ export class RequettesComponent implements OnInit {
     this.router.navigateByUrl("requettes/modifier/"+id);
   }
 
-  /*deleteRequette(r: Requette) {
-    this.requetteService.deleteRequtte(r.id).subscribe({
-      next: value => {
-        this.requette = this.requette.pipe(
-          map(data => {
-            let index = data.indexOf(r);
-            data.slice(index,1);
-            return data
-          })
-        )
-      },
-      error: err => {
-        return throwError(err);
-      }
-    })
-  }*/
 }

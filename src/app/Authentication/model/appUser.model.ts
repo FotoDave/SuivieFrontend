@@ -5,5 +5,7 @@ export interface AppUser{
   username : string;
   password : string;
   roles : Array<string>;
-  roleName : string
+  roleName : string;
+  clientId : number;
+  nomClient : string;
 }
