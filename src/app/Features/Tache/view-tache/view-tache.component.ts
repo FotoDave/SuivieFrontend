@@ -96,7 +96,6 @@ export class ViewTacheComponent implements OnInit {
     }));
     this.taches.subscribe({
       next:value => {
-        console.log(value);
         this.tache = value;
         this.requetteService.getOneRequette(value.requetteId).subscribe({
           next: value1 => {
@@ -246,6 +245,21 @@ export class ViewTacheComponent implements OnInit {
       return throwError(err);
     }));
     modal.close();
+  }
+
+  changeStatusCommentaire(id : number){
+    this.commentaireService.changeStatusCommentaire(id).subscribe({
+      next:() => {
+        this.commentaire = this.commentaireService.listeCommentaireParTaches(this.idTache).pipe(catchError(err => {
+          console.log("Erreur lors de la récupération des commentaires")
+          return throwError(err);
+        }));
+      },
+      error : err => {
+        console.log("Erreur lors du changement de status du commentaire");
+        throwError(err);
+      }
+    });
   }
 }
 

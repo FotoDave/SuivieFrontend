@@ -17,6 +17,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../../app.module";
 import {RouterModule} from "@angular/router";
 import {ToastrModule} from "ngx-toastr";
+import { FilterTacheComponent } from './filter-tache/filter-tache.component';
 
 
 
@@ -27,7 +28,8 @@ import {ToastrModule} from "ngx-toastr";
     ModifierTacheComponent,
     PlanifierTacheComponent,
     TachesComponent,
-    ViewTacheComponent
+    ViewTacheComponent,
+    FilterTacheComponent
   ],
   imports: [
     CommonModule,

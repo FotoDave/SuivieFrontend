@@ -17,6 +17,7 @@ import {FilesService} from "../../../Files/service/files.service";
   styleUrls: ['./view-requette.component.scss']
 })
 export class ViewRequetteComponent implements OnInit {
+  requettes : Observable<Requette>;
   requette : Requette;
   client : Client;
   idRequette : number;
@@ -37,7 +38,11 @@ export class ViewRequetteComponent implements OnInit {
 
   ngOnInit(): void {
     this.idRequette = Number(this.activedRoute.snapshot.paramMap.get('id'));
-    this.requetteService.getOneRequette(this.idRequette).subscribe({
+    this.requettes = this.requetteService.getOneRequette(this.idRequette).pipe(catchError(err => {
+      console.log("Erreur lors de la récupération des taches.")
+      return throwError(err);
+    }));
+    this.requettes.subscribe({
       next: value => {
         this.requette = value;
       },
@@ -88,5 +93,29 @@ export class ViewRequetteComponent implements OnInit {
         return "badge badge-success p-2";
       }
     }
+  }
+
+  actualiserRequette(){
+    this.requettes = this.requetteService.getOneRequette(this.idRequette).pipe(catchError(err => {
+      console.log("Erreur lors de la récupération des taches.")
+      return throwError(err);
+    }));
+    this.requettes.subscribe({
+      next: value => {
+        this.requette = value;
+      },
+      error: err => {
+        throwError(err);
+      }
+    });
+    this.fileService.getOneFile("R", this.idRequette).subscribe({
+      next: value => {
+        this.fileCode = value.fileCode;
+        this.fileName = value.fileName.substring(11,value.fileName.length);
+      },
+      error:err => {
+        console.log("Erreur lors de la récupération des informations du fichier");
+      }
+    });
   }
 }

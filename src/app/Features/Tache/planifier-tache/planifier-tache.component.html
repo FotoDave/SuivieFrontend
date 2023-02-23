@@ -12,25 +12,26 @@
                      id="collaborateur"
                      [items]="collaborateurs"
                      bindLabel="nom"
-                     bindValue="id">
+                     bindValue="id"
+                     required>
           </ng-select>
         </div>
         <div class="form-group">
           <label for="debutPrevisionel"><b>Date de début prévisionnelle</b></label>
           <input type="date" id="debutPrevisionel"
-                 class="form-control" formControlName="debutPrevisionel">
+                 class="form-control" formControlName="debutPrevisionel" required>
         </div>
         <div class="form-group">
           <label for="finPrevisionel"><b>Date de fin prévisionnelle</b></label>
           <input type="date" id="finPrevisionel"
-                 class="form-control" formControlName="finPrevisionel">
+                 class="form-control" formControlName="finPrevisionel" required>
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success" (click)="planifier()">
+      <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid" (click)="planifier()">
         <i class="bi bi-save"></i>
-        Créer</button>
+        Planifier</button>
       <button type="button" class="btn btn-danger"
               (click)="modal.close('Close click')">
         <i class="bi bi-x-circle"></i>

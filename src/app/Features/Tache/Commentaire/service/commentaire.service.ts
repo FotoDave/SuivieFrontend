@@ -19,6 +19,11 @@ export class CommentaireService {
   public getOneCommentaire(id : number):Observable<Commentaire>{
     return this.http.get<Commentaire>(environment.backendHost+"/commentaires/"+id);
   }
+
+  public changeStatusCommentaire(id : number):Observable<Commentaire>{
+    return this.http.get<Commentaire>(environment.backendHost+"/commentaire/"+id);
+  }
+
   public listeCommentaire():Observable<Array<Commentaire>>{
     return this.http.get<Array<Commentaire>>(environment.backendHost+"/commentaires");
   }

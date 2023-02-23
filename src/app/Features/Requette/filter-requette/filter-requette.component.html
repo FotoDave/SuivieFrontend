@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup" (ngSubmit)="filterRequette()">
+  <div class="table-responsive-xl p-1">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <label>ID Requette</label>
+          </td>
+          <td><ng-select [items]="requettes"
+                         bindLabel="id"
+                         bindValue="id"
+                         formControlName="id">
+          </ng-select></td>
+          <td>
+            <label>Nom Client</label>
+          </td>
+          <td><ng-select [items]="clients"
+                         bindLabel="nom"
+                         bindValue="id"
+                         formControlName="clientId">
+          </ng-select></td>
+        </tr>
+
+        <tr>
+          <td>
+            <label>Type Requette</label>
+          </td>
+          <td><ng-select [items]="requettes"
+                         bindLabel="typeRequette"
+                         bindValue="typeRequette"
+                         formControlName="typeRequette">
+          </ng-select></td>
+          <td>
+            <label>Status Requette</label>
+          </td>
+          <td><ng-select [items]="requettes"
+                         bindLabel="statusRequette"
+                         bindValue="statusRequette"
+                         formControlName="statusRequette">
+          </ng-select></td>
+        </tr>
+
+        <tr>
+          <td>
+            <label>Intitulé</label>
+          </td>
+          <td colspan="3"><ng-select [items]="requettes"
+                         bindLabel="intitule"
+                         bindValue="intitule"
+                         formControlName="intitule">
+          </ng-select></td>
+        </tr>
+
+        <tr>
+          <td colspan="4">
+            <button type="submit" class="btn btn-sm btn-info">Filtrer</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</form>

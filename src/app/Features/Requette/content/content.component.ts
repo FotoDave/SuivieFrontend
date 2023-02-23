@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit {
   requette : Requette;
   items = [];
   @Output()
-  even : EventEmitter<undefined>;
+  actualisation : EventEmitter<any> = new EventEmitter<any>();
   @Input()
   modal: any;
   constructor(
@@ -48,6 +48,7 @@ export class ContentComponent implements OnInit {
     this.tacheService.creerTache(tache).subscribe({
       next : value => {
         this.toastr.success("Création Tâche", "Succès");
+        this.actualisation.emit();
         this.modal.close();
       },
       error : err => {

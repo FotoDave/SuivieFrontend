@@ -17,6 +17,7 @@ import {ChartsModule} from "ng2-charts";
 import {ToastrModule} from "ngx-toastr";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../../app.module";
+import { FilterRequetteComponent } from './filter-requette/filter-requette.component';
 
 
 
@@ -26,7 +27,8 @@ import {HttpLoaderFactory} from "../../app.module";
     CreateRequetteComponent,
     RequettesComponent,
     ViewRequetteComponent,
-    UpdateRequetteComponent
+    UpdateRequetteComponent,
+    FilterRequetteComponent
   ],
   imports: [
     CommonModule,

@@ -24,24 +24,36 @@ export class TacheService {
   public getOneTache(id : number):Observable<Tache>{
     return this.http.get<Tache>(environment.backendHost+"/taches/"+id);
   }
-  public getOneFile(element : string, id : number):Observable<Fichier>{
+
+  /*public getOneFile(element : string, id : number):Observable<Fichier>{
     let params = new HttpParams().set('id', id.toString())
                                   .set('element', element);
     return this.http.get<Fichier>(environment.backendHost+"/file", {
       params: params
     });
-  }
+  }*/
   public listeTaches() : Observable<Array<Tache>>{
     return this.http.get<Array<Tache>>(environment.backendHost+"/taches");
   }
 
   public searchTacheByRequetteIdOrStatusTache(search : SearchTache):Observable<Array<Tache>>{
-    console.log(search);
     let params = new HttpParams().set('requetteId', search.requetteId.toString()).set('statusTache', search.statusTache);
     return this.http.get<Array<Tache>>(environment.backendHost+"/taches/searchTache",{
       params: params
     });
   }
+
+  public filterTaches(tache : Tache):Observable<Array<Tache>>{
+    let params = new HttpParams().set('idTache', tache.id.toString()).set('idReq', tache.requetteId.toString())
+                            .set('idCollab', tache.collaborateurId.toString()).set('statut', tache.statusTache)
+                            .set('dateDebut', tache.dateDebut.toString()).set('dateFin', tache.dateFin.toString())
+                            .set('dateDebutPrev', tache.debutPrevisionel.toString())
+                            .set('dateFinPrev', tache.finPrevisionel.toString());
+    return this.http.get<Array<Tache>>(environment.backendHost+"/tache/filter",{
+      params: params
+    });
+  }
+
   public planifierTache(tache : Tache) : Observable<Tache>{
     return this.http.put<Tache>(environment.backendHost+"/taches/planifier", tache);
   }
