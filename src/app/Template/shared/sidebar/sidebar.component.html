@@ -22,14 +22,14 @@
     <li class="nav-item nav-category">
       <span class="nav-link" translate>Espace de travail</span>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
+    <!--<li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
       <a class="nav-link" routerLink="/dashboard">
         <span class="menu-title" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact : true}"
               #dashboard="routerLinkActive" translate>Tableau de bord</span>
         <i class="icon-screen-desktop menu-icon"></i>
       </a>
-    </li>
+    </li>-->
             <!--Mise en commentaire du UI Element
 
     <li class="nav-item nav-category"><span class="nav-link" translate>UI Elements</span></li>
@@ -37,7 +37,7 @@
 
         <!-- Clients -->
     <li class="nav-item"
-        [ngClass]="{ 'active': clients.isActive}" >
+        [ngClass]="{ 'active': clients.isActive}" *ngIf="this.decodedToken.roles == 'Admin'">
       <a routerLink="/clients" class="nav-link" (click)="uiBasicCollapsed = !uiBasicCollapsed" [attr.aria-expanded]="uiBasicCollapsed" aria-controls="ui-basic">
         <span class="menu-title" routerLinkActive="active" #clients="routerLinkActive" translate>Clients</span>
         <i class="icon-layers menu-icon"></i>
@@ -56,7 +56,7 @@
 
         <!-- Collaborateurs -->
     <li class="nav-item"
-        [ngClass]="{ 'active': collaborateurs.isActive }">
+        [ngClass]="{ 'active': collaborateurs.isActive }" *ngIf="this.decodedToken.roles == 'Admin'">
       <a routerLink="/collaborateurs" class="nav-link" (click)="formsCollapsed = !formsCollapsed" [attr.aria-expanded]="formsCollapsed" aria-controls="form-elements">
         <span class="menu-title" routerLinkActive="active" #collaborateurs="routerLinkActive" translate>Collaborateurs</span>
         <i class="icon-book-open menu-icon"></i>
@@ -91,7 +91,7 @@
 
         <!-- Taches -->
     <li class="nav-item"
-        [ngClass]="{ 'active': taches.isActive}">
+        [ngClass]="{ 'active': taches.isActive}" *ngIf="this.decodedToken.roles != 'Client'">
       <a routerLink="/taches" class="nav-link" (click)="tablesCollapsed = !tablesCollapsed" [attr.aria-expanded]="tablesCollapsed" aria-controls="tables">
         <span class="menu-title" routerLinkActive="active" #taches="routerLinkActive" translate>Taches</span>
         <i class="icon-grid menu-icon"></i>
@@ -110,7 +110,7 @@
         <!-- Utilisateurs -->
 
     <li class="nav-item"
-        [ngClass]=" { 'active' : utilisateurs.isActive}">
+        [ngClass]=" { 'active' : utilisateurs.isActive}" *ngIf="this.decodedToken.roles == 'Admin'">
       <a class="nav-link" routerLink="/utilisateurs"
          (click)="iconsCollapsed = !iconsCollapsed"  [attr.aria-expanded]="iconsCollapsed" aria-controls="icons">
         <span class="menu-title" routerLinkActive="active" #utilisateurs="routerLinkActive" translate>Utilisateurs</span>

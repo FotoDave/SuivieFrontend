@@ -37,9 +37,11 @@ export class RequetteService {
   }
 
   public filterRequette(requette : Requette):Observable<Array<Requette>>{
-    let params = new HttpParams().set('typeRequette', requette.typeRequette).set('intitule', requette.intitule)
-                                .set('id', requette.id.toString()).set('statusRequette', requette.statusRequette)
-                                .set('idClient', requette.clientId.toString());
+    let params = new HttpParams().set('typeRequette', requette.typeRequette == null ? "" : requette.typeRequette)
+                                .set('statusRequette', requette.statusRequette == null ? "" : requette.statusRequette)
+                                .set('intitule', requette.intitule == null ? "" : requette.intitule)
+                                .set('idClient', requette.clientId == null ? null : requette.clientId.toString())
+                                .set('id', requette.id == null ? null : requette.id.toString());
     return this.http.get<Array<Requette>>(environment.backendHost+"/requette/filter", {
       params : params
     });

@@ -42,7 +42,7 @@ export class ConnexionComponent implements OnInit {
           this.jwt = value;
           console.log(this.jwt)
           this.securityService.storeTokens(this.jwt);
-          this.router.navigateByUrl("/taches");
+          this.router.navigateByUrl("/requettes");
         }
       },
       error:err => {

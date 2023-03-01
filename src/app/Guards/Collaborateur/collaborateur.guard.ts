@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import {JwtHelperService} from "@auth0/angular-jwt";
 
@@ -10,7 +10,7 @@ export class CollaborateurGuard implements CanActivate {
   jwtHelperService = new JwtHelperService();
   decodedToken : any;
   constructor(
-
+    private router : Router
   ) {
   }
   canActivate(
@@ -19,9 +19,10 @@ export class CollaborateurGuard implements CanActivate {
     let token : string = localStorage.getItem('access');
     this.decodedToken = this.jwtHelperService.decodeToken(token);
 
-    if(this.decodedToken.roles.toString() == "Collaborateur"){
+    if(this.decodedToken.roles == "Collaborateur"){
       return true;
     } else {
+      this.router.navigateByUrl("/login");
       return false;
     }
   }

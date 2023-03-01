@@ -1,1 +1,74 @@
-<p>filter-tache works!</p>
+<form [formGroup]="formGroup" (ngSubmit)="filterTaches()">
+  <div class="table-responsive-xl p-1">
+    <table class="table">
+      <tbody>
+      <tr>
+        <td colspan="4">
+          <button type="submit" class="btn btn-sm btn-info">Filtrer</button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>ID Tache</label>
+        </td>
+        <td><ng-select [items]="tache"
+                       bindLabel="id"
+                       bindValue="id"
+                       formControlName="id">
+        </ng-select></td>
+        <td>
+          <label>Nom Collaborateur</label>
+        </td>
+        <td><ng-select [items]="collaborateur"
+                       bindLabel="nom"
+                       bindValue="id"
+                       formControlName="collaborateurId">
+        </ng-select></td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>ID requette</label>
+        </td>
+        <td><ng-select [items]="requette"
+                       bindLabel="id"
+                       bindValue="id"
+                       formControlName="requetteId">
+        </ng-select></td>
+        <td>
+          <label>Status Tache</label>
+        </td>
+        <td><ng-select [items]="statusTache"
+                       bindLabel="label"
+                       bindValue="value"
+                       formControlName="statusTache">
+        </ng-select></td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Date début</label>
+        </td>
+        <td><input type="date" class="form-control" formControlName="dateDebut"></td>
+        <td>
+          <label>Date fin</label>
+        </td>
+        <td><input type="date" class="form-control" formControlName="dateFin"></td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Date début prévisionnelle</label>
+        </td>
+        <td><input type="date" class="form-control" formControlName="debutPrevisionel"></td>
+        <td>
+          <label>Date fin prévisionnelle</label>
+        </td>
+        <td><input type="date" class="form-control" formControlName="finPrevisionel"></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</form>

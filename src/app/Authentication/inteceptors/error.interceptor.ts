@@ -68,6 +68,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                 );
 
             }
+          }else if(err.status === 403) {
+            this.toastr.error("Vous n'avez pas accès à cette ressource","Erreur");
           }
         return throwError(err);
       })

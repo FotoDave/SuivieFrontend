@@ -1,38 +1,48 @@
+<app-filter-requette [requette]="requette" (requetteChange)="requette = $event"></app-filter-requette>
 <ng-container *ngIf="requette | async">
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <app-filter-requette [requette]="requette" (change)="requette" ]></app-filter-requette>
           <div class="d-sm-flex align-items-center mb-4">
             <h4 class="card-title mb-sm-0">Liste des requettes clients</h4>
             <a class="text-dark ml-auto mb-3 mb-sm-0"
                routerLink="/requettes/creer" routerLinkActive="active"> Creer une requette</a>
           </div>
+          <button class="btn btn-sm btn-warning" (click)="exportFilesToExcel()">
+            <i class="bi bi-file-pdf-fill"></i>Exporter</button>
           <div class="table-responsive border rounded p-1">
-
-            <table class="table table-hover">
+            <table class="table table-hover" id="tableRequettes" data-cols-width =" 8,3,40,20,10,15,20,20,150 ">
               <thead>
               <tr>
-                <th class="font-weight-bold">ID Requette</th>
-                <th class="font-weight-bold">Intitulé</th>
-                <th class="font-weight-bold">Type</th>
-                <th class="font-weight-bold">Utilisateur</th>
-                <th class="font-weight-bold"></th>
+                <th class="font-weight-bold" data-exclude="true"></th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Status</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">ID</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Intitulé</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Type</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Utilisateur</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Module</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Fonctionnalité</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Urgence</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Observation</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let r of requette | async ">
-                <td>{{r.id}}</td>
+                <td data-exclude="true"><button class="btn btn-sm btn-primary"
+                                                (click)="viewRequette(r.id)">
+                  <i class="bi bi-view-list"></i>Voir</button></td>
+                <td><div class="{{badgeStatusRequette(r.statusRequette)}}">{{r.statusRequette}}</div></td>
+                <td data-t="n">{{r.id}}</td>
                 <td>{{r.intitule}}</td>
                 <td>{{r.typeRequette}}</td>
                 <td>{{r.username}}</td>
-                <td><button class="btn btn-sm btn-primary"
-                            (click)="viewRequette(r.id)">
-                  <i class="bi bi-view-list"></i> Détails</button>
+                <td>{{r.module}}</td>
+                <td>{{r.fonctionnalite}}</td>
+                <td>{{r.urgence}}</td>
+                <td>{{r.observation}}</td>
                   <!--<button class="btn btn-sm btn-danger" (click)="deleteRequette(r)">
                     <i class="bi bi-trash"></i> Supprimer</button>-->
-                </td>
               </tr>
               </tbody>
             </table>

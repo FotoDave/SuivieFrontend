@@ -5,6 +5,7 @@ import {SaveClientComponent} from "./save-client/save-client.component";
 import {EditClientComponent} from "./edit-client/edit-client.component";
 import {AuthenticationGuard} from "../../Authentication/guards/authentication.guard";
 import {AdminGuard} from "../../Guards/Admin/admin.guard";
+import {CollaborateurGuard} from "../../Guards/Collaborateur/collaborateur.guard";
 
 
 

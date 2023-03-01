@@ -1,12 +1,11 @@
-
+<app-filter-tache [taches]="taches" (tacheChange)="taches = $event" [requette]="requette"></app-filter-tache>
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <app-filter-tache></app-filter-tache>
         <div class="d-sm-flex align-items-center mb-4">
           <h4 class="card-title mb-sm-0">Liste des Taches</h4>
-          <form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
+          <!--<form class="search-form d-none d-md-block ml-auto mb-3 mb-sm-0"
                 [formGroup]="formGroup" (ngSubmit)="searchTache()">
             <div class="input-group">
               <div class="form-inline">
@@ -27,32 +26,50 @@
                 <i class="bi bi-search"></i> Chercher
               </button>
             </div>
-          </form>
+          </form>-->
           <a class="text-dark ml-auto mb-3 mb-sm-0"
              routerLinkActive="active" (click)="openXl(content)">Creer une tâche</a>
         </div>
         <ng-container *ngIf="taches | async">
+          <button class="btn btn-sm btn-warning" (click)="exportFilesToExcel()">
+            <i class="bi bi-file-pdf-fill"></i>Exporter</button>
           <div class="table-responsive border rounded p-1">
-            <table class="table table-hover">
+            <table class="table table-hover" id="tableTaches" data-cols-width =" 8,3,40,10,10,150,10,10,10 ">
               <thead>
               <tr>
-                <th class="font-weight-bold">ID Tache</th>
-                <th class="font-weight-bold">Intitulé</th>
-                <th class="font-weight-bold">Collaborateur</th>
-                <th class="font-weight-bold">Status</th>
-                <th class="font-weight-bold"></th>
+                <th class="font-weight-bold" data-exclude="true"></th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Status</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">ID</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Intitulé</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date début prévisionnelle</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date fin prévisionnelle</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Observation</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date de début</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date de fin</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Collaborateur</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let t of taches | async">
-                <td>{{t.id}}</td>
-                <td>{{t.intitule}}</td>
-                <td>{{t.nomCollaborateur}}</td>
-                <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
-                <td><button class="btn btn-sm btn-primary"
-                            (click)="detailsTache(t.id)">
+                <td data-exclude="true"><button class="btn btn-sm btn-primary"
+                                                (click)="detailsTache(t.id)">
                   <i class="bi bi-view-list"></i> Détails</button>
                 </td>
+                <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
+                <td data-t="n">{{t.id}}</td>
+                <td>{{t.intitule}}</td>
+                <td data-t="d">{{t.debutPrevisionel | date:"dd/MM/yyyy 'à' h:mma"}}
+                  <label *ngIf="!t.debutPrevisionel">Non planifiée</label>
+                </td>
+                <td  data-t="d">{{t.finPrevisionel | date:"dd/MM/yyyy 'à' h:mma"}}
+                  <label *ngIf="!t.finPrevisionel">Non planifiée</label></td>
+                <td>{{t.observation}}</td>
+                <td data-t="d">{{t.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}
+                  <label *ngIf="!t.dateDebut">Non planifiée</label></td>
+                <td data-t="d">{{t.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}
+                  <label *ngIf="!t.dateFin">Non planifiée</label></td>
+                <td>{{t.nomCollaborateur}}
+                  <label *ngIf="!t.nomCollaborateur">Non planifié</label></td>
               </tr>
               </tbody>
             </table>

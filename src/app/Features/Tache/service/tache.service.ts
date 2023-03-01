@@ -44,11 +44,14 @@ export class TacheService {
   }
 
   public filterTaches(tache : Tache):Observable<Array<Tache>>{
-    let params = new HttpParams().set('idTache', tache.id.toString()).set('idReq', tache.requetteId.toString())
-                            .set('idCollab', tache.collaborateurId.toString()).set('statut', tache.statusTache)
-                            .set('dateDebut', tache.dateDebut.toString()).set('dateFin', tache.dateFin.toString())
-                            .set('dateDebutPrev', tache.debutPrevisionel.toString())
-                            .set('dateFinPrev', tache.finPrevisionel.toString());
+    let params = new HttpParams().set('idTache', tache.id == null ? "" : tache.id.toString())
+                            .set('idReq', tache.requetteId == null ? "" : tache.requetteId.toString())
+                            .set('idCollab', tache.collaborateurId == null ? "" : tache.collaborateurId.toString())
+                            .set('statut', tache.statusTache == null ? "" : tache.statusTache)
+                            .set('dateDebut', tache.dateDebut == null ? "" : tache.dateDebut.toString())
+                            .set('dateFin', tache.dateFin == null ? "" : tache.dateFin.toString())
+                            .set('dateDebutPrev', tache.debutPrevisionel == null ? "" : tache.debutPrevisionel.toString())
+                            .set('dateFinPrev', tache.finPrevisionel == null ? "" : tache.finPrevisionel.toString());
     return this.http.get<Array<Tache>>(environment.backendHost+"/tache/filter",{
       params: params
     });

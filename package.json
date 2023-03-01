@@ -27,6 +27,7 @@
     "@fullcalendar/core": "^4.4.0",
     "@fullcalendar/daygrid": "^4.4.0",
     "@fullcalendar/interaction": "^4.4.0",
+    "@linways/table-to-excel": "^1.0.4",
     "@mdi/font": "^5.7.55",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ng-select/ng-select": "^4.0.4",

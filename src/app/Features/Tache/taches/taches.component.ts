@@ -10,6 +10,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {catchError} from "rxjs/operators";
+import TableToExcel from '@linways/table-to-excel';
+import {async} from "@angular/core/testing";
 
 @Component({
   selector: 'app-taches',
@@ -105,4 +107,13 @@ export class TachesComponent implements OnInit {
     }));
   }
 
+  exportFilesToExcel(){
+    let table = document.getElementById("tableTaches");
+    TableToExcel.convert(table, {
+      name: "ListesTaches.xlsx",
+      sheet: {
+        name: "Feuille 1"
+      }
+    });
+  }
 }
