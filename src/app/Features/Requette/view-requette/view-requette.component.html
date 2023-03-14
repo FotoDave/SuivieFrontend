@@ -4,7 +4,7 @@
     <div class="card-body" *ngIf="requette">
       <div class="text-right">
         <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
-               *ngIf="requette.statusRequette != 'TRAITE'" (click)="openXl(content)">
+               *ngIf="requette.statusRequette != 'TRAITE' && this.decodedToken.roles != 'Client'" (click)="openXl(content)">
           <i class="bi bi-list"></i> Créer une Tache</button>
       </div>
       <h4 class="card-title">Détails de la requette</h4>

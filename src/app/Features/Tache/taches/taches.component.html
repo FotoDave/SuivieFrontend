@@ -34,7 +34,7 @@
           <button class="btn btn-sm btn-warning" (click)="exportFilesToExcel()">
             <i class="bi bi-file-pdf-fill"></i>Exporter</button>
           <div class="table-responsive border rounded p-1">
-            <table class="table table-hover" id="tableTaches" data-cols-width =" 8,3,40,10,10,150,10,10,10 ">
+            <table class="table table-hover" id="tableTaches" data-cols-width =" 10,3,40,15,15,80,15,15,10 ">
               <thead>
               <tr>
                 <th class="font-weight-bold" data-exclude="true"></th>
@@ -58,15 +58,15 @@
                 <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
                 <td data-t="n">{{t.id}}</td>
                 <td>{{t.intitule}}</td>
-                <td data-t="d">{{t.debutPrevisionel | date:"dd/MM/yyyy 'à' h:mma"}}
+                <td>{{t.debutPrevisionel | date:"dd/MM/yyyy"}}
                   <label *ngIf="!t.debutPrevisionel">Non planifiée</label>
                 </td>
-                <td  data-t="d">{{t.finPrevisionel | date:"dd/MM/yyyy 'à' h:mma"}}
+                <td>{{t.finPrevisionel | date:"dd/MM/yyyy"}}
                   <label *ngIf="!t.finPrevisionel">Non planifiée</label></td>
                 <td>{{t.observation}}</td>
-                <td data-t="d">{{t.dateDebut | date:"dd/MM/yyyy 'à' h:mma"}}
+                <td>{{t.dateDebut | date:"dd/MM/yyyy"}}
                   <label *ngIf="!t.dateDebut">Non planifiée</label></td>
-                <td data-t="d">{{t.dateFin | date:"dd/MM/yyyy 'à' h:mma"}}
+                <td>{{t.dateFin | date:"dd/MM/yyyy"}}
                   <label *ngIf="!t.dateFin">Non planifiée</label></td>
                 <td>{{t.nomCollaborateur}}
                   <label *ngIf="!t.nomCollaborateur">Non planifié</label></td>

@@ -10,6 +10,7 @@ import {formatDate} from "@angular/common";
 import {Client} from "../../Client/model/client.model";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FilesService} from "../../../Files/service/files.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-view-requette',
@@ -23,8 +24,9 @@ export class ViewRequetteComponent implements OnInit {
   idRequette : number;
   fileCode : string;
   fileName : string;
-  formFormGroup : FormGroup;
-  closeResult : string;
+  jwtHelperService = new JwtHelperService();
+  decodedToken : any;
+
 
   constructor(
     private requetteService : RequetteService,
@@ -37,6 +39,10 @@ export class ViewRequetteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //Ici je décode le token de l'utilisateur afin de déterminer son role
+    let token : string = localStorage.getItem('access');
+    this.decodedToken = this.jwtHelperService.decodeToken(token);
+
     this.idRequette = Number(this.activedRoute.snapshot.paramMap.get('id'));
     this.requettes = this.requetteService.getOneRequette(this.idRequette).pipe(catchError(err => {
       console.log("Erreur lors de la récupération des taches.")
