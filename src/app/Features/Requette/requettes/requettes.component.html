@@ -6,26 +6,32 @@
         <div class="card-body">
           <div class="d-sm-flex align-items-center mb-4">
             <h4 class="card-title mb-sm-0">Liste des requettes clients</h4>
-            <a class="text-dark ml-auto mb-3 mb-sm-0"
-               routerLink="/requettes/creer" routerLinkActive="active"> Creer une requette</a>
+            <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
+                    routerLink="/requettes/creer" routerLinkActive="active">
+              <i class="bi bi-list"></i> Creer une requette
+            </button>
+            <!--<a class="text-dark ml-auto mb-3 mb-sm-0"
+               routerLink="/requettes/creer" routerLinkActive="active"> Creer une requette</a>-->
           </div>
           <button class="btn btn-sm btn-warning" (click)="exportFilesToExcel()">
             <i class="bi bi-file-pdf-fill"></i>Exporter</button>
           <div class="table-responsive border rounded p-1">
-            <table class="table table-hover" id="tableRequettes" data-cols-width =" 10,3,35
-            ,25,10,15,20,20,80 ">
+            <table class="table table-hover" id="tableRequettes" data-cols-width =" 3,35
+            ,15,25,10,10,15,20,20,80,10 ">
               <thead>
               <tr>
                 <th class="font-weight-bold" data-exclude="true"></th>
-                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Status</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">ID</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Intitulé</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date de création</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Type</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Utilisateur</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Client</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Module</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Fonctionnalité</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Urgence</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Observation</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Status</th>
               </tr>
               </thead>
               <tbody>
@@ -33,15 +39,17 @@
                 <td data-exclude="true"><button class="btn btn-sm btn-primary"
                                                 (click)="viewRequette(r.id)">
                   <i class="bi bi-view-list"></i>Voir</button></td>
-                <td><div class="{{badgeStatusRequette(r.statusRequette)}}">{{r.statusRequette}}</div></td>
                 <td data-t="n">{{r.id}}</td>
                 <td>{{r.intitule}}</td>
+                <td>{{r.date_creation | date:"dd/MM/yyyy"}}</td>
                 <td>{{r.typeRequette}}</td>
                 <td>{{r.username}}</td>
+                <td>{{r.nomClient}}</td>
                 <td>{{r.module}}</td>
                 <td>{{r.fonctionnalite}}</td>
                 <td>{{r.urgence}}</td>
                 <td>{{r.observation}}</td>
+                <td><div class="{{badgeStatusRequette(r.statusRequette)}}">{{r.statusRequette}}</div></td>
                   <!--<button class="btn btn-sm btn-danger" (click)="deleteRequette(r)">
                     <i class="bi bi-trash"></i> Supprimer</button>-->
               </tr>

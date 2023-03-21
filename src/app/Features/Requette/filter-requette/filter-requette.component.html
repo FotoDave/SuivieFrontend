@@ -1,11 +1,12 @@
-<form [formGroup]="formGroup" (ngSubmit)="filterRequette()">
+<form [formGroup]="formGroup">
   <div class="table-responsive-xl p-1">
     <table class="table">
       <tbody>
 
       <tr>
         <td colspan="4">
-          <button type="submit" class="btn btn-sm btn-info">Filtrer</button>
+          <button type="submit" class="btn btn-sm btn-info"
+          (click)="filterRequette(); clicked = true;" [disabled]="clicked">Filtrer</button>
         </td>
       </tr>
 

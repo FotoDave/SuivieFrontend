@@ -119,7 +119,7 @@
       <div>
           <div class="text-right">
             <button type="submit" class="btn btn-primary mt-5 ml-auto mb-3 mb-sm-0"
-                (click)="modifier(requette.id)">
+                (click)="modifier(requette.id); clicked = true;" [disabled]="clicked">
               <i class="bi bi-pen"></i> Modifier</button>
             <!--<button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes"
                 (click)="delete(requette)">

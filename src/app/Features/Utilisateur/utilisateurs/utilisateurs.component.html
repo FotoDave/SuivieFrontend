@@ -17,8 +17,12 @@
                 </button>
               </div>
             </form>
-            <a class="text-dark ml-auto mb-3 mb-sm-0"
-               (click)="openCreate(create)" routerLinkActive="active"> Creer un utilisateur</a>
+            <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
+                    (click)="openCreate(create)" routerLinkActive="active">
+              <i class="bi bi-list"></i> Créer un utilisateur
+            </button>
+           <!-- <a class="text-dark ml-auto mb-3 mb-sm-0"
+               (click)="openCreate(create)" routerLinkActive="active"> Creer un utilisateur</a>-->
           </div>
           <div class="table-responsive border rounded p-1">
 
@@ -38,9 +42,9 @@
                 <td>{{user.username}}</td>
                 <td>{{user.roles}}</td>
                 <td>{{user.nomClient}}</td>
-                <td><!--<button class="btn btn-sm btn-primary"
+                <td><button class="btn btn-sm btn-primary"
                             (click)="openUpdate(update, user)">
-                  <i class="bi bi-pen"></i> Modifier</button>-->
+                  <i class="bi bi-pen"></i> Modifier</button>
                   </td>
               </tr>
               </tbody>

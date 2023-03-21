@@ -29,7 +29,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-success" (click)="creerTache()">
+        <button type="submit" class="btn btn-success"
+                (click)="creerTache(); clicked = true;" [disabled]="clicked">
             <i class="bi bi-save"></i>
             Créer</button>
         <button type="button" class="btn btn-danger"

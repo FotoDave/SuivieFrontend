@@ -26,6 +26,7 @@ export class CreateUsersComponent implements OnInit {
   ];
   @Output()
   actualisation : EventEmitter<any> = new EventEmitter<any>();
+  clicked: boolean;
 
   constructor(
     private modalService : NgbModal,

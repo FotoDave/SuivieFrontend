@@ -23,6 +23,7 @@ export class ContentComponent implements OnInit {
   actualisation : EventEmitter<any> = new EventEmitter<any>();
   @Input()
   modal: any;
+  clicked: boolean;
   constructor(
     private modalService : NgbModal,
     private formBuilder : FormBuilder,

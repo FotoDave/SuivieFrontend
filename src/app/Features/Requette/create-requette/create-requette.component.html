@@ -2,8 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Requette Client</h4>
-      <form class="forms-sample" [formGroup]="createFormGroup"
-            (ngSubmit)="createRequtte()">
+      <form class="forms-sample" [formGroup]="createFormGroup">
         <div class="form-group">
           <label for="intitule"><b>Intitulé</b></label>
           <input type="text" class="form-control" id="intitule"
@@ -59,7 +58,8 @@
           </form>
         </div>
         <div class="text-right">
-          <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0">
+          <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
+              (click)="createRequtte(); clicked = true;" [disabled]="clicked">
             <i class="bi bi-save"></i>
              Créer</button>
           <button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes">

@@ -20,9 +20,9 @@ export class CommentaireComponent implements OnInit {
   tacheId : number;
   @Output()
   actualisation : EventEmitter<any> = new EventEmitter<any>();
-  commentaire : Commentaire;
   upFile : File;
   fileFG: FormGroup;
+  clicked: boolean;
 
   constructor(
     private commentaireService : CommentaireService,
@@ -42,13 +42,15 @@ export class CommentaireComponent implements OnInit {
   }
 
   creerCommentaire(){
-    this.commentaire = this.formGroup.value;
-    this.commentaire.tacheId = this.tacheId;
-    this.commentaireService.creerCommentaire(this.commentaire).subscribe({
+    let id: string;
+    let commentaire : Commentaire = this.formGroup.value;
+    commentaire.tacheId = this.tacheId;
+    this.commentaireService.creerCommentaire(commentaire).subscribe({
       next:value => {
-        let id: string = String(value.id);
+        id = String(value.id);
         this.uploadFile(id);
         this.actualisation.emit();
+        this.toastr.success("Commentaire ajouté", "Succès");
         this.modal.close();
       },
       error:err => {

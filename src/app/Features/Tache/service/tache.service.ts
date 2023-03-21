@@ -47,7 +47,7 @@ export class TacheService {
     let params = new HttpParams().set('idTache', tache.id == null ? "" : tache.id.toString())
                             .set('idReq', tache.requetteId == null ? "" : tache.requetteId.toString())
                             .set('idCollab', tache.collaborateurId == null ? "" : tache.collaborateurId.toString())
-                            .set('statut', tache.statusTache == null ? "" : tache.statusTache)
+                            .set('statut', tache.statusTache == null ? "" : tache.statusTache.toString())
                             .set('dateDebut', tache.dateDebut == null ? "" : tache.dateDebut.toString())
                             .set('dateFin', tache.dateFin == null ? "" : tache.dateFin.toString())
                             .set('dateDebutPrev', tache.debutPrevisionel == null ? "" : tache.debutPrevisionel.toString())

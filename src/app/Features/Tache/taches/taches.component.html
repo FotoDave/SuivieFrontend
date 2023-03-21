@@ -27,8 +27,12 @@
               </button>
             </div>
           </form>-->
-          <a class="text-dark ml-auto mb-3 mb-sm-0"
-             routerLinkActive="active" (click)="openXl(content)">Creer une tâche</a>
+          <button type="submit" class="btn btn-success ml-auto mb-3 mb-sm-0"
+                  routerLinkActive="active" (click)="openXl(content)">
+            <i class="bi bi-list"></i> Créer une tâche
+          </button>
+          <!--<a class="text-dark ml-auto mb-3 mb-sm-0"
+             routerLinkActive="active" (click)="openXl(content)">Creer une tâche</a>-->
         </div>
         <ng-container *ngIf="taches | async">
           <button class="btn btn-sm btn-warning" (click)="exportFilesToExcel()">
@@ -55,21 +59,21 @@
                                                 (click)="detailsTache(t.id)">
                   <i class="bi bi-view-list"></i> Détails</button>
                 </td>
-                <td><div class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</div></td>
+                <td><p class="{{badgeStatus(t.statusTache)}}">{{t.statusTache}}</p></td>
                 <td data-t="n">{{t.id}}</td>
                 <td>{{t.intitule}}</td>
                 <td>{{t.debutPrevisionel | date:"dd/MM/yyyy"}}
-                  <label *ngIf="!t.debutPrevisionel">Non planifiée</label>
+                  <label *ngIf="!t.debutPrevisionel">#non_planifiée</label>
                 </td>
                 <td>{{t.finPrevisionel | date:"dd/MM/yyyy"}}
-                  <label *ngIf="!t.finPrevisionel">Non planifiée</label></td>
+                  <label *ngIf="!t.finPrevisionel">#non_planifiée</label></td>
                 <td>{{t.observation}}</td>
                 <td>{{t.dateDebut | date:"dd/MM/yyyy"}}
-                  <label *ngIf="!t.dateDebut">Non planifiée</label></td>
+                  <label *ngIf="!t.dateDebut">#non_planifiée</label></td>
                 <td>{{t.dateFin | date:"dd/MM/yyyy"}}
-                  <label *ngIf="!t.dateFin">Non planifiée</label></td>
+                  <label *ngIf="!t.dateFin">#non_planifiée</label></td>
                 <td>{{t.nomCollaborateur}}
-                  <label *ngIf="!t.nomCollaborateur">Non planifié</label></td>
+                  <label *ngIf="!t.nomCollaborateur">#non_planifié</label></td>
               </tr>
               </tbody>
             </table>

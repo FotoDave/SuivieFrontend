@@ -15,6 +15,7 @@ export class EditCollaborateurComponent implements OnInit {
   formGroup : FormGroup;
   collaborateurs : Observable<Collaborateur>;
   idCollab : String;
+  clicked: boolean;
   constructor(
     private route : Router,
     private collabService : CollaborateurService,

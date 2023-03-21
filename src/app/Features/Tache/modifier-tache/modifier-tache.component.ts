@@ -19,6 +19,7 @@ export class ModifierTacheComponent implements OnInit {
   @Output()
   actualisation : EventEmitter<any> = new EventEmitter<any>();
   tache : Tache;
+  clicked: boolean;
   constructor(
     private tacheService : TacheService,
     private formBuilder : FormBuilder,

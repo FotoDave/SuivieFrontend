@@ -19,6 +19,7 @@ export class EditClientComponent implements OnInit {
   errorMessage: string;
   clientModel : Subscription;
   model : Client
+  clicked: boolean;
   constructor(
     private clientService : ClientsService,
     private editFB : FormBuilder,

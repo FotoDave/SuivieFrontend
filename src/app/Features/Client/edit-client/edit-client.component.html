@@ -2,8 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Modifier Client</h4>
-      <form class="forms-sample" [formGroup]="editFormGroup"
-            (ngSubmit)="saveClients()">
+      <form class="forms-sample" [formGroup]="editFormGroup">
         <div class="form-group">
           <label for="nom"><b>Nom</b></label>
           <input type="text" class="form-control" id="nom"
@@ -20,7 +19,8 @@
                  placeholder="Téléphone" formControlName="tel">
         </div>
         <div class="text-right">
-        <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0">
+        <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0"
+          (click)="saveClients(); clicked = true;" [disabled]="clicked">
           <i class="bi bi-pen"></i>
           Modifier</button>
           <button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/clients">

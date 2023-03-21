@@ -33,6 +33,7 @@ export class FilterRequetteComponent implements OnInit {
     {label: "EN_COURS", value: "EN_COURS"},
     {label: "TRAITE", value: "TRAITE"}
   ];
+  clicked: boolean;
 
   constructor(
     private formBuilder : FormBuilder,

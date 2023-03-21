@@ -25,6 +25,7 @@ export class EditUsersComponent implements OnInit {
   user : AppUser;
   @Output()
   actualisation : EventEmitter<any> = new EventEmitter<any>();
+  clicked: boolean;
 
   constructor(
     private modalService : NgbModal,

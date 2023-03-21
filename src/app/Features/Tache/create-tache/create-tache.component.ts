@@ -24,6 +24,7 @@ export class CreateTacheComponent implements OnInit {
   upFile : File;
   fileFG: FormGroup;
   items = [];
+  clicked: boolean;
 
   constructor(
     private formBuilder : FormBuilder,

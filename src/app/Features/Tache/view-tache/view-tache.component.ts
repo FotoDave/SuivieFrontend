@@ -35,6 +35,7 @@ export class ViewTacheComponent implements OnInit {
   collaborateur : Collaborateur;
   requette : Requette;
   commentaire : Observable<Array<Commentaire>>;
+  clicked: boolean;
   constructor(
     private activateRoute : ActivatedRoute,
     private tacheService : TacheService,
@@ -231,19 +232,14 @@ export class ViewTacheComponent implements OnInit {
       }
     }
     this.tache.statusTache = statutTache2;
-    console.log(this.tache);
-    this.tacheService.changeStatusTache(this.tache).subscribe({
-      next: () => {
-        console.log("Status de la tache changé avec succès");
-      }, error: err => {
-        console.log("Erreur lors du changement du status de la tache...");
-        throwError(err);
-      }
-    });
-    this.taches = this.tacheService.getOneTache(this.idTache).pipe(catchError(err => {
+    this.taches = this.tacheService.changeStatusTache(this.tache).pipe(catchError(err => {
+          console.log("Erreur lors du changement du status de la tache...");
+          return throwError(err);
+      }));
+    /*this.taches = this.tacheService.getOneTache(this.idTache).pipe(catchError(err => {
       console.log("Erreur lors de la récupération des taches.")
       return throwError(err);
-    }));
+    }));*/
     modal.close();
   }
 

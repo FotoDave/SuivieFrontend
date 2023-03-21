@@ -32,6 +32,7 @@ export class FilterTacheComponent implements OnInit {
     {label: "TERMINE", value: "TERMINE"},
     {label: "DEPLOYE", value: "DEPLOYE"}
   ];
+  clicked: boolean;
 
   constructor(
     private tacheService : TacheService,

@@ -90,6 +90,9 @@ export class TachesComponent implements OnInit {
       case "TERMINE":{
         return "badge badge-success p-2";
       }
+      case "DEPLOYE": {
+        return "badge badge-success p-2";
+      }
     }
   }
   openXl(content) {

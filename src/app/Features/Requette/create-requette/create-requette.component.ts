@@ -20,6 +20,7 @@ export class CreateRequetteComponent implements OnInit {
   createFormGroup: FormGroup;
   upFile : File;
   fileFG: FormGroup;
+  clicked: boolean;
   statusList = [
     {label: "NOUVELLE FONCTIONNALITE", value: "NOUVELLE_FONCTIONNALITE"},
     {label: "CORRECTION DES BUGS", value: "CORRECTION_BUGS"},
@@ -27,7 +28,6 @@ export class CreateRequetteComponent implements OnInit {
     {label: "TRAITEMENT DES DONNÉES", value: "TRAITEMENT_DONNEES"},
     {label: "AUTRES", value: "AUTRES"},
   ];
-  private fileStatus = { status:'', requestType:'', percent:0}
 
   constructor(
     private requetteService: RequetteService,
@@ -133,4 +133,5 @@ export class CreateRequetteComponent implements OnInit {
     this.fileStatus.requestType = requestType;
     this.fileStatus.percent = Math.round(100 * loaded / total)
   }*/
+
 }

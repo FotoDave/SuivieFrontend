@@ -19,6 +19,7 @@ export class UpdateRequetteComponent implements OnInit {
     {label: "NOUVELLE_FONCTIONNALITE", value:"NOUVELLE_FONCTIONNALITE"},
     {label: "CORRECTION_BUGS", value:"CORRECTION_BUGS"},
   ];
+  clicked: boolean;
 
   constructor(
     private requetteService : RequetteService,

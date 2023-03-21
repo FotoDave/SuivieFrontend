@@ -26,6 +26,7 @@ export class ViewRequetteComponent implements OnInit {
   fileName : string;
   jwtHelperService = new JwtHelperService();
   decodedToken : any;
+  clicked: boolean;
 
 
   constructor(

@@ -2,8 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Modifier requette</h4>
-      <form class="forms-sample" [formGroup]="updateFormGroup"
-            (ngSubmit)="updateRequtte()">
+      <form class="forms-sample" [formGroup]="updateFormGroup">
         <div class="form-group">
           <label for="intitule"><b>Intitulé</b></label>
           <input type="text" class="form-control" id="intitule"
@@ -46,7 +45,8 @@
                     placeholder="Vos observations" formControlName="observation"></textarea>
         </div>
         <div class="text-right">
-          <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0">
+          <button type="submit" class="btn btn-primary ml-auto mb-3 mb-sm-0"
+              (click)="updateRequtte(); clicked = true;" [disabled]="clicked">
             <i class="bi bi-save"></i>
             Modifier</button>
           <button class="btn btn-danger ml-auto mb-3 mb-sm-0" routerLink="/requettes">

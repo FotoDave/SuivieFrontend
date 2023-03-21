@@ -14,6 +14,7 @@ import {ToastrService} from "ngx-toastr";
 export class CreateCollaborateurComponent implements OnInit {
   collaborateur : Observable<Array<Collaborateur>>;
   saveFormGroup : FormGroup;
+  clicked: boolean;
   constructor(
     private collabService : CollaborateurService,
     private saveFB : FormBuilder,

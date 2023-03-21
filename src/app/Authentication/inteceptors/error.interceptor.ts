@@ -49,11 +49,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }
                   }),
                   catchError(err1 => {
-                    if (this.jwtHelperService.isTokenExpired(localStorage.getItem('refresh'))) {
+                    if (localStorage.getItem('refresh') != null) {
                       this.toastr.info(`Veuillez vous reconnecter !`, `Session expirée`);
                       this.securityService.logOut();
                     } else {
-                      this.toastr.error("Vous n'avez pas accès à cette ressource","Erreur");
+                      this.toastr.error("Vos informations sont incorrects...","Erreur");
                     }
                     return throwError(err1);
                   }),

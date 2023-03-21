@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   backendHost : "http://localhost:8085"
-};
   //backendHost : "http://192.168.100.139:8085"
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
