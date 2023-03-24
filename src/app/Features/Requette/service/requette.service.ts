@@ -32,6 +32,9 @@ export class RequetteService {
     return this.http.put<Requette>(environment.backendHost+"/requettes/"+id, requette);
   }
 
+  public estimatedStartDate(requette : Requette): Observable<Requette>{
+    return this.http.put<Requette>(environment.backendHost+"/requettes/estimatedStartDate", requette);
+  }
   public createRequette(requette : Requette): Observable<Requette>{
     return this.http.post<Requette>(environment.backendHost+"/requettes", requette);
   }

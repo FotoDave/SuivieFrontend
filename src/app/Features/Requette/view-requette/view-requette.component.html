@@ -12,6 +12,9 @@
         Requettes /<a class="text-info" routerLink="/requettes" routerLinkActive="active">
         Liste des requettes</a> / Détails requette #{{requette.id}}
       </p>
+      <button type="submit" class="btn btn-outline-warning ml-auto mb-3 mb-sm-0"
+        *ngIf="this.decodedToken.roles != 'Client' && !requette.estimatedStartDate"
+        (click)="openXLEstimatedStartDate(contentEstimatedDate)">Date de début prévisionnelle</button>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -104,13 +107,20 @@
           </tr>
 
           <tr>
-            <td colspan="2">
+            <td>
               <label>Fichier</label>
             </td>
-            <td colspan="2">
+            <td>
               <a class="text-info" (click)="downloadFile(fileCode)">
                 {{fileName}}
               </a>
+            </td>
+            <td>
+              <label>Date de début prévisionnelle</label>
+            </td>
+            <td>
+              <b>{{requette.estimatedStartDate | date:"MM/dd/yyyy"}}</b>
+              <label *ngIf="!requette.estimatedStartDate">#non_définie</label>
             </td>
           </tr>
           </tbody>
@@ -133,4 +143,30 @@
 
 <ng-template #content let-modal>
   <app-content [modal]="modal" [requette]="requette" (actualisation)="actualiserRequette()"></app-content>
+</ng-template>
+
+<ng-template #contentEstimatedDate let-modal>
+  <form class="forms-sample" [formGroup]="formGroup">
+  <div class="modal-header">
+    <h4 class="modal-title">Date de début prévisionnelle de la requette</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="estimatedStartDate"><b>Date de début prévisionnelle</b></label>
+      <input type="date" class="form-control" id="estimatedStartDate"
+             placeholder="Date de début prévisionnelle" formControlName="estimatedStartDate">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-success text-left"
+            (click)="estimatedStartDate(); clicked2 = true; modal.dismiss('Cross click')" [disabled]="clicked2">
+      <i class="bi bi-save"></i>
+      Ajouter</button>
+    <button type="button" class="btn btn-danger text-right"
+            (click)="modal.close('Close click')">
+      <i class="bi bi-x-circle"></i>
+      Annuler</button>
+  </div>
+  </form>
 </ng-template>

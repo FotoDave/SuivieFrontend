@@ -27,6 +27,8 @@ export class ViewRequetteComponent implements OnInit {
   jwtHelperService = new JwtHelperService();
   decodedToken : any;
   clicked: boolean;
+  clicked2: boolean;
+  formGroup : FormGroup;
 
 
   constructor(
@@ -34,7 +36,7 @@ export class ViewRequetteComponent implements OnInit {
     private clientService : ClientsService,
     private activedRoute : ActivatedRoute,
     private router : Router,
-    private formFB : FormBuilder,
+    private formBuilder : FormBuilder,
     private modalService : NgbModal,
     private fileService : FilesService
   ) { }
@@ -70,6 +72,29 @@ export class ViewRequetteComponent implements OnInit {
 
   openXl(content) {
     this.modalService.open(content, { size: 'xl' });
+  }
+
+  openXLEstimatedStartDate(contentEstimatedDate){
+    this.modalService.open(contentEstimatedDate, {size : 'xl'});
+    this.formGroup = this.formBuilder.group({
+      estimatedStartDate : this.formBuilder.control("")
+    });
+  }
+
+  estimatedStartDate(){
+    this.requette.estimatedStartDate = this.formGroup.value.estimatedStartDate;
+    this.requettes = this.requetteService.estimatedStartDate(this.requette).pipe(catchError(err => {
+      console.log("Erreur lors de l'ajout de la date prévisionnelle de la requette");
+      return throwError(err);
+    }));
+    this.requettes.subscribe({
+      next: value => {
+        this.requette = value;
+      },
+      error: err => {
+        throwError(err);
+      }
+    });
   }
 
   modifier(id: number) {

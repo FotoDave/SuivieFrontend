@@ -1,6 +1,7 @@
 export interface Requette{
   id : number;
   date_creation : Date;
+  estimatedStartDate : Date;
   intitule : string;
   module : string;
   fonctionnalite : string;

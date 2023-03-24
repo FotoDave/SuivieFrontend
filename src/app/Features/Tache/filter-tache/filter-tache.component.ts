@@ -64,11 +64,11 @@ export class FilterTacheComponent implements OnInit {
       id:this.formBuilder.control(""),
       collaborateurId:this.formBuilder.control(""),
       requetteId:this.formBuilder.control(""),
-      statusTache:this.formBuilder.control(""),
+      statusTache:this.formBuilder.control("")/*,
       dateDebut:this.formBuilder.control(""),
       dateFin:this.formBuilder.control(""),
       debutPrevisionel:this.formBuilder.control(""),
-      finPrevisionel:this.formBuilder.control("")
+      finPrevisionel:this.formBuilder.control("")*/
     });
   }
 
@@ -79,7 +79,7 @@ export class FilterTacheComponent implements OnInit {
       return throwError(err);
     }));
 
-    this.taches.subscribe({
+    /*this.taches.subscribe({
       next: value => {
        //console.log(value);
       },
@@ -87,7 +87,7 @@ export class FilterTacheComponent implements OnInit {
         console.log("Erreur lors de la récupération des taches..");
         throwError(err);
       }
-    });
+    });*/
 
     this.tacheChange.emit(this.taches);
   }

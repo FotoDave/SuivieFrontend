@@ -17,13 +17,14 @@
             <i class="bi bi-file-pdf-fill"></i>Exporter</button>
           <div class="table-responsive border rounded p-1">
             <table class="table table-hover" id="tableRequettes" data-cols-width =" 3,35
-            ,15,25,10,10,15,20,20,80,10 ">
+            ,15,18,25,10,10,15,20,20,80,10 ">
               <thead>
               <tr>
                 <th class="font-weight-bold" data-exclude="true"></th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">ID</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Intitulé</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date de création</th>
+                <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Date de début prévisionnelle</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Type</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Utilisateur</th>
                 <th class="font-weight-bold" data-f-bold="true" data-a-h="center">Client</th>
@@ -42,6 +43,8 @@
                 <td data-t="n">{{r.id}}</td>
                 <td>{{r.intitule}}</td>
                 <td>{{r.date_creation | date:"dd/MM/yyyy"}}</td>
+                <td>{{r.estimatedStartDate | date:"dd/MM/yyyy"}}
+                  <label *ngIf="!r.estimatedStartDate">#non_planifiée</label></td>
                 <td>{{r.typeRequette}}</td>
                 <td>{{r.username}}</td>
                 <td>{{r.nomClient}}</td>

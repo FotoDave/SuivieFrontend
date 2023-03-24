@@ -5,7 +5,7 @@
       <tr>
         <td colspan="4">
           <button type="submit" class="btn btn-sm btn-info"
-            (click)="filterTaches(); clicked = true;" [disabled]="clicked">Filtrer</button>
+            (click)="filterTaches()" [disabled]="clicked">Filtrer</button>
         </td>
       </tr>
 
@@ -47,7 +47,7 @@
         </ng-select></td>
       </tr>
 
-      <tr>
+      <!--<tr>
         <td>
           <label>Date début</label>
         </td>
@@ -67,7 +67,7 @@
           <label>Date fin prévisionnelle</label>
         </td>
         <td><input type="date" class="form-control" formControlName="finPrevisionel"></td>
-      </tr>
+      </tr>-->
 
       </tbody>
     </table>

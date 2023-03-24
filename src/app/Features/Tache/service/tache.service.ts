@@ -48,10 +48,10 @@ export class TacheService {
                             .set('idReq', tache.requetteId == null ? "" : tache.requetteId.toString())
                             .set('idCollab', tache.collaborateurId == null ? "" : tache.collaborateurId.toString())
                             .set('statut', tache.statusTache == null ? "" : tache.statusTache.toString())
-                            .set('dateDebut', tache.dateDebut == null ? "" : tache.dateDebut.toString())
+                            /*.set('dateDebut', tache.dateDebut == null ? "" : tache.dateDebut.toString())
                             .set('dateFin', tache.dateFin == null ? "" : tache.dateFin.toString())
                             .set('dateDebutPrev', tache.debutPrevisionel == null ? "" : tache.debutPrevisionel.toString())
-                            .set('dateFinPrev', tache.finPrevisionel == null ? "" : tache.finPrevisionel.toString());
+                            .set('dateFinPrev', tache.finPrevisionel == null ? "" : tache.finPrevisionel.toString())*/;
     return this.http.get<Array<Tache>>(environment.backendHost+"/tache/filter",{
       params: params
     });
